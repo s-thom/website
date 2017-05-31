@@ -1,6 +1,6 @@
-import React from "react"
+import React from 'react';
 
-import styles from "./index.css"
+import styles from './index.css';
 
 const Footer = () => (
   <footer className={ styles.footer }>
@@ -10,13 +10,13 @@ const Footer = () => (
         href={ process.env.PHENOMIC_HOMEPAGE }
         className={ styles.phenomicReference }
       >
-        { "Website generated with " }
+        { 'Website generated with ' }
         <span className={ styles.phenomicReferenceName }>
           {  `<${ process.env.PHENOMIC_NAME} />` }
         </span>
       </a>
     </p>
   </footer>
-)
+);
 
-export default Footer
+export default Footer;
