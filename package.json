@@ -4,6 +4,7 @@
   "homepage": "https://sthom.kiwi",
   "twitter": "",
   "repository": "",
+  "version": "0.0.0",
   "scripts": {
     "lint:js": "eslint --ignore-path .gitignore --fix .",
     "lint:css": "stylelint \"src/**/*.css\"",

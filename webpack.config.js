@@ -67,6 +67,7 @@ export default (config = {}) => {
           exclude: /\.global\.css$/,
           include: path.resolve(__dirname, 'src'),
           loader: ExtractTextPlugin.extract({
+            // @ts-ignore
             fallback: 'style-loader',
             use: [
               {
@@ -95,6 +96,7 @@ export default (config = {}) => {
           test: /\.global\.css$/,
           include: path.resolve(__dirname, 'src'),
           loader: ExtractTextPlugin.extract({
+            // @ts-ignore
             fallback: 'style-loader',
             use: [
               'css-loader',
@@ -183,7 +185,7 @@ export default (config = {}) => {
         // here you define generic metadata for your feed
         feedsOptions: {
           title: pkg.name,
-          site_url: pkg.homepage,
+          site_url: pkg.homepage, // eslint-disable-line camelcase
         },
         feeds: {
           // here we define one feed, but you can generate multiple, based
@@ -200,7 +202,7 @@ export default (config = {}) => {
       }),
 
       new PhenomicLoaderSitemapWebpackPlugin({
-        site_url: pkg.homepage,
+        site_url: pkg.homepage, // eslint-disable-line camelcase
       }),
 
       new ExtractTextPlugin({
