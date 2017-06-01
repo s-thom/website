@@ -5,6 +5,7 @@
   "twitter": "",
   "repository": "",
   "version": "0.0.0",
+  "ga": "UA-55893575-12",
   "scripts": {
     "lint:js": "eslint --ignore-path .gitignore --fix .",
     "lint:css": "stylelint \"src/**/*.css\"",
@@ -128,6 +129,7 @@
     "phenomic": "^0.21.1"
   },
   "dependencies": {
+    "react-ga": "^2.2.0",
     "remark-emoji": "^2.0.0"
   }
 }

@@ -5,4 +5,5 @@ export default {
   pkg,
   // you can add any DYNAMIC data you need here
   // ...
+  layoutNames: {}, // gets filled out in routes.js
 };
