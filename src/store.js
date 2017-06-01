@@ -5,6 +5,7 @@ import * as phenomicReducers from 'phenomic/lib/redux/modules';
 
 const store = createStore(
   combineReducers(phenomicReducers),
+  // eslint-disable-next-line no-undef
   { ...(typeof window !== 'undefined') && window.__INITIAL_STATE__ }
 );
 
