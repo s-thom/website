@@ -1,19 +1,17 @@
-# [Phenomic](https://github.com/MoOx/phenomic) phenomic-theme-base
+# [View the website!](https://sthom.kiwi)
 
-## Install dependencies
+Based on [Phenomic](https://phenomic.io/), so it can generate static HTML (which gets served, meaning this site works 100% without Javascript). If you do have scripts enabled, it will then run on the browser as well, reducing the requests back to the server.
 
-```sh
-npm install
-```
+While I don't expect anyone to actually fork this repo, much less to make a PR, I've put it up on GitHub so everyone can see how I built it. Soon I might even write about it on the site (which will end up in this repo).
 
-## Run development server
+## Getting it running
 
-```sh
-npm start
-```
+Requires [Node](https://nodejs.org).
 
-## Build for production
+1. Clone the repo
+2. `npm install`
+3. `npm start`
 
-```sh
-npm run build
-```
+Wait for it to start up, rejoice when it actually works.
+
+To create a production build, `npm run build`.
