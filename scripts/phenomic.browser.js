@@ -21,6 +21,7 @@ if (module.hot) {
   module.hot.accept(mdContext.id, () => {
     mdContext = require.context('../content', true, /\.(md|markdown)$/);
     const mdHotUpdater = require('phenomic/lib/client/hot-md').default;
+    // eslint-disable-next-line no-undef
     const requireUpdate = mdHotUpdater(mdContext, window.__COLLECTION__, store);
     mdContext.keys().forEach(requireUpdate);
   });
