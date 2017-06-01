@@ -1,31 +1,9 @@
 /* Made By */
-secret_online
-Email: me+humans@secretonline.co
-Twitter: @secret_online
+Stuart Thomson
+Email: stu.thom.96@gmail.com
+Github: https://github.com/s-thom
 
 /* SITE */
 
 Components: React
 Software: Phenomic, Webpack, ESLint, Atom
-
-                    `````                                                   ````                    
-               `.:+syyyyys+:.                                          `-/oyyyyys+:`                
-             `/yddddhhhhhdddds:`                                     `/yddddhhhhdddho.              
-            .ydddy/-.```.-+hdddy.                                   .ydddy/-.``.:odddh/             
-            yddds`         `sdddh`                                 .hddd/         .yddd/            
-           .dddd.           `hddd/                                 yddd/           `hddd-           
-           `dddd+            ....`                                -dddh             /ddds           
-            :dddds:`                                              oddd+             `dddd`          
-             .sdddddyo/-`                                         yddd:              dddd.          
-               `/sdddddddhs/.                                     yddd:              dddd.          
-                   .:+shdddddh+`                                  yddd:              dddd.          
-                        `:+hdddh:                                 sddd/              dddd`          
-                            +dddd-                                /ddds             -dddh           
-          `ssss.             sdddo                                `dddd.            sddd+           
-           yddds`            ydddo                                 /dddy`          /dddy`           
-           .ydddy:`        -sdddh.                                  /dddh:`      .odddy.            
-            `+hdddhs+///+oyddddo.                                    -ydddhs+++oyddddo`             
-              `:oyhddddddddhs/.                                       `:ohdddddddhy+.               
-                 ``.-::::-.`           /hhhhhhhhhhhhhhhhhhhh-            `.-::::.``                 
-                                       /yyyyyyyyyyyyyyyyyyyy.                                       
-                                        ````````````````````                                        
