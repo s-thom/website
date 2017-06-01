@@ -8,9 +8,8 @@ const DefaultHeadMeta = (props, { metadata: { pkg } }) => (
       meta={ [
         {name: 'generator', content: `${process.env.PHENOMIC_NAME } ${ process.env.PHENOMIC_VERSION }`},
         {property: 'og:site_name', content: pkg.name},
-        {name: 'twitter:site', content: `@${ pkg.twitter }`},
         {name: 'theme-color', content: '#15181A'},
-        {name: 'msapplication-TileColor', content: '#185500'},
+        {name: 'msapplication-TileColor', content: '#15181A'},
         {name: 'apple-mobile-web-app-status-bar', content: 'black-transparent'},
         {name: 'apple-mobile-web-app-capable', content: 'yes'},
         {name: 'mobile-web-app-capable', content: 'yes'}
@@ -42,8 +41,7 @@ const DefaultHeadMeta = (props, { metadata: { pkg } }) => (
       meta={[
         {name: 'msapplication-square310x310logo', content: '/assets/icon/ms-310.png'},
         {name: 'msapplication-square150x150logo', content: '/assets/icon/ms-150.png'},
-        {name: 'msapplication-square70x70logo', content: '/assets/icon/ms-70.png'},
-        {name: 'msapplication-wide310x150logo', content: '/assets/icon/ms-wide.png'}
+        {name: 'msapplication-square70x70logo', content: '/assets/icon/ms-70.png'}
       ]}
     />
 
