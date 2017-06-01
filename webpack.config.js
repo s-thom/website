@@ -73,6 +73,8 @@ export default (config = {}) => {
               {
                 loader: 'css-loader',
                 query: {
+                  minimize: config.production,
+                  sourceMap: config.dev,
                   modules: true,
                   localIdentName: (
                     config.production
@@ -99,7 +101,13 @@ export default (config = {}) => {
             // @ts-ignore
             fallback: 'style-loader',
             use: [
-              'css-loader',
+              {
+                loader: 'css-loader',
+                query: {
+                  minimize: config.production,
+                  sourceMap: config.dev
+                },
+              },
               {
                 loader: 'postcss-loader',
                 // query for postcss can't be used right now
