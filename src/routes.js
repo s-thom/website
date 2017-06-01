@@ -3,7 +3,7 @@ import { Route, browserHistory } from 'react-router';
 import { PageContainer as PhenomicPageContainer } from 'phenomic';
 import ReactGA from 'react-ga';
 
-import meta from './metadata';
+import {pkg, layoutNames} from './metadata';
 
 import AppContainer from './layout/AppContainer';
 import Page from './pages/Page';
@@ -14,7 +14,7 @@ import ListPage from './pages/ListPage';
 import HomePage from './pages/HomePage';
 
 if (browserHistory) {
-  ReactGA.initialize(meta.pkg.ga);
+  ReactGA.initialize(pkg.ga);
 }
 
 const change = (loc) => {
@@ -34,7 +34,7 @@ const layoutList = {
 // Add friendly names of pages to metadata
 Object.keys(layoutList).forEach((key) => {
   if (layoutList[key].type) {
-    meta.layoutNames[key] = layoutList[key].type;
+    layoutNames[key] = layoutList[key].type;
   }
 });
 

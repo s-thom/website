@@ -2,8 +2,7 @@ import React from 'react';
 import {Link} from 'phenomic';
 import Svg from 'react-svg-inline';
 
-import meta from '../../metadata';
-const pkg = meta.pkg;
+import {pkg} from '../../metadata';
 import svgEmail from '../../include/email.svg';
 import svgGithub from '../../include/github.svg';
 import svgPhenomic from '../../include/phenomic.svg';
