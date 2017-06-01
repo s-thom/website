@@ -1,0 +1,96 @@
+{
+  "plugins": ["react", "import", "jsx-a11y"],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "indent": [
+      1,
+      2,
+      {"SwitchCase": 1}
+    ],
+    "quotes": [
+      1,
+      "single"
+    ],
+    "linebreak-style": [
+      1,
+      "unix"
+    ],
+    "semi": [
+      2,
+      "always"
+    ],
+    "no-unused-vars": [
+      1,
+      {"vars": "all", "args": "none"}
+    ],
+    "dot-location": [
+      1,
+      "property"
+    ],
+    "block-scoped-var": [
+      1
+    ],
+    "curly": [
+      1,
+      "all"
+    ],
+    "eqeqeq": [
+      2,
+      "always"
+    ],
+    "no-eval": [
+      2
+    ],
+    "no-implied-eval": [
+      2
+    ],
+    "no-extra-bind": [
+      1
+    ],
+    "no-new-func": [
+      2
+    ],
+    "no-sync": [
+      1
+    ],
+    "camelcase": [
+      1,
+      {"properties": "always"}
+    ],
+    "func-style": [
+      1,
+      "declaration",
+      {"allowArrowFunctions": true}
+    ],
+    "no-new-object": [
+      1
+    ],
+    "no-array-constructor": [
+      1
+    ],
+    "no-tabs": [
+      1
+    ],
+    "no-whitespace-before-property": [
+      1
+    ],
+    "no-confusing-arrow": [
+      1
+    ]
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ]
+}

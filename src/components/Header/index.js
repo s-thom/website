@@ -1,51 +1,72 @@
-import React, { PropTypes } from "react"
-import { Link } from "phenomic"
-import Svg from "react-svg-inline"
+import React from 'react';
+import PropTypes from 'prop-types';
+import {Link} from 'phenomic';
 
-import twitterSvg from "../icons/iconmonstr-twitter-1.svg"
-import gitHubSvg from "../icons/iconmonstr-github-1.svg"
+import styles from './index.css';
 
-import styles from "./index.css"
+const Header = (
+  {
+    __url,
+    head,
+    header
+  }
+) => {
+  const headList = [];
+  const headStyle = {};
+  let headClasses = [styles.header];
 
-const Header = (props, { metadata: { pkg } }) => (
-  <header className={ styles.header }>
-    <nav className={ styles.nav }>
-      <div className={ styles.navPart1 }>
-        <Link
-          className={ styles.link }
-          to={ "/" }
-        >
-          { "Home" }
-        </Link>
-      </div>
-      <div className={ styles.navPart2 }>
-        {
-          pkg.twitter &&
-          <a
-            href={ `https://twitter.com/${pkg.twitter}` }
-            className={ styles.link }
-          >
-            <Svg svg={ twitterSvg } cleanup />
-            { "Twitter" }
-          </a>
+  if (head.img) {
+    headClasses.push(styles.headerWImg);
+    headStyle.backgroundImage = `url(${head.img})`;
+  } else if (head.bgcolor) {
+    headClasses.push(styles.headerWColor);
+    headStyle.backgroundColor = head.bgcolor;
+  }
+  if (head.title) {
+    headList.push(<h1 className={ styles.heading } key='title'>{ head.title }</h1>);
+  }
+  if (header) {
+    headList.push(header);
+  }
+
+  // Breadcrumbs
+  if (__url) {
+    // Split url, remove first and last empty string
+    let parts = __url.split('/');
+    parts.shift();
+    parts.pop();
+    // If there's no crumbs, don't do anything
+    if (parts.length) {
+      let crumbs = parts.map((c,i)=>{
+        let arr = [];
+        if (i + 1 === parts.length) {
+          // Final one, replace with page title
+          arr.push(<Link to={__url} className={styles.crumb} key='bc-final'>{head.title}</Link>);
+        } else {
+          // Generate the URL for this crumb
+          // This would work for the above line, but we already had the __url
+          let url = `/${parts.slice(0, i + 1).join('/')}/`;
+          arr.push(<Link to={url} className={styles.crumb} key={`bc-${i}`}>{c}</Link>);
+          // Spacer
+          arr.push(<span key={`spacer-${i}`}> &gt; </span>);
         }
-        {
-          pkg.repository &&
-          <a
-            href={ pkg.repository }
-            className={ styles.link }
-          >
-            <Svg svg={ gitHubSvg } cleanup />
-            { "GitHub" }
-          </a>
-        }
-      </div>
-    </nav>
-  </header>
-)
+        return arr;
+      });
+      crumbs.unshift(<Link to='/' className={styles.crumb} key='bc-home'>Home</Link>, <span key='spacer-home'> &gt; </span>);
+      headList.push(<nav className={styles.breadcrumbs} key='breadcrumbs'>{crumbs}</nav>);
+    }
+  }
 
-Header.contextTypes = {
-  metadata: PropTypes.object.isRequired,
-}
+  return (
+      <div className={headClasses.join(' ')} style={headStyle}>{headList}</div>
+  );
+};
 
-export default Header
+// @ts-ignore
+Header.propTypes = {
+  __url: PropTypes.string,
+  head: PropTypes.object.isRequired,
+  header: PropTypes.element
+};
+
+export default Header;

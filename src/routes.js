@@ -1,27 +1,61 @@
-import React from "react"
-import { Route } from "react-router"
-import { PageContainer as PhenomicPageContainer } from "phenomic"
+import React from 'react';
+import { Route, browserHistory } from 'react-router';
+import { PageContainer as PhenomicPageContainer } from 'phenomic';
+import ReactGA from 'react-ga';
 
-import AppContainer from "./AppContainer"
-import Page from "./layouts/Page"
-import PageError from "./layouts/PageError"
-import Homepage from "./layouts/Homepage"
-import Post from "./layouts/Post"
+import meta from './metadata';
+
+import AppContainer from './layout/AppContainer';
+import Page from './pages/Page';
+import PageError from './pages/PageError';
+import Post from './pages/Post';
+import Project from './pages/Project';
+import ListPage from './pages/ListPage';
+import HomePage from './pages/HomePage';
+
+if (browserHistory) {
+  ReactGA.initialize(meta.pkg.ga);
+}
+
+const change = (loc) => {
+  ReactGA.set({page: loc.pathname});
+  ReactGA.pageview(loc.pathname);
+};
+
+const layoutList = {
+  Page,
+  PageError,
+  Post,
+  HomePage,
+  Project,
+  ListPage
+};
+
+// Add friendly names of pages to metadata
+Object.keys(layoutList).forEach((key) => {
+  if (layoutList[key].type) {
+    meta.layoutNames[key] = layoutList[key].type;
+  }
+});
 
 const PageContainer = (props) => (
   <PhenomicPageContainer
     { ...props }
-    layouts={{
-      Page,
-      PageError,
-      Homepage,
-      Post,
-    }}
+    layouts={layoutList}
   />
-)
+);
 
 export default (
-  <Route component={ AppContainer }>
+  <Route 
+    component={ AppContainer }
+    onChange={(prevState, nextState, replace) => {
+      change(nextState.location);
+      return true;
+    }}
+    onEnter={(nextState) => {
+      change(nextState.location);
+      return true;
+    }}>
     <Route path="*" component={ PageContainer } />
   </Route>
-)
+);

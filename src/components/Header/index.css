@@ -1,55 +1,67 @@
-:root {
-  --nav-item-padding: 0.5rem;
+.heading {
+  color: #185500;
+  margin: 0;
+  flex-grow: 1;
 }
 
 .header {
-  position: absolute;
-  /* stretch */
-  left: 0;
-  right: 0;
-
-  color: var(--colorNeutralLight);
-}
-
-.nav {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  max-width: calc(var(--maxWidth) + (var(--nav-item-padding) * 2));
-  margin: 0 auto;
-  padding: 0;
-  line-height: 3rem;
+  padding: 1em 1.5em;
+  position: relative;
+  color: #185500;
 }
 
-.navPart1,
-.navPart2 {
-  display: flex;
-  flex-direction: row;
+.headerWColor,
+.headerWImg {
+  color: #fff;
 }
 
-.link {
-  display: flex;
-  align-items: center;
-  padding: 0 var(--nav-item-padding);
+.headerWImg {
+  background-size: cover;
+  background-position: center;
+  min-height: 10em;
+}
+
+.header div,
+.header nav {
+  position: relative;
+}
+
+.headerWColor .heading,
+.headerWImg .heading {
   color: inherit;
-  text-decoration: none !important;
-  opacity: 0.6;
-  transition: 0.4s all;
-  border-bottom: 1px solid transparent;
-
-  &:hover,
-  &:focus {
-    color: inherit;
-    opacity: 1;
-    border-bottom-color: var(--colorNeutralLight);
-  }
 }
 
-.link svg {
-  fill: currentColor;
-  opacity: 0.5;
-  margin-right: 0.5rem;
-  width: 14px;
-  height: 14px;
-  vertical-align: middle;
+.headerWImg::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  content: ' ';
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.showsType {
+  padding-bottom: 1.5em;
+}
+
+.breadcrumbs {
+  margin-bottom: -0.5em;
+}
+
+.crumb,
+.crumb:hover,
+.crumb:active,
+.crumb:visited {
+  color: inherit;
+}
+
+.type {
+  margin: 0;
+  align-self: flex-end;
+  position: relative;
+  color: inherit;
 }
