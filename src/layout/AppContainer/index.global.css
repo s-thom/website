@@ -101,7 +101,6 @@ code {
 
 code {
   display: inline-block;
-  margin-bottom: -0.5em;
 }
 
 pre > code {
@@ -149,6 +148,10 @@ th {
 
 td {
   vertical-align: top;
+}
+
+figure > p {
+  text-align: center;
 }
 
 figcaption {

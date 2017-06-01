@@ -34,6 +34,8 @@ hue-6-2: #e6c07b
   padding: 0.5em;
   color: #abb2bf;
   background: #282c34;
+  font-size: 0.9em;
+  line-height: 1.1em;
 }
 
 .hljs-comment,
