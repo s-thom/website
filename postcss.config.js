@@ -14,6 +14,10 @@ module.exports = (config) => [
           colorNeutral: '#8C8D91',
           colorNeutralLight: '#FBFCFC',
           colorText: '#555',
+          mainColor: '#185500',
+          mainColorContrasted: '#eee',
+          textColor: '#333',
+          bgColor: '#ddd'
         },
       },
     },

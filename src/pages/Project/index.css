@@ -1,0 +1,9 @@
+.time {
+  align-self: flex-end;
+}
+
+.time a,
+.time a:visited,
+.time a:hover {
+  color: inherit;
+}

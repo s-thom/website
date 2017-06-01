@@ -5,11 +5,14 @@ import ReactGA from 'react-ga';
 
 import meta from './metadata';
 
-import AppContainer from './AppContainer';
-import Page from './layouts/Page';
-import PageError from './layouts/PageError';
-import Homepage from './layouts/Homepage';
-import Post from './layouts/Post';
+import AppContainer from './layout/AppContainer';
+import Page from './pages/Page';
+import PageError from './pages/PageError';
+import Post from './pages/Post';
+import Project from './pages/Project';
+import ListPage from './pages/ListPage';
+import Game from './pages/Game';
+import HomePage from './pages/HomePage';
 
 if (browserHistory) {
   ReactGA.initialize(meta.pkg.ga);
@@ -24,7 +27,7 @@ const layoutList = {
   Page,
   PageError,
   Post,
-  Homepage
+  HomePage
 };
 
 // Add friendly names of pages to metadata

@@ -1,0 +1,9 @@
+.time {
+  align-self: flex-end;
+  text-align: right;
+}
+
+.postheader {
+  background-color: #e8f3e6;
+  padding: 0.5em;
+}
