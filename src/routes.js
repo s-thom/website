@@ -11,7 +11,6 @@ import PageError from './pages/PageError';
 import Post from './pages/Post';
 import Project from './pages/Project';
 import ListPage from './pages/ListPage';
-import Game from './pages/Game';
 import HomePage from './pages/HomePage';
 
 if (browserHistory) {
@@ -27,7 +26,9 @@ const layoutList = {
   Page,
   PageError,
   Post,
-  HomePage
+  HomePage,
+  Project,
+  ListPage
 };
 
 // Add friendly names of pages to metadata
