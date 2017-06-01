@@ -11,11 +11,39 @@ Knowing how to write code gives a certain luxury: knowing how to make your own w
 
 I had played with the [React framework](https://facebook.github.io/react/) and [react-router](https://github.com/ReactTraining/react-router) for a [different project](https://github.com/SecretOnline/Info-Repo) in the past. Being able to declare the UI inside Javascript turned out to be very useful when building a page based on a dataset that could change at any time. Being relatively new to development, I hold no pre-existing negative feelings towards Javascript, especially with the additions that came with ES6.
 
+**"Hello World" in React's declarative style**
+
+```jsx
+// HelloWorld.js
+import React from 'react';
+
+export default class HelloWorld extends React.Component {
+  render() {
+    let target = this.props.target || 'World';
+
+    return (
+      <p>{`Hello ${target}!`}</p>
+    );
+  }
+}
+
+// Main.js
+import ReactDOM from 'react-dom';
+import HelloWorld from './HelloWorld';
+
+ReactDOM.render(
+  <HelloWorld target="my friend" />,
+  document.getElementById('root')
+);
+```
+
 The thing that intrigued me the most about React was server side rendering. In a normal React page, the browser is sent an HTML document that has very little content. Usually it's just an empty page. The browser must then load the page's script, run it, and then finally the user sees a page. That's bad for the user. If you have a particularly large script, then you either make the user wait a long time, or mess with code splitters (which only makes you curse at webpack).
 
 There is also one rather major problem with this. NoScript. If the user has disabled Javascript, then all they will ever see is that blank page. That's not a good look for your website.
 
 Server side rendering does away with both of these problems. The browser gets a full page, which it can start displaying right away, just like any webpage. If the user doesn't use scripts, that's it! They see a normal page, and can click links to view the next pages (which are also rendered server side too). If scripts are enabled, then the page functions as a normal React app, usually resulting in quicker "page" loads past the first load.
+
+![Excerpt of the rendered content of this page](/assets/posts/this-website/server-side-render.png)
 
 # Phenomic
 
@@ -26,6 +54,8 @@ The problem is [Webpack](https://webpack.js.org/). While webpack is amazing tool
 Enter [Phenomic](https://phenomic.io/): a website generator based on React, supports server side rendering, and still provides fancy navigation with Javascript enabled. At its core, all it provides is the framework to build upon. Upon installing it also gives you a template, but you can completely ignore that if you like. 
 
 One of the features I added was a date to the top of posts. It will also show the date that a post was edited, if it was. This information comes from the front matter, a section of the source document that specifies some values.
+
+![The header of this page, showing the date I wrote this](/assets/posts/this-website/header-timestamp.png)
 
 The framework allows you to write your pages in [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) (which made writing this post a lot easier than typing `<p></p>` all over the place), and transforms that into the HTML to be rendered. With that rendered HTML, you put it into a page. Like any React app, that's as simple as adding it as a child of your `Page` object. Of course, you probably want more than that. For example, of the [homepage](/) I have two lists. Those, obviously, aren't specified in Markdown. Instead, they're in the [HomePage object](https://github.com/s-thom/website/blob/develop/src/pages/HomePage/index.js#L33).
 
