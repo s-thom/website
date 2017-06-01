@@ -18,7 +18,6 @@ const Footer = () => (
       <span className={styles.fade}>|</span>
       <Link to='mailto:stu.thom.96@gmail.com'><Svg svg={svgEmail} className={styles.svg} cleanup /></Link>
       <Link to={`https://github.com/${pkg.github}`}><Svg svg={svgGithub} className={styles.svg} cleanup /></Link>
-      <Link to={`https://twitter.com/${pkg.twitter}`}><Svg svg={svgTwitter} className={styles.svg} cleanup /></Link>
       <span className={styles.fade}>|</span>
       <Link to='https://phenomic.io'><Svg svg={svgPhenomic} className={styles.svg} cleanup /></Link>
     </p>

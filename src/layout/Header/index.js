@@ -6,11 +6,14 @@ import styles from './index.css';
 const Header = () => (
   <header className={ styles.header }>
     <nav className={ styles.nav }>
-      <div className={ styles.navPart1 }>
-        <Link className={ styles.link } to="/">
-          <h1 className={ styles.title }>Stuart Thomson</h1>
-        </Link>
-      </div>
+      <Link className={ styles.link } to="/">
+        <div className={ styles.meContainer }>
+          <img className={ styles.meImg } src="/assets/img/me.jpg" />
+        </div>
+        <div className={ styles.navPart1 }>
+            <h1 className={ styles.title }>Stuart Thomson</h1>
+        </div>
+      </Link>
     </nav>
   </header>
 );

@@ -9,7 +9,7 @@ const DefaultHeadMeta = (props, { metadata: { pkg } }) => (
         {name: 'generator', content: `${process.env.PHENOMIC_NAME } ${ process.env.PHENOMIC_VERSION }`},
         {property: 'og:site_name', content: pkg.name},
         {name: 'twitter:site', content: `@${ pkg.twitter }`},
-        {name: 'theme-color', content: '#185500'},
+        {name: 'theme-color', content: '#15181A'},
         {name: 'msapplication-TileColor', content: '#185500'},
         {name: 'apple-mobile-web-app-status-bar', content: 'black-transparent'},
         {name: 'apple-mobile-web-app-capable', content: 'yes'},
