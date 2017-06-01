@@ -1,0 +1,26 @@
+.container {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.item {
+  list-style: none;
+  width: 100%;
+}
+
+.item a:hover {
+  text-decoration: none;
+}
+
+.item > a > div {
+  min-height: 0;
+  height: 100%;
+}
+
+@media all and (min-width: 900px) {
+  .item {
+    width: calc(50%);
+  }
+}
