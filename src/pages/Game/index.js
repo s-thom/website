@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import Page from '../Page';
 
@@ -49,10 +50,12 @@ const Game = (props) => {
   );
 };
 
+// @ts-ignore
 Game.propTypes = {
   head: PropTypes.object.isRequired,
 };
 
+// @ts-ignore
 Game.type = 'Game';
 
 export default Game;

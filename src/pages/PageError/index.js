@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'phenomic';
 
 import styles from './index.css';
@@ -16,10 +17,7 @@ const PageError = ({ error, errorText }) => (
         error === 404 &&
         <div>
           { 'It seems you found a broken link. ' }
-          { 'Sorry about that. ' }
-          <br />
-          { 'This error has been logged, and will be looked at.' },
-          { 'You can try going back, or to the ' }
+          { 'This is where most websites would include a witty comment. Not this one.' }
           <Link to="/">{ 'home page' }</Link>
           { '.' }
         </div>
@@ -28,11 +26,13 @@ const PageError = ({ error, errorText }) => (
   </div>
 );
 
+// @ts-ignore
 PageError.propTypes = {
   error: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
   errorText: PropTypes.string,
 };
 
+// @ts-ignore
 PageError.defaultProps = {
   error: 404,
   errorText: 'Page Not Found',

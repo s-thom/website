@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'phenomic';
 
 import styles from './index.css';
@@ -61,6 +62,7 @@ const Header = (
   );
 };
 
+// @ts-ignore
 Header.propTypes = {
   __url: PropTypes.string,
   head: PropTypes.object.isRequired,

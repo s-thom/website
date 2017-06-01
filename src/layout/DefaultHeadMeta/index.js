@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 const DefaultHeadMeta = (props, { metadata: { pkg } }) => (
@@ -56,6 +57,7 @@ const DefaultHeadMeta = (props, { metadata: { pkg } }) => (
   </div>
 );
 
+// @ts-ignore
 DefaultHeadMeta.contextTypes = {
   metadata: PropTypes.object.isRequired,
 };

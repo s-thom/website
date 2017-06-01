@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import enhanceCollection from 'phenomic/lib/enhance-collection';
 
 import Page from '../Page';
@@ -38,6 +39,12 @@ const Homepage = (props, { collection }) => {
   );
 };
 
+// @ts-ignore
+Homepage.propTypes = {
+  head: PropTypes.object.isRequired
+};
+
+// @ts-ignore
 Homepage.contextTypes = {
   collection: PropTypes.array.isRequired,
 };

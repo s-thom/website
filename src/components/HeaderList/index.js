@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'phenomic';
 
 import HeaderPreview from '../HeaderPreview';
@@ -35,8 +36,10 @@ const HeaderList = ({ pages, showTypes }) => {
   );
 };
 
+// @ts-ignore
 HeaderList.propTypes = {
   pages: PropTypes.array.isRequired,
+  showTypes: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default HeaderList;

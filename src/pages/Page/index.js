@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import invariant from 'invariant';
 import { BodyContainer, joinUri } from 'phenomic';
@@ -14,7 +15,7 @@ const Page = (props
     metadata: { pkg },
   }
 ) => {
-  let {isLoading, __filename, __url, head, body, header, postheader,footer, children} = props;
+  let {isLoading, __filename, __url, head, body, postheader, footer, children} = props;
 
   invariant(
     typeof head.title === 'string',
@@ -81,6 +82,7 @@ const Page = (props
   );
 };
 
+// @ts-ignore
 Page.propTypes = {
   isLoading: PropTypes.bool,
   children: PropTypes.node,
@@ -90,8 +92,10 @@ Page.propTypes = {
   body: PropTypes.string,
   header: PropTypes.element,
   footer: PropTypes.element,
+  postheader: PropTypes.element
 };
 
+// @ts-ignore
 Page.contextTypes = {
   metadata: PropTypes.object.isRequired,
 };

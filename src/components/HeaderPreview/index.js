@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import meta from '../../metadata';
 // Poach styles from header, that way it only needs to be written once
@@ -50,9 +51,15 @@ const HeaderPreview = (
   );
 };
 
+// @ts-ignore
 HeaderPreview.propTypes = {
   __url: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  img: PropTypes.string,
+  bgcolor: PropTypes.string,
+  layout: PropTypes.string.isRequired,
+  showType: PropTypes.boolean,
+  type: PropTypes.string
 };
 
 export default HeaderPreview;

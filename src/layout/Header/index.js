@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import {Link} from 'phenomic';
 
 import styles from './index.css';
