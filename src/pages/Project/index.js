@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Page from '../Page';
+import Post from '../Post';
 
 import styles from './index.css';
 
@@ -13,7 +13,7 @@ const Project = (props) => {
   const url = head.github ? `https://github.com/${pkg.github}/${head.github}` : null;
 
   return (
-    <Page
+    <Post
       { ...props }
       header={
         <div className={styles.time}>

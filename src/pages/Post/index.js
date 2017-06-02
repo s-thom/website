@@ -31,17 +31,28 @@ const Post = (props) => {
     );
   }
 
+  let header = <div>{[
+    <div className={styles.time}>{dateNodes}</div>,
+    props.header || undefined
+  ]}</div>;
+
   return (
     <Page
       { ...props }
-      header={<div className={styles.time}>{dateNodes}</div>}
-    />
+      header={header}
+      footer={footer}/>
   );
 };
 
 // @ts-ignore
 Post.propTypes = {
   head: PropTypes.object.isRequired,
+  header: PropTypes.any
+};
+
+// @ts-ignore
+Post.contextTypes = {
+  collection: PropTypes.array.isRequired,
 };
 
 // @ts-ignore
