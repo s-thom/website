@@ -2,8 +2,8 @@
 title: How this website is built
 layout: Post
 img: /assets/posts/this-website/banner.png
-date: 2017-06-01
-edited: 2017-06-02
+date: 2017-06-01T21:10
+edited: 2017-06-02T14:05
 ---
 
 Knowing how to write code gives a certain luxury: being able to make your own website. It is simple enough to go with a WYSYWG editor (there are certainly many of those these days), or to get a template-based website with hundreds of PHP plugins. However, there's something missing with those. I like to get my hands into code, to play around and experiment. If everything is hidden behind a drag/drop interface or a 1-click button, then there's no way for me to get stuck in.
