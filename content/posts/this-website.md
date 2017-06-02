@@ -1,11 +1,12 @@
 ---
 title: How this website is built
 layout: Post
-bgcolor: '#15181A'
+img: /assets/posts/this-website/banner.png
 date: 2017-06-01
+edited: 2017-06-02
 ---
 
-Knowing how to write code gives a certain luxury: knowing how to make your own website. It is simple enough to go with a WYSYWG editor (there are certainly many of those these days), or to get a template-based website with hundreds of PHP plugins. However, there's something missing with those. I like to get my hands into code, to play around and experiment. If everything is hidden behind a drag/drop interface or a 1-click button, then there's no way for me to get stuck in.
+Knowing how to write code gives a certain luxury: being able to make your own website. It is simple enough to go with a WYSYWG editor (there are certainly many of those these days), or to get a template-based website with hundreds of PHP plugins. However, there's something missing with those. I like to get my hands into code, to play around and experiment. If everything is hidden behind a drag/drop interface or a 1-click button, then there's no way for me to get stuck in.
 
 # React and server side rendering
 
@@ -53,9 +54,9 @@ The problem is [Webpack](https://webpack.js.org/). While webpack is amazing tool
 
 Enter [Phenomic](https://phenomic.io/): a website generator based on React, supports server side rendering, and still provides fancy navigation with Javascript enabled. At its core, all it provides is the framework to build upon. Upon installing it also gives you a template, but you can completely ignore that if you like. 
 
-One of the features I added was a date to the top of posts. It will also show the date that a post was edited, if it was. This information comes from the front matter, a section of the source document that specifies some values.
+One of the features I added was a date to the top of posts. It will also show the date that a post was edited, if it was. This information comes from the front matter, a section of the source document that specifies some values. Another feature are the breadcrumbs: links back to pages higher up the website tree.
 
-![The header of this page, showing the date I wrote this](/assets/posts/this-website/header-timestamp.png)
+![The header of this page. The date is shown on the right, while breadcrumbs link back to other pages](/assets/posts/this-website/header-timestamp.png)
 
 The framework allows you to write your pages in [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) (which made writing this post a lot easier than typing `<p></p>` all over the place), and transforms that into the HTML to be rendered. With that rendered HTML, you put it into a page. Like any React app, that's as simple as adding it as a child of your `Page` object. Of course, you probably want more than that. For example, of the [homepage](/) I have two lists. Those, obviously, aren't specified in Markdown. Instead, they're in the [HomePage object](https://github.com/s-thom/website/blob/develop/src/pages/HomePage/index.js#L33).
 
