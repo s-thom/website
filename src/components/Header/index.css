@@ -1,5 +1,5 @@
 .heading {
-  color: #185500;
+  color: var(--mainColor);
   margin: 0;
   flex-grow: 1;
 }
@@ -8,14 +8,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1em 1.5em;
   position: relative;
-  color: #185500;
+  color: var(--mainColor);
+  padding: calc(1em - 1px) calc(1.5em - 1px);
+  border: 1px var(--mainColor) solid;
 }
 
 .headerWColor,
 .headerWImg {
   color: #fff;
+  padding: 1em 1.5em;
+  border: none;
 }
 
 .headerWImg {

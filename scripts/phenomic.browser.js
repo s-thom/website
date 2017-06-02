@@ -4,7 +4,7 @@ import 'react-hot-loader/patch';
 import 'whatwg-fetch';
 import phenomicClient from 'phenomic/lib/client';
 
-import metadata from '../src/metadata.js';
+import * as metadata from '../src/metadata.js';
 import routes from '../src/routes.js';
 import store from '../src/store.js';
 

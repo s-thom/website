@@ -99,10 +99,6 @@ code {
   border-radius: 0.1em;
 }
 
-code {
-  display: inline-block;
-}
-
 pre > code {
   margin-top: 0;
 }
