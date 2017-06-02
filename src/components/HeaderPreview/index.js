@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import meta from '../../metadata';
+import {layoutNames} from '../../metadata';
 // Poach styles from header, that way it only needs to be written once
 import styles from '../Header/index.css';
 
@@ -22,8 +22,8 @@ const HeaderPreview = (
 
   if (showType) {
     let t;
-    if (meta.layoutNames[layout]) {
-      t = meta.layoutNames[layout];
+    if (layoutNames[layout]) {
+      t = layoutNames[layout];
     }
     if (type) {
       t = type;

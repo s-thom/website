@@ -5,9 +5,7 @@ import Page from '../Page';
 
 import styles from './index.css';
 
-import meta from '../../metadata';
-
-const pkg = meta.pkg;
+import {pkg} from '../../metadata';
 
 const Project = (props) => {
   let {head} = props;

@@ -1,9 +1,16 @@
 // you can add any STATIC data you want here
 import pkg from '../package.json';
 
-export default {
+const layoutNames = {};
+
+let win;
+if (typeof window !== 'undefined') {
+  // eslint-disable-next-line no-undef
+  win = window;
+}
+
+export {
   pkg,
-  // you can add any DYNAMIC data you need here
-  // ...
-  layoutNames: {}, // gets filled out in routes.js
+  layoutNames, // gets filled out in routes.js
+  win as window
 };
