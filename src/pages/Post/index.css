@@ -2,3 +2,32 @@
   align-self: flex-end;
   text-align: right;
 }
+
+.bottomNav {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.navItem {
+  flex-basis: calc(100% / 3);
+  flex-shrink: 1;
+}
+
+.navItem > div {
+  min-height: 0;
+  height: 100%;
+}
+
+.navItem:hover {
+  text-decoration: none;
+}
+
+@media all and (min-width: 900px) {
+  .bottomNav {
+    flex-wrap: nowrap;
+    flex-direction: row;
+  }
+}
