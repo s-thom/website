@@ -24,7 +24,7 @@ const Post = (props, {collection}) => {
     );
   }
   if (pageDate && editDate) {
-    dateNodes.push(<br />);
+    dateNodes.push(<br key="edit-separator" />);
   }
   if (editDate) {
     dateNodes.push(
@@ -35,8 +35,8 @@ const Post = (props, {collection}) => {
   }
 
   let header = <div>{[
-    <div className={styles.time}>{dateNodes}</div>,
-    props.header || undefined
+    <div className={styles.time} key='dates'>{dateNodes}</div>,
+    (props.header && <div key='inner'>{props.header}</div>) || undefined
   ]}</div>;
 
   let footer;

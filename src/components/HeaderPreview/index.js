@@ -58,7 +58,7 @@ HeaderPreview.propTypes = {
   img: PropTypes.string,
   bgcolor: PropTypes.string,
   layout: PropTypes.string.isRequired,
-  showType: PropTypes.boolean,
+  showType: PropTypes.bool,
   type: PropTypes.string
 };
 
