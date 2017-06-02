@@ -1,5 +1,5 @@
 .heading {
-  color: #185500;
+  color: var(--mainColor);
   margin: 0;
   flex-grow: 1;
 }
@@ -10,7 +10,7 @@
   justify-content: space-between;
   padding: 1em 1.5em;
   position: relative;
-  color: #185500;
+  color: var(--mainColor);
 }
 
 .headerWColor,
