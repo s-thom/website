@@ -36,6 +36,7 @@ hue-6-2: #e6c07b
   background: #282c34;
   font-size: 0.9em;
   line-height: 1.1em;
+  font-family: 'Fira Code', 'Roboto Mono', monospace;
 }
 
 .hljs-comment,

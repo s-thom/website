@@ -3,7 +3,7 @@ const stripMd = require('strip-markdown');
 const prune = require('phenomic/lib/loader-plugin-markdown-init-head.description-property-from-content/prune').default;
 
 const defaultOpts = {
-  pruneLength: 140,
+  pruneLength: 80,
   pruneString: '…'
 };
 
