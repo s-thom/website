@@ -1,5 +1,5 @@
 ---
-title: Posts
+title: Projects
 layout: ListPage
 listFilter:
   layout: Project
