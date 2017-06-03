@@ -26,7 +26,12 @@ const Homepage = (props, { collection }) => {
   }
 
   // Set up sort
-  let s = sort.prop(hf.sort || 'priority');
+  let s;
+  if (hf.sort === 'date') {
+    s = sort.date;
+  } else {
+    s = sort.prop(hf.sort || 'priority');
+  }
   if (hf.reverse){
     // @ts-ignore
     s = sort.NOT(s);
