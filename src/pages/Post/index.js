@@ -1,20 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'phenomic';
-import enhanceCollection from 'phenomic/lib/enhance-collection';
 
 import Page from '../Page';
 import HeaderPreview from '../../components/HeaderPreview';
 
+import {collection} from '../../util';
+const {filter, filters, parent} = collection;
+
 import styles from './index.css';
 
 const Post = (props, {collection}) => {
-  let {head} = props;
+  let {head, __url} = props;
+  let pageUrl = __url || head.__url;
 
   const pageDate = head.date ? new Date(head.date) : null;
   const editDate = head.edited ? new Date(head.edited) : null;
+  const date = editDate || pageDate;
 
-
+  // Add post/edit time to header
   let dateNodes = [];
   if (pageDate) {
     dateNodes.push(
@@ -34,43 +38,33 @@ const Post = (props, {collection}) => {
     );
   }
 
+  // Add header from props in as well
   let header = <div>{[
     <div className={styles.time} key='dates'>{dateNodes}</div>,
     (props.header && <div key='inner'>{props.header}</div>) || undefined
   ]}</div>;
 
+  // Big messy footer section
   let footer;
   if (pageDate) {
-    let prevs = enhanceCollection(collection, {
-      filters: [
-        i => i.layout === head.layout,
-        i => i.date && new Date(i.date) < pageDate,
-        i => !i.hidden
-      ],
-      sort: 'date',
-      reverse: true,
-      limit: 1
-    });
-    let nexts = enhanceCollection(collection, {
-      filters: [
-        i => i.layout === head.layout,
-        i => i.date && new Date(i.date) > pageDate,
-        i => !i.hidden
-      ],
-      sort: 'date',
-      reverse: false,
-      limit: 1
-    });
-    let categoriser = enhanceCollection(collection, {
-      filters: [
-        i => i.layout === 'ListPage',
-        i => i.listFilter && i.listFilter.layout && i.listFilter.layout === head.layout,
-        i => !i.hidden
-      ],
-      sort: 'date',
-      reverse: false,
-      limit: 1
-    });
+    // Find the posts immediately around this one
+    let prevs = filter(
+      collection,
+      [
+        filters.layout(head.layout),
+        filters.before(date),
+        filters.visible
+      ]
+    );
+    let nexts = filter(
+      collection,
+      [
+        filters.layout(head.layout),
+        filters.after(date),
+        filters.visible
+      ]
+    );
+    let pr = parent(collection, pageUrl);
 
     let next;
     let prev;
@@ -85,11 +79,10 @@ const Post = (props, {collection}) => {
     } else {
       prev = <div className={styles.navItem} key="prv" />;
     }
-    if (categoriser.length) {
-      let i = categoriser[0];
+    if (pr) {
       cat = (
-        <Link to={i.__url} className={styles.navItem} key="cat">
-          <HeaderPreview { ...i } showType type="Show All" />
+        <Link to={pr.__url} className={styles.navItem} key="cat">
+          <HeaderPreview { ...pr } showType type="Show All" />
         </Link>
       );
     } else {
@@ -126,6 +119,7 @@ const Post = (props, {collection}) => {
 
 // @ts-ignore
 Post.propTypes = {
+  __url: PropTypes.string,
   head: PropTypes.object.isRequired,
   header: PropTypes.any
 };

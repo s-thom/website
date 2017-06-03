@@ -5,29 +5,28 @@ import enhanceCollection from 'phenomic/lib/enhance-collection';
 import Page from '../Page';
 import HeaderList from '../../components/HeaderList';
 
+import {collection} from '../../util';
+const {filter, filters, sort} = collection;
+
 const Homepage = (props, { collection }) => {
   let layouts = props.head.listLayoutFilter;
   if (!Array.isArray(layouts)) {
     layouts = [layouts];
   }
 
-  let posts = enhanceCollection(collection, {
-    filters: [i=>['Post','Game'].indexOf(i.layout)>-1, i=>!i.hidden],
-    sort: 'date',
-    reverse: true,
-  });
-  if (props.head.listNumPosts) {
-    posts = posts.slice(0, props.head.listNumPosts);
-  }
+  let posts = filter(
+    collection, 
+    filters.layout('Post'), 
+    sort.NOT(sort.date), 
+    6
+  );
 
-  let projects = enhanceCollection(collection, {
-    filters: [i=>['Project'].indexOf(i.layout)>-1, i=>!i.hidden],
-    sort: 'priority',
-    reverse: true
-  });
-  if (props.head.listNumPosts) {
-    projects = projects.slice(0, props.head.listNumPosts);
-  }
+  let projects = filter(
+    collection, 
+    filters.layout('Project'), 
+    sort.NOT(sort.date), 
+    6
+  );
 
   return (
     <Page { ...props }>
