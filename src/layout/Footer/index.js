@@ -6,7 +6,6 @@ import {pkg} from '../../metadata';
 import svgEmail from '../../include/email.svg';
 import svgGithub from '../../include/github.svg';
 import svgPhenomic from '../../include/phenomic.svg';
-import svgTwitter from '../../include/twitter.svg';
 
 import styles from './index.css';
 

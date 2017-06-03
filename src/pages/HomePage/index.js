@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import enhanceCollection from 'phenomic/lib/enhance-collection';
 
 import Page from '../Page';
 import HeaderList from '../../components/HeaderList';
