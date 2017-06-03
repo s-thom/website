@@ -39,7 +39,7 @@ const HeaderList = ({ pages, showTypes }) => {
 // @ts-ignore
 HeaderList.propTypes = {
   pages: PropTypes.array.isRequired,
-  showTypes: PropTypes.arrayOf(PropTypes.string).isRequired
+  showTypes: PropTypes.bool
 };
 
 export default HeaderList;

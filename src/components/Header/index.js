@@ -26,7 +26,7 @@ const Header = (
     headList.push(<h1 className={ styles.heading } key='title'>{ head.title }</h1>);
   }
   if (header) {
-    headList.push(header);
+    headList.push(<div key='inner'>{header}</div>);
   }
 
   // Breadcrumbs
