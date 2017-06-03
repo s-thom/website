@@ -78,6 +78,10 @@ export function filter(collection, filters, sorter = 'title', limit = 0) {
 
   filtered.sort(sortFn);
 
+  if (limit > 0) {
+    filtered = filtered.slice(0, limit);
+  }
+
   return filtered;
 }
 
