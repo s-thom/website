@@ -38,8 +38,47 @@ export const sort = {
   }
 };
 
+/**
+ * Filters a collection
+ * 
+ * When Phenomic 1.0 releases, will probably need to modify
+ * 
+ * @export
+ * @param {object[]} collection 
+ * @param {((function)[]|function)} filters 
+ * @param {(function|string)} sorter 
+ * @param {number} [limit=0] 
+ * @returns {object[]}
+ */
 export function filter(collection, filters, sorter = 'title', limit = 0) {
+  // Make sure there is actually an array of functions
+  let fnArray;
+  if (Array.isArray(filters)) {
+    fnArray = filters;
+  } else if (typeof filters === 'function') {
+    fnArray = [filters];
+  } else {
+    throw 'filter requires an array of filter functions';
+  }
 
+  let sortFn;
+  if (typeof sorter === 'function') {
+    sortFn = sorter;
+  } else if (typeof sorter === 'string') {
+    sortFn = sort.prop(sorter);
+  } else {
+    throw 'the sorter must be a function or string';
+  }
+
+  let filtered = collection.filter((item) => {
+    return fnArray.reduce((allow, fn) => {
+      return allow && fn(item);
+    }, true);
+  });
+
+  filtered.sort(sortFn);
+
+  return filtered;
 }
 
 /**
