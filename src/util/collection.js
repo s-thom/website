@@ -42,6 +42,26 @@ export function filter(collection, filters, sorter = 'title', limit = 0) {
 
 }
 
+/**
+ * Finds the hierarchical parent of the given URL 
+ * 
+ * @export
+ * @param {any} collection Collection to search
+ * @param {any} url URL of current page
+ * @returns {object}
+ */
 export function parent(collection, url) {
+  if (url === '/') {
+    return undefined;
+  }
 
+  let parts = url.split('/');
+  parts.splice(-2, 2, '');
+  let parentUrl = parts.join('/');
+
+  let arr = filter(collection, [(i) => i.__url === parentUrl]);
+  if (arr.length) {
+    return arr[0];
+  }
+  return undefined;
 }
