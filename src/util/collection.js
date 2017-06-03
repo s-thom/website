@@ -44,11 +44,11 @@ export const sort = {
  * When Phenomic 1.0 releases, will probably need to modify
  * 
  * @export
- * @param {object[]} collection 
+ * @param {any[]} collection 
  * @param {((function)[]|function)} filters 
  * @param {(function|string)} sorter 
  * @param {number} [limit=0] 
- * @returns {object[]}
+ * @returns {any[]}
  */
 export function filter(collection, filters, sorter = 'title', limit = 0) {
   // Make sure there is actually an array of functions
@@ -85,9 +85,9 @@ export function filter(collection, filters, sorter = 'title', limit = 0) {
  * Finds the hierarchical parent of the given URL 
  * 
  * @export
- * @param {any} collection Collection to search
- * @param {any} url URL of current page
- * @returns {object}
+ * @param {any[]} collection Collection to search
+ * @param {string} url URL of current page
+ * @returns {any}
  */
 export function parent(collection, url) {
   if (url === '/') {
