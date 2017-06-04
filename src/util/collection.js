@@ -86,6 +86,22 @@ export function filter(collection, filters, sorter = 'title', limit = 0) {
 }
 
 /**
+ * Finds the page with the given URL
+ * 
+ * @export
+ * @param {any[]} collection Collection to search
+ * @param {string} url URL of page
+ * @returns {any}
+ */
+export function self(collection, url) {
+  let arr = filter(collection, [(i) => i.__url === url]);
+  if (arr.length) {
+    return arr[0];
+  }
+  return undefined;
+}
+
+/**
  * Finds the hierarchical parent of the given URL 
  * 
  * @export
@@ -102,9 +118,5 @@ export function parent(collection, url) {
   parts.splice(-2, 2, '');
   let parentUrl = parts.join('/');
 
-  let arr = filter(collection, [(i) => i.__url === parentUrl]);
-  if (arr.length) {
-    return arr[0];
-  }
-  return undefined;
+  return self(collection, parentUrl);
 }
