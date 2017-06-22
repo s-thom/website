@@ -6,7 +6,7 @@ import Page from '../Page';
 import HeaderPreview from '../../components/HeaderPreview';
 
 import {collection} from '../../util';
-const {filter, filters, parent} = collection;
+const {filter, filters, parent, sort} = collection;
 
 import styles from './index.css';
 
@@ -16,7 +16,6 @@ const Post = (props, {collection}) => {
 
   const pageDate = head.date ? new Date(head.date) : null;
   const editDate = head.edited ? new Date(head.edited) : null;
-  const date = editDate || pageDate;
 
   // Add post/edit time to header
   let dateNodes = [];
@@ -52,17 +51,19 @@ const Post = (props, {collection}) => {
       collection,
       [
         filters.layout(head.layout),
-        filters.before(date),
+        filters.before(pageDate),
         filters.visible
-      ]
+      ],
+      sort.NOT(sort.date)
     );
     let nexts = filter(
       collection,
       [
         filters.layout(head.layout),
-        filters.after(date),
+        filters.after(pageDate),
         filters.visible
-      ]
+      ],
+      sort.date
     );
     let pr = parent(collection, pageUrl);
 

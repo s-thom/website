@@ -4,8 +4,8 @@ export const filters = {
   NOT: (filter) => (i) => !filter(i),
   layout: (layout) => (i) => i.layout === layout,
   visible: (i) => !i.hidden,
-  after: (date) => (i) => i.date && new Date(i.date) > date,
-  before: (date) => (i) => i.date && new Date(i.date) < date,
+  after: (date) => (i) => i.date && new Date(i.date).getTime() > date.getTime(),
+  before: (date) => (i) => i.date && new Date(i.date).getTime() < date.getTime(),
   tagged: (tag) => (i) => i.tags && i.tags.includes(tag),
   child: (url) => {
     let escaped = url.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
@@ -29,12 +29,9 @@ export const sort = {
   date: (a, b) => {
     a = a.edited || a.date;
     b = b.edited || b.date;
-    if (!a && !b) {return 0;}
-    if (!a) {return -1;}
-    if (!b) {return 1;}
-    if (a < b) {return -1;}
-    if (a > b) {return 1;}
-    return 0;
+    a = new Date(a).getTime();
+    b = new Date(b).getTime();
+    return a - b;
   }
 };
 
