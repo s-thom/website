@@ -52,14 +52,14 @@ const Page = (props
     let edited = head.edited || head.date;
 
     meta.push(
-      {name: 'article:published_time', content: head.date},
-      {name: 'article:modified_time', content: edited}
+      {property: 'article:published_time', content: head.date},
+      {property: 'article:modified_time', content: edited}
     );
   }
 
   if (head.tags) {
     head.tags.forEach((t) => {
-      meta.push({name: 'article:tag', content: t});
+      meta.push({property: 'article:tag', content: t});
     });
   }
 
