@@ -12,6 +12,7 @@
 }
 
 .navItem {
+  font-size: 0.7em;
   flex-basis: calc(100% / 3);
   flex-shrink: 1;
 }
