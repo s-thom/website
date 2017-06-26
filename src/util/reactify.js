@@ -23,9 +23,11 @@ export default function reactify(body, collection) {
       match = text.match(headerListRegex);
       if (match) {
         let url = match[1];
-        let page = self(collection, url);
+        // Get the page, and make a copy (so it can be modified)
+        let page = Object.assign({}, self(collection, url));
+        page.type = `Related ${page.layout}`;
         if (page) {
-          return <HeaderList pages={[page]} showTypes={false} />;
+          return <HeaderList pages={[page]} showTypes={true} />;
         }
       }
 
