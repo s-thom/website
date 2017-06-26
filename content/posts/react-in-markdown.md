@@ -2,6 +2,7 @@
 title: Using React components in Markdown
 layout: Post
 date: 2017-06-26T16:50
+edited: 2017-06-27T10:32
 ---
 
 The Markdown specification allows you to write HTML inside the Markdown file, and that HTML will be rendered in the final page. It's a useful feature, and one I [have used for this website](https://github.com/s-thom/website/tree/master/webpack/img-wrapper.js).
