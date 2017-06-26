@@ -1,10 +1,21 @@
 import React from 'react';
+import {Link} from 'phenomic';
 
-import HeaderList from '../components/HeaderList';
+import HeaderPreview from '../components/HeaderPreview';
 
-import {self}  from './collection';
+import {self} from './collection';
+import styles from './util.css';
 
-const headerListRegex = /<!--\s?RELATED\s([\w/\\.-]+)\s?-->/;
+const templateRegex = /<!--\s?([-\w]+)\s([\w/\\.-]+)\s?-->/;
+
+function createHeaderPreview(url, collection) {
+  // Get the page, and make a copy (so it can be modified)
+  let page = Object.assign({}, self(collection, url));
+  page.type = `Related ${page.layout}`;
+  if (page) {
+    return <Link to={url} className={styles.noHover}><HeaderPreview {...page} showType /></Link>;
+  }
+}
 
 /**
  * Finds template comments and turns them into proper elements
@@ -19,15 +30,11 @@ export default function reactify(body, collection) {
   return body
     .split(/\r?\n/g)
     .map((text) => {
-      let match;
-      match = text.match(headerListRegex);
+      let match = text.match(templateRegex);
       if (match) {
-        let url = match[1];
-        // Get the page, and make a copy (so it can be modified)
-        let page = Object.assign({}, self(collection, url));
-        page.type = `Related ${page.layout}`;
-        if (page) {
-          return <HeaderList pages={[page]} showTypes={true} />;
+        switch(match[1]) {
+          case 'RELATED':
+            return createHeaderPreview(match[2], collection);
         }
       }
 
