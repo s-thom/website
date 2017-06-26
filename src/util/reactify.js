@@ -6,7 +6,7 @@ import HeaderPreview from '../components/HeaderPreview';
 import {self} from './collection';
 import styles from './util.css';
 
-const templateRegex = /<!--\s?([-\w]+)\s([\w/\\.-]+)\s?-->/;
+const templateRegex = /<!--\s?([-\w]+)\s([\s\S]+?)\s?-->/;
 
 function createHeaderPreview(url, collection) {
   // Get the page, and make a copy (so it can be modified)
