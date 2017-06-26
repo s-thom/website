@@ -7,6 +7,8 @@ import { BodyContainer, joinUri } from 'phenomic';
 import Loading from '../../components/Loading';
 import Header from '../../components/Header';
 
+import {reactify} from '../../util';
+
 import styles from './index.css';
 
 function PageMeta({head, url, pkg}) {
@@ -70,6 +72,7 @@ const Page = (props
   ,
   {
     metadata: { pkg },
+    collection
   }
 ) => {
   let {isLoading, __filename, __url, head, body, postheader, footer, children} = props;
@@ -79,6 +82,8 @@ const Page = (props
     `Your page '${ __filename }' needs a title`
   );
 
+  let bodyContent = reactify(body, collection);
+
   return (
     <div className={ styles.page }>
       <PageMeta head={head} url={__url} pkg={pkg} />
@@ -87,7 +92,7 @@ const Page = (props
       {
         isLoading
         ? <Loading />
-        : <BodyContainer>{ body }</BodyContainer>
+        : <BodyContainer>{ bodyContent }</BodyContainer>
       }
       { children }
       { footer }
@@ -111,6 +116,7 @@ Page.propTypes = {
 // @ts-ignore
 Page.contextTypes = {
   metadata: PropTypes.object.isRequired,
+  collection: PropTypes.object.isRequired
 };
 
 export default Page;
