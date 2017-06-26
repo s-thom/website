@@ -32,9 +32,12 @@ export default function reactify(body, collection) {
     .map((text) => {
       let match = text.match(templateRegex);
       if (match) {
-        switch(match[1]) {
+        let [full, component, propString = '{}'] = match;
+        let props = JSON.parse(propString);
+        console.log(props);
+        switch(component) {
           case 'RELATED':
-            return createHeaderPreview(match[2], collection);
+            return createHeaderPreview(props.url, collection);
         }
       }
 
