@@ -4,6 +4,7 @@ layout: Project
 img: /assets/img/banner.jpg
 github: website
 date: 2017-06-03T13:40
+edited: 2017-06-26T16:30
 ---
 
 It's the website you're looking at! Yes, this one.
@@ -26,7 +27,9 @@ As such, I initially kept navigation space to a minimum. There is no navigation 
 
 After using the site myself while testing, I realised that no navigation is as much a bad idea as too much.
 
-I becided to add breadcrumbs, a little trail to get you back to the start. Since the website has a tree structure (`/`, `/projects/`, `/projects/website/` for example) it is easy to construct a series of links that go to each step back up the tree.
+I decided to add breadcrumbs, a little trail to get you back to the start. Since the website has a tree structure (`/`, `/projects/`, `/projects/website/` for example) it is easy to construct a series of links that go to each step back up the tree.
+
+I also added a bar at the bottom of the page, which links to the next and previous posts (or project, if you're looking at a project like this one). The bottom navigation also includes a link to the category page of that type, so the full list of posts/projects is only a click away.
 
 # Metadata
 

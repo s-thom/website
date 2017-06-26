@@ -3,7 +3,7 @@ title: How this website is built
 layout: Post
 img: /assets/posts/this-website/banner.png
 date: 2017-06-01T21:10
-edited: 2017-06-02T14:05
+edited: 2017-06-26T16:37
 ---
 
 Knowing how to write code gives a certain luxury: being able to make your own website. It is simple enough to go with a WYSYWG editor (there are certainly many of those these days), or to get a template-based website with hundreds of PHP plugins. However, there's something missing with those. I like to get my hands into code, to play around and experiment. If everything is hidden behind a drag/drop interface or a 1-click button, then there's no way for me to get stuck in.
@@ -38,6 +38,21 @@ ReactDOM.render(
 );
 ```
 
+React also allows the creation of elements using functions, which reduces the amount of noise required in the code. In addition, it forces you to write pure components that don't hold state.
+
+```jsx
+// HelloWorld.js
+import React from 'react';
+
+export default function HelloWorld(props) {
+  let target = props.target || 'World';
+
+  return (
+    <p>{`Hello ${target}!`}</p>
+  );
+}
+```
+
 The thing that intrigued me the most about React was server side rendering. In a normal React page, the browser is sent an HTML document that has very little content. Usually it's just an empty page. The browser must then load the page's script, run it, and then finally the user sees a page. That's bad for the user. If you have a particularly large script, then you either make the user wait a long time, or mess with code splitters (which only makes you curse at webpack).
 
 There is also one rather major problem with this. NoScript. If the user has disabled Javascript, then all they will ever see is that blank page. That's not a good look for your website.
@@ -70,6 +85,12 @@ As well as allowing you to just create your layout, you can specify your own plu
   This plugin takes all markdown images on the page and wraps them (and their caption) in a `<figure>`. It also makes sure there is an `alt` attribute on the image for accessibility.
 3. [md-plugin.js](https://github.com/s-thom/website/blob/develop/webpack/md-plugin.js)  
   Phenomic's Markdown parser ([Remark](https://github.com/wooorm/remark)) is hidden behind a couple of layers, making it impossible to add any new plugins. I created a new Phenomic plugin so that I could use different Remark plugins. I could also switch to a different Markdown parser if I wanted to. What Remark plugin did I add? Emoji :+1:.
+
+In addition, I have added a way for me to use certain React elements in the Markdown. To avoid making this post too long, I've put it in its own post, since there's a few details to go over.
+
+<!-- RELATED {"url":"/posts/react-in-markdown/"} -->
+
+Yes, that box is an example of an element created by React being defined in Markdown.
 
 # Why this website is open source
 
