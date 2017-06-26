@@ -4,7 +4,7 @@ import HeaderList from '../components/HeaderList';
 
 import {self}  from './collection';
 
-const headerListRegex = /<!--\s?HEADER-PREVIEW\s([\w/\\.-]+)\s?-->/;
+const headerListRegex = /<!--\s?RELATED\s([\w/\\.-]+)\s?-->/;
 
 /**
  * Finds template comments and turns them into proper elements
