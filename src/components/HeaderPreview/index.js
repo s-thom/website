@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import {layoutNames} from '../../metadata';
 // Poach styles from header, that way it only needs to be written once
-import styles from '../Header/index.css';
+import headerStyles from '../Header/index.css';
+import styles from './index.css';
 
 const HeaderPreview = (
   {
@@ -13,12 +14,16 @@ const HeaderPreview = (
     bgcolor,
     layout,
     showType,
-    type
+    type,
+    fullSize
   }
 ) => {
   const headList = [];
   const headStyle = {};
-  let headClasses = [styles.header];
+  let headClasses = [
+    styles.header,
+    headerStyles.header
+  ];
 
   if (showType) {
     let t;
@@ -30,20 +35,20 @@ const HeaderPreview = (
     }
 
     if (t) {
-      headList.push(<p className={styles.type} key="type">{t}</p>);
-      headClasses.push(styles.showsType);
+      headList.push(<p className={headerStyles.type} key="type">{t}</p>);
+      headClasses.push(headerStyles.showsType);
     }
   }
 
   if (img) {
-    headClasses.push(styles.headerWImg);
+    headClasses.push(headerStyles.headerWImg);
     headStyle.backgroundImage = `url(${img})`;
   } else if (bgcolor) {
-    headClasses.push(styles.headerWColor);
+    headClasses.push(headerStyles.headerWColor);
     headStyle.backgroundColor = bgcolor;
   }
   if (title) {
-    headList.push(<h1 className={ styles.heading } key="title">{ title }</h1>);
+    headList.push(<h1 className={ headerStyles.heading } key="title">{ title }</h1>);
   }
 
   return (
@@ -59,7 +64,8 @@ HeaderPreview.propTypes = {
   bgcolor: PropTypes.string,
   layout: PropTypes.string.isRequired,
   showType: PropTypes.bool,
-  type: PropTypes.string
+  type: PropTypes.string,
+  fullSize: PropTypes.bool
 };
 
 export default HeaderPreview;

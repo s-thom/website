@@ -7,21 +7,11 @@ import { BodyContainer, joinUri } from 'phenomic';
 import Loading from '../../components/Loading';
 import Header from '../../components/Header';
 
+import {reactify} from '../../util';
+
 import styles from './index.css';
 
-const Page = (props
-  ,
-  {
-    metadata: { pkg },
-  }
-) => {
-  let {isLoading, __filename, __url, head, body, postheader, footer, children} = props;
-
-  invariant(
-    typeof head.title === 'string',
-    `Your page '${ __filename }' needs a title`
-  );
-
+function PageMeta({head, url, pkg}) {
   const metaTitle = head.metaTitle ? head.metaTitle : head.title;
 
   const meta = [
@@ -29,7 +19,7 @@ const Page = (props
     { property: 'og:title', content: metaTitle },
     {
       property: 'og:url',
-      content: joinUri(process.env.PHENOMIC_USER_URL, __url),
+      content: joinUri(process.env.PHENOMIC_USER_URL, url),
     },
     { property: 'og:description', content: head.description },
     { name: 'twitter:card', content: head.img ? 'summary_large_image' : 'summary' },
@@ -64,17 +54,45 @@ const Page = (props
   }
 
   return (
-    <div className={ styles.page }>
-      <Helmet
-        title={ metaTitle }
-        meta={ meta }
+    <Helmet
+      title={ metaTitle }
+      meta={ meta }
       />
+  );
+}
+
+//@ts-ignore
+PageMeta.propTypes = {
+  head: PropTypes.object.isRequired,
+  url: PropTypes.string.isRequired,
+  pkg: PropTypes.object.isRequired
+};
+
+const Page = (props
+  ,
+  {
+    metadata: { pkg },
+    collection
+  }
+) => {
+  let {isLoading, __filename, __url, head, body, postheader, footer, children} = props;
+
+  invariant(
+    typeof head.title === 'string',
+    `Your page '${ __filename }' needs a title`
+  );
+
+  let bodyContent = reactify(body, collection);
+
+  return (
+    <div className={ styles.page }>
+      <PageMeta head={head} url={__url} pkg={pkg} />
       <Header  { ...props } />
       {postheader}
       {
         isLoading
         ? <Loading />
-        : <BodyContainer>{ body }</BodyContainer>
+        : <BodyContainer>{ bodyContent }</BodyContainer>
       }
       { children }
       { footer }
@@ -98,6 +116,7 @@ Page.propTypes = {
 // @ts-ignore
 Page.contextTypes = {
   metadata: PropTypes.object.isRequired,
+  collection: PropTypes.object.isRequired
 };
 
 export default Page;
