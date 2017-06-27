@@ -5,8 +5,9 @@ import {Link} from 'phenomic';
 import Page from '../Page';
 import HeaderPreview from '../../components/HeaderPreview';
 
-import {collection} from '../../util';
+import {collection, date} from '../../util';
 const {filter, filters, parent, sort} = collection;
+const {format} = date;
 
 import styles from './index.css';
 
@@ -22,7 +23,7 @@ const Post = (props, {collection}) => {
   if (pageDate) {
     dateNodes.push(
       <em key={ pageDate.toISOString() }><time>
-        { pageDate.toDateString() }
+        { format(pageDate) }
       </time></em>
     );
   }
@@ -32,7 +33,7 @@ const Post = (props, {collection}) => {
   if (editDate) {
     dateNodes.push(
       <em key={ editDate.toISOString() }><time>
-        Edited: { editDate.toDateString() }
+        Edited: { format(editDate) }
       </time></em>
     );
   }
