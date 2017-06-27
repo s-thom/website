@@ -17,6 +17,7 @@ function createHeaderPreview(url, collection) {
   }
 }
 
+function createHeaderList({filters: filterProps, sort: sortProp, limit: limitProp}, collection) {
 /**
  * Finds template comments and turns them into proper elements
  * 
@@ -38,6 +39,8 @@ export default function reactify(body, collection) {
         switch(component) {
           case 'RELATED':
             return createHeaderPreview(props.url, collection);
+          case 'HEADER-LIST':
+            return createHeaderList(props, collection);
         }
       }
 
