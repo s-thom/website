@@ -12,9 +12,9 @@ This website is still rather quiet, and I'd like to do more with it. I'm in the 
 
 # Latest Projects
 
-<!-- HEADER-LIST {"filters":{"layout":"Project"},"limit":6} -->
+<!-- HEADER-LIST {"filters":{"layout":"Project"},"sort":"edited","limit":6,"reverse":true} -->
 
 # Latest Posts
 
-<!-- HEADER-LIST {"filters":{"layout":"Post"},"limit":6} -->
+<!-- HEADER-LIST {"filters":{"layout":"Post"},"sort":"edited","limit":6,"reverse":true} -->
 

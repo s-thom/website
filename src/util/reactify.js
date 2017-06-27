@@ -19,7 +19,7 @@ function createHeaderPreview(url, collection) {
 }
 
 // eslint-disable-next-line react/prop-types
-function createHeaderList({filters: filterProps, sort: sortProp, limit: limitProp}, collection) {
+function createHeaderList({filters: filterProps, sort: sortProp, limit: limitProp, reverse}, collection) {
   let filterList = [];
   let sortFn;
 
@@ -36,10 +36,13 @@ function createHeaderList({filters: filterProps, sort: sortProp, limit: limitPro
   }
 
   // Get sort function
-  if (sortProp === 'date') {
+  if (sortProp === 'edited') {
     sortFn = sort.date;
   } else if (sortProp) {
     sortFn = sort.prop(sortProp);
+  }
+  if (reverse && sortFn) {
+    sortFn = sort.NOT(sortFn);
   }
 
   let pages = filter(

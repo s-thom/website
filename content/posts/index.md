@@ -10,4 +10,4 @@ listFilter:
 
 Sometimes I write things. Here you'll find the latest of those. 
 
-<!-- HEADER-LIST {"filters":{"layout":"Post"}} -->
+<!-- HEADER-LIST {"filters":{"layout":"Post"},"sort":"edited","reverse":true} -->
