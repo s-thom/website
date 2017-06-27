@@ -10,11 +10,11 @@ You'll find a bunch of different projects over at [GitHub](https://github.com/st
 
 This website is still rather quiet, and I'd like to do more with it. I'm in the process of converting/creating it, so it will get some love.
 
-# Latest Projects
+# [Latest Projects](/projects/)
 
 <!-- HEADER-LIST {"filters":{"layout":"Project"},"sort":"edited","limit":6,"reverse":true} -->
 
-# Latest Posts
+# [Latest Posts](/posts/)
 
 <!-- HEADER-LIST {"filters":{"layout":"Post"},"sort":"edited","limit":6,"reverse":true} -->
 
