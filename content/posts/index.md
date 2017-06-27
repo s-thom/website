@@ -1,6 +1,6 @@
 ---
 title: Posts
-layout: ListPage
+layout: Page
 listFilter:
   layout: Post
   limit: 50
@@ -9,3 +9,5 @@ listFilter:
 ---
 
 Sometimes I write things. Here you'll find the latest of those. 
+
+<!-- HEADER-LIST {"filters":{"layout":"Post"}} -->
