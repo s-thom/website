@@ -70,9 +70,9 @@ export default function reactify(body, collection) {
     .map((text) => {
       let match = text.match(templateRegex);
       if (match) {
-        let [full, component, propString = '{}'] = match;
+        let [, component, propString = '{}'] = match;
         let props = JSON.parse(propString);
-        console.log(props);
+
         switch(component) {
           case 'RELATED':
             return createHeaderPreview(props.url, collection);
