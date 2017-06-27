@@ -2,8 +2,9 @@ import React from 'react';
 import {Link} from 'phenomic';
 
 import HeaderPreview from '../components/HeaderPreview';
+import HeaderList from '../components/HeaderList';
 
-import {self} from './collection';
+import {self, filter, filters, sort} from './collection';
 import styles from './util.css';
 
 const templateRegex = /<!--\s?([-\w]+)\s([\s\S]+?)\s?-->/;
