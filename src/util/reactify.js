@@ -18,7 +18,40 @@ function createHeaderPreview(url, collection) {
   }
 }
 
+// eslint-disable-next-line react/prop-types
 function createHeaderList({filters: filterProps, sort: sortProp, limit: limitProp}, collection) {
+  let filterList = [];
+  let sortFn;
+
+
+  // Build up a list of filters
+  if (filterProps.layout) {
+    filterList.push(filters.layout(filterProps.layout));
+  }
+  if (!filterProps.showHidden) {
+    filterList.push(filters.visible);
+  }
+  if (filterProps.tagged) {
+    filterList.push(filters.tagged(filterProps.tagged));
+  }
+
+  // Get sort function
+  if (sortProp === 'date') {
+    sortFn = sort.date;
+  } else if (sortProp) {
+    sortFn = sort.prop(sortProp);
+  }
+
+  let pages = filter(
+    collection,
+    filterList,
+    sortFn,
+    limitProp
+  );
+
+  return <HeaderList pages={pages} showTypes={false} />;
+}
+
 /**
  * Finds template comments and turns them into proper elements
  * 
