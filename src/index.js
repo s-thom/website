@@ -1,14 +1,21 @@
 import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
-import { createApp, renderApp } from '@phenomic/preset-react-app/lib/client';
+import {
+  createApp,
+  renderApp,
+} from '@phenomic/preset-react-app/lib/client';
 
+import AppContainer from './layout/AppContainer';
 import Html from './layout/Html';
-import TEST from './pages/TEST';
+import { MdPageContainer } from './pages/MdPage';
 
-export const routes = () =>
-  <Router history={browserHistory}>
-    <Route path="/" component={TEST} />
-  </Router>;
+export const routes = () => (
+  <AppContainer>
+    <Router history={browserHistory}>
+      <Route path="test/*" component={MdPageContainer} />
+    </Router>
+  </AppContainer>
+);
 
 export default createApp(routes, Html);
 
