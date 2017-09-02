@@ -8,8 +8,19 @@ import {
 import Link from '@phenomic/plugin-renderer-react/lib/components/Link';
 
 import Page from '../Page';
+import ErrorPage from '../ErrorPage';
 
-export default function MdPage({ isLoading, page, location: { pathname } }) {
+export default function MdPage({
+  isLoading,
+  page,
+  location: { pathname },
+  hasError
+}) {
+
+  if (hasError) {
+    return (<ErrorPage {...page} url={pathname}/>);
+  }
+
   return (
     <Page {...page} url={pathname}>
       {isLoading && 'Loading...'}
@@ -28,6 +39,7 @@ export default function MdPage({ isLoading, page, location: { pathname } }) {
 
 MdPage.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  hasError: PropTypes.bool,
   page: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
 };

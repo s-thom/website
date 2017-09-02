@@ -27,11 +27,11 @@ export default function PageError(props) {
       </Head>
       <div className={styles.oops}>{'{uh_oh}'}</div>
       <div className={styles.text}>
-        <p className={styles.title}>
+        <h1 className={styles.title}>
           <strong>{status}</strong>
           {': '}
           {message}
-        </p>
+        </h1>
         {
           error === 404 &&
           <div>
