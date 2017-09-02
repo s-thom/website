@@ -1,23 +1,13 @@
-// import { renderApp } from '@phenomic/preset-react-app/lib/client';
-
-// import App, { routes } from './src';
-
-// export default App;
-
-// if (module.hot) {
-//   module.hot.accept(() => renderApp(routes));
-// }
-
-import React from "react";
-import Head from "react-helmet";
-import { Router, Route, browserHistory, Link } from "react-router";
+import React from 'react';
+import Head from 'react-helmet';
+import { Router, Route, browserHistory, Link } from 'react-router';
 import {
   createApp,
   renderApp,
   createContainer,
   query,
   BodyRenderer
-} from "@phenomic/preset-react-app/lib/client";
+} from '@phenomic/preset-react-app/lib/client';
 
 
 import { MdPageContainer } from './src/pages/MdPage';
@@ -32,7 +22,7 @@ const Home = ({ isLoading, posts }) =>
       <meta name="description" content="Everything is awesome!" />
     </Head>
     <h1>Home</h1>
-    {isLoading && "Loading..."}
+    {isLoading && 'Loading...'}
     {!isLoading &&
       <ul>
         {posts &&
@@ -50,13 +40,13 @@ const Home = ({ isLoading, posts }) =>
         <Link
           to={
             posts.node.previousPageIsFirst
-              ? `/`
+              ? '/'
               : `/after/${posts.node.previous}/`
           }
         >
           Newer posts
         </Link>}
-      {" "}
+      {' '}
       {posts.node &&
         posts.node.hasNextPage &&
         <Link to={`/after/${posts.node.next}/`}>Older posts</Link>}
@@ -65,7 +55,7 @@ const Home = ({ isLoading, posts }) =>
 
 const HomeContainer = createContainer(Home, props => ({
   posts: query({
-    collection: "posts",
+    collection: 'posts',
     limit: 2,
     after: props.params.after
   })
@@ -73,7 +63,7 @@ const HomeContainer = createContainer(Home, props => ({
 
 const PageError = ({ error }) => {
   const status = (error && error.status) || 404;
-  const message = error && status !== 404 ? error.statusText : "Page not found";
+  const message = error && status !== 404 ? error.statusText : 'Page not found';
 
   return (
     <div>
