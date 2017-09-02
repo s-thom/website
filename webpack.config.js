@@ -15,9 +15,6 @@ module.exports = (config = {}) => {
     return require(postcssPluginFile)(config);
   };
 
-
-
-
   return {
     entry: {
       [config.bundleName]: [

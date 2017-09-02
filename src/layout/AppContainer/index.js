@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './index.global.css';
-import './highlight.global.css';
+import '../../include/index.global.css';
+import '../../include/highlight.global.css';
+
+import styles from './index.css';
 
 import Header from '../Header';
 import Footer from '../Footer';
 
 const AppContainer = (props) => (
-  <div>
+  <div className={styles.AppContainer}>
     <Header />
-    <div>
+    <div className={styles.container}>
       { props.children }
     </div>
     <Footer />

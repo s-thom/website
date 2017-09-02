@@ -8,11 +8,13 @@ import {
 import AppContainer from './layout/AppContainer';
 import Html from './layout/Html';
 import { MdPageContainer } from './pages/MdPage';
+import TEST from './pages/TEST';
 
 export const routes = () => (
   <AppContainer>
     <Router history={browserHistory}>
-      <Route path="test/*" component={MdPageContainer} />
+      <Route path="/" component={TEST} />
+      <Route path="/blog/*" component={MdPageContainer} />
     </Router>
   </AppContainer>
 );

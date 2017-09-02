@@ -1,5 +1,8 @@
 /* Using global sytles is not recommended, prefer local styles via CSS Modules */
 
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+
 /*
  * box model like it should be
  *
@@ -35,17 +38,11 @@ body {
   font-size: 1rem;
   line-height: 1.5em;
 
-  /* system font https://medium.com/designing-medium/system-shock-6b1dc6d6596f */
   font-family: 'Roboto Mono', monospace;
-}
 
-/*
- * .phenomic-HeadingAnchor
- *
- * anchors for markdown headings, generated via markdown renderer, so require
- * global styling
- */
-@custom-selector :--headings h1, h2, h3, h4, h5, h6;
+  background-color: #FEFEFE;
+  color: #15181A;
+}
 
 :--headings {
   position: relative;
@@ -91,7 +88,7 @@ img {
 
 pre,
 code {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Fira Code', 'Roboto Mono', monospace;
   overflow-x: auto;
   color: #abb2bf;
   background: #282c34;

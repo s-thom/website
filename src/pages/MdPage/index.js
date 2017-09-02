@@ -9,6 +9,9 @@ import Link from '@phenomic/plugin-renderer-react/lib/components/Link';
 // ...
 
 export default function MdPage({ isLoading, page }) {
+  console.log(page);
+
+
   return (
     <div>
       {isLoading && 'Loading...'}

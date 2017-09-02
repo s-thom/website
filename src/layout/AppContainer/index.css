@@ -1,0 +1,12 @@
+.AppContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}

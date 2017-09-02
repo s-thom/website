@@ -3,15 +3,15 @@
 }
 
 .header {
-  color: var(--mainColorContrasted);
-  background: var(--mainColor);
+  color: #EEE;
+  background: #15181A;
 }
 
 .nav {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  max-width: calc(60rem + (var(--nav-item-padding) * 2));
+  max-width: 60rem;
   margin: 0 auto;
   padding: 0;
   line-height: 3rem;
