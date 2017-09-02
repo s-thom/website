@@ -15,11 +15,7 @@ import { pkg } from '../../metadata';
 import styles from './index.css';
 
 function PageMeta({ head, url }) {
-  const metaTitle = 'no';
-  head = {
-
-  };
-  // const metaTitle = head.metaTitle ? head.metaTitle : head.title;
+  const metaTitle = head.metaTitle || head.title || 'NO TITLE';
 
   const meta = [
     { property: 'og:type', content: 'article' },
@@ -78,9 +74,6 @@ PageMeta.propTypes = {
 const Page = ({ children, footer, error, status, node, url }) => {
   let headMeta;
   if (!error && status === 'idle') {
-
-
-
     headMeta = <PageMeta head={node} url={url} pkg={pkg} />;
   }
 

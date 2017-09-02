@@ -8,20 +8,21 @@ import {
 import Link from '@phenomic/plugin-renderer-react/lib/components/Link';
 
 import Page from '../Page';
-import ErrorPage from '../ErrorPage';
 
 export default function HomePage({
   isLoading,
-  page,
   location: { pathname },
   hasError,
   posts,
   projects
 }) {
-
-  if (hasError) {
-    return (<ErrorPage {...page} url={pathname} />);
-  }
+  let page = {
+    node: {
+      title: 'Stuart Thomson',
+      img: '/assets/img/banner.jpg',
+    },
+    status: 'idle',
+  };
 
   return (
     <Page {...page} url={pathname}>
@@ -35,7 +36,6 @@ export default function HomePage({
 HomePage.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   hasError: PropTypes.bool,
-  page: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   posts: PropTypes.object.isRequired,
   projects: PropTypes.object.isRequired,
