@@ -10,8 +10,9 @@ import {
 } from '@phenomic/preset-react-app/lib/client';
 
 
-import { MdPageContainer } from './src/pages/MdPage';
+import MdPage, { MdPageContainer } from './src/pages/MdPage';
 import TEST from './src/pages/TEST';
+import ErrorPage from './src/pages/ErrorPage';
 import AppContainer from './src/layout/AppContainer';
 import Html from './src/layout/Html';
 
@@ -61,27 +62,13 @@ const HomeContainer = createContainer(Home, props => ({
   })
 }));
 
-const PageError = ({ error }) => {
-  const status = (error && error.status) || 404;
-  const message = error && status !== 404 ? error.statusText : 'Page not found';
-
-  return (
-    <div>
-      <Head>
-        <title>{message}</title>
-      </Head>
-      <h1>{message}</h1>
-    </div>
-  );
-};
-
 const routes = () =>
   <AppContainer>
     <Router history={browserHistory}>
       <Route path="/" component={TEST} />
       <Route path="/after/:after" component={HomeContainer} />
       <Route path="/blog/*" component={MdPageContainer} />
-      <Route path="*" component={PageError} />
+      <Route path="*" component={ErrorPage} />
     </Router>
   </AppContainer>;
 

@@ -1,0 +1,7 @@
+.Page {
+  align-self: center;
+  width: 100%;
+  max-width: 72em;
+  margin: 1em 0.75em;
+  padding: 0 0.5em;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   BodyRenderer,
   createContainer,
@@ -6,14 +7,11 @@ import {
 } from '@phenomic/preset-react-app/lib/client';
 import Link from '@phenomic/plugin-renderer-react/lib/components/Link';
 
-// ...
+import Page from '../Page';
 
-export default function MdPage({ isLoading, page }) {
-  console.log(page);
-
-
+export default function MdPage({ isLoading, page, location: { pathname } }) {
   return (
-    <div>
+    <Page {...page} url={pathname}>
       {isLoading && 'Loading...'}
       {!isLoading &&
         page.node &&
@@ -24,9 +22,15 @@ export default function MdPage({ isLoading, page }) {
       <footer>
         <Link to="/">Go to home</Link>
       </footer>
-    </div>
+    </Page>
   );
 }
+
+MdPage.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  page: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+};
 
 export const MdPageContainer = createContainer(MdPage, props => ({
   page: query({ collection: 'posts', id: props.params.splat })
