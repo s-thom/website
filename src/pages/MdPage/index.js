@@ -10,6 +10,8 @@ import Link from '@phenomic/plugin-renderer-react/lib/components/Link';
 import Page from '../Page';
 import ErrorPage from '../ErrorPage';
 
+import Loading from '../../components/Loading';
+
 export default function MdPage({
   isLoading,
   page,
@@ -23,7 +25,7 @@ export default function MdPage({
 
   return (
     <Page {...page} url={pathname}>
-      {isLoading && 'Loading...'}
+      {isLoading && <Loading/>}
       {!isLoading &&
         page.node &&
         <article>
