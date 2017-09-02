@@ -5,16 +5,6 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const nodeModules = path.join(process.cwd(), 'node_modules');
 module.exports = (config = {}) => {
-  // hot loading for postcss config
-  // until this is officially supported
-  // https://github.com/postcss/postcss-loader/issues/66
-  const postcssPluginFile = require.resolve('./postcss.config.js');
-  const postcssPlugins = (webpackInstance) => {
-    webpackInstance.addDependency(postcssPluginFile);
-    delete require.cache[postcssPluginFile];
-    return require(postcssPluginFile)(config);
-  };
-
   return {
     entry: {
       [config.bundleName]: [
@@ -65,9 +55,6 @@ module.exports = (config = {}) => {
                   ),
                 },
               },
-              {
-                loader: 'postcss-loader',
-              },
             ],
           }),
         },
@@ -80,9 +67,6 @@ module.exports = (config = {}) => {
             fallback: 'style-loader',
             use: [
               'css-loader',
-              {
-                loader: 'postcss-loader',
-              },
             ],
           }),
         },
@@ -105,21 +89,6 @@ module.exports = (config = {}) => {
       ]
     },
     plugins: [
-      // You should be able to remove the block below when the following
-      // issue has been correctly handled (and postcss-loader supports
-      // "plugins" option directly in query, see postcss-loader usage above)
-      // https://github.com/postcss/postcss-loader/issues/99
-      new webpack.LoaderOptionsPlugin({
-        test: /\.css$/,
-        options: {
-          postcss: postcssPlugins,
-          // required to avoid issue css-loader?modules
-          // this is normally the default value, but when we use
-          // LoaderOptionsPlugin, we must specify it again, otherwise,
-          // context is missing (and css modules names can be broken)!
-          context: __dirname,
-        },
-      }),
 
       new ExtractTextPlugin({
         filename: 'styles.css',
