@@ -83,6 +83,9 @@
     ],
     "no-confusing-arrow": [
       1
+    ],
+    "no-trailing-spaces": [
+      1
     ]
   },
   "env": {
