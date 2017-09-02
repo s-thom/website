@@ -89,6 +89,22 @@ module.exports = (config = {}) => {
             ],
           }),
         },
+
+        // copy assets and return generated path in js
+        {
+          test: /\.(html|ico|jpe?g|png|gif|eot|otf|webp|ttf|woff|woff2)$/,
+          loader: 'file-loader',
+          query: {
+            name: '[path][name].[hash].[ext]',
+            context: path.join(__dirname, 'src'),
+          },
+        },
+
+        // svg as raw string to be inlined
+        {
+          test: /\.svg$/,
+          loader: 'raw-loader',
+        },
       ]
     },
     plugins: [
