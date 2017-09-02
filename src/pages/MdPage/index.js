@@ -11,12 +11,14 @@ import Page from '../Page';
 import ErrorPage from '../ErrorPage';
 
 import Loading from '../../components/Loading';
+import Header from '../../components/Header';
 
 export default function MdPage({
   isLoading,
   page,
   location: { pathname },
-  hasError
+  hasError,
+  header,
 }) {
 
   if (hasError) {
@@ -29,12 +31,9 @@ export default function MdPage({
       {!isLoading &&
         page.node &&
         <article>
-          <h1>{page.node.title}</h1>
+          <Header head={page.node} url={pathname} header={header}/>
           <BodyRenderer>{page.node.body}</BodyRenderer>
         </article>}
-      <footer>
-        <Link to="/">Go to home</Link>
-      </footer>
     </Page>
   );
 }
@@ -44,6 +43,7 @@ MdPage.propTypes = {
   hasError: PropTypes.bool,
   page: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
+  header: PropTypes.node,
 };
 
 export const MdPageContainer = createContainer(MdPage, props => ({

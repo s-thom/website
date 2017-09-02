@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'phenomic';
+import Link from '@phenomic/plugin-renderer-react/lib/components/Link';
 
 import styles from './index.css';
 
 const Header = (
   {
-    __url,
+    url,
     head,
     header
   }
@@ -30,9 +30,9 @@ const Header = (
   }
 
   // Breadcrumbs
-  if (__url) {
+  if (url) {
     // Split url, remove first and last empty string
-    let parts = __url.split('/');
+    let parts = url.split('/');
     parts.shift();
     parts.pop();
     // If there's no crumbs, don't do anything
@@ -41,10 +41,10 @@ const Header = (
         let arr = [];
         if (i + 1 === parts.length) {
           // Final one, replace with page title
-          arr.push(<Link to={__url} className={styles.crumb} key='bc-final'>{head.title}</Link>);
+          arr.push(<Link to={url} className={styles.crumb} key='bc-final'>{head.title}</Link>);
         } else {
           // Generate the URL for this crumb
-          // This would work for the above line, but we already had the __url
+          // This would work for the above line, but we already had the url
           let url = `/${parts.slice(0, i + 1).join('/')}/`;
           arr.push(<Link to={url} className={styles.crumb} key={`bc-${i}`}>{c}</Link>);
           // Spacer
@@ -64,7 +64,7 @@ const Header = (
 
 // @ts-ignore
 Header.propTypes = {
-  __url: PropTypes.string,
+  url: PropTypes.string,
   head: PropTypes.object.isRequired,
   header: PropTypes.element
 };

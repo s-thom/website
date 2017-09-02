@@ -1,7 +1,8 @@
 .heading {
-  color: var(--mainColor);
+  color: #15181A;
   margin: 0;
   flex-grow: 1;
+  z-index: 1;
 }
 
 .header {
@@ -9,9 +10,9 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  color: var(--mainColor);
+  color: #15181A;
   padding: calc(1em - 1px) calc(1.5em - 1px);
-  border: 1px var(--mainColor) solid;
+  border: 1px #15181A solid;
 }
 
 .headerWColor,
