@@ -6,4 +6,4 @@ Github: https://github.com/s-thom
 /* SITE */
 
 Components: React
-Software: Phenomic, Webpack, ESLint, Atom
+Software: Phenomic, ESLint, VS Code
