@@ -11,7 +11,7 @@ const Header = () => (
           <img className={ styles.meImg } src="/assets/img/me.jpg" />
         </div>
         <div className={ styles.navPart1 }>
-            <h1 className={ styles.title }>Stuart Thomson</h1>
+          <h1 className={ styles.title }>Stuart Thomson</h1>
         </div>
       </Link>
     </nav>

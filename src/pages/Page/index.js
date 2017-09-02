@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Head from 'react-helmet';
 import joinUri from 'url-join';
 
+import AppContainer from '../../layout/AppContainer';
+
 // import Loading from '../../components/Loading';
 // import Header from '../../components/Header';
 
@@ -83,12 +85,14 @@ const Page = ({ children, footer, error, status, node, url }) => {
   }
 
   return (
-    <div className={styles.Page}>
-      {headMeta}
-      {/* <Header  { ...props } /> */}
-      {children}
-      {footer}
-    </div>
+    <AppContainer>
+      <div className={styles.Page}>
+        {headMeta}
+        {/* <Header  { ...props } /> */}
+        {children}
+        {footer}
+      </div>
+    </AppContainer>
   );
 };
 
