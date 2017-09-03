@@ -10,6 +10,7 @@ import Link from '@phenomic/plugin-renderer-react/lib/components/Link';
 import Page from '../Page';
 import ErrorPage from '../ErrorPage';
 
+import MdRenderer from '../../components/MdRenderer';
 import Loading from '../../components/Loading';
 import Header from '../../components/Header';
 
@@ -32,7 +33,7 @@ export default function MdPage({
         page.node &&
         <article>
           <Header head={page.node} url={pathname} header={header}/>
-          <BodyRenderer>{page.node.body}</BodyRenderer>
+          <MdRenderer content={page.node.body} />
         </article>}
     </Page>
   );

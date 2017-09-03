@@ -27,7 +27,7 @@ function prune(s, maxLength, end) {
 
   const trimmed = s.substr(0, maxLength);
 
-  return trimmed.substr(0, Math.min(trimmed.length, trimmed.lastIndexOf(" "))) + end;
+  return trimmed.substr(0, Math.min(trimmed.length, trimmed.lastIndexOf(' '))) + end;
 }
 
 /**
