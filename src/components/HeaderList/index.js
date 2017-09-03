@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'phenomic';
+import Link from '@phenomic/plugin-renderer-react/lib/components/Link';
 
 import HeaderPreview from '../HeaderPreview';
 
 import styles from './index.css';
 
-const HeaderList = ({ pages, showTypes }) => {
+const HeaderList = ({ pages, showTypes, root }) => {
   return (
     <div>
       {
@@ -21,7 +21,7 @@ const HeaderList = ({ pages, showTypes }) => {
             }
             return (
               <li className={styles.item} key={ info.title }>
-                <Link to={info.__url}>
+                <Link to={`${root}${info.id}`}>
                   <HeaderPreview { ...info } />
                 </Link>
               </li>
@@ -39,6 +39,7 @@ const HeaderList = ({ pages, showTypes }) => {
 // @ts-ignore
 HeaderList.propTypes = {
   pages: PropTypes.array.isRequired,
+  root: PropTypes.string.isRequired,
   showTypes: PropTypes.bool
 };
 
