@@ -25,7 +25,6 @@ export const ProjectPageContainer = createContainer(ProjectPage, props => ({
 export function ProjectListPage({
   isLoading,
   projects,
-  location: { pathname },
 }) {
   let page = {
     node: {
@@ -35,7 +34,7 @@ export function ProjectListPage({
   };
   return (
     <Page {...page}>
-      <Header head={page.node} url={pathname} />
+      <Header head={page.node} />
       {!isLoading && <HeaderList root="/projects/" pages={projects.node.list} />}
     </Page>
   );
@@ -43,7 +42,6 @@ export function ProjectListPage({
 
 ProjectListPage.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  location: PropTypes.object.isRequired,
   projects: PropTypes.object.isRequired,
 };
 

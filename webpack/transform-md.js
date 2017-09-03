@@ -129,6 +129,12 @@ function transformMarkdownFile({
     partial.description = makeDesc(front.content);
   }
 
+  if (!partial.url) {
+    const match = file.name.match(/(.*)\.([^/]+)/);
+    partial.url = match[1];
+    partial.filetype = match[2];
+  }
+
   return {
     data: {
       ...partial,

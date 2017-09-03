@@ -24,7 +24,6 @@ export const PostPageContainer = createContainer(PostPage, props => ({
 export function PostListPage({
   isLoading,
   posts,
-  location: { pathname },
 }) {
   let page = {
     node: {
@@ -34,7 +33,7 @@ export function PostListPage({
   };
   return (
     <Page {...page}>
-      <Header head={page.node} url={pathname} />
+      <Header head={page.node} />
       {!isLoading && <HeaderList root="/posts/" pages={posts.node.list} />}
     </Page>
   );
@@ -42,7 +41,6 @@ export function PostListPage({
 
 PostListPage.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  location: PropTypes.object.isRequired,
   posts: PropTypes.object.isRequired,
 };
 

@@ -4,26 +4,28 @@ import Link from '@phenomic/plugin-renderer-react/lib/components/Link';
 
 import styles from './index.css';
 
-const Header = (
-  {
+const Header = ({
+  head: {
+    title,
+    img,
+    bgcolor,
     url,
-    head,
-    header
-  }
-) => {
+  },
+  header
+}) => {
   const headList = [];
   const headStyle = {};
   let headClasses = [styles.header];
 
-  if (head.img) {
+  if (img) {
     headClasses.push(styles.headerWImg);
-    headStyle.backgroundImage = `url(${head.img})`;
-  } else if (head.bgcolor) {
+    headStyle.backgroundImage = `url(${img})`;
+  } else if (bgcolor) {
     headClasses.push(styles.headerWColor);
-    headStyle.backgroundColor = head.bgcolor;
+    headStyle.backgroundColor = bgcolor;
   }
-  if (head.title) {
-    headList.push(<h1 className={ styles.heading } key='title'>{ head.title }</h1>);
+  if (title) {
+    headList.push(<h1 className={ styles.heading } key='title'>{ title }</h1>);
   }
   if (header) {
     headList.push(<div key='inner'>{header}</div>);
@@ -31,17 +33,15 @@ const Header = (
 
   // Breadcrumbs
   if (url) {
-    // Split url, remove first and last empty string
-    let parts = url.split('/');
-    parts.shift();
-    parts.pop();
+    // Split url, remove empty strings
+    let parts = url.split('/').filter(s => s);
     // If there's no crumbs, don't do anything
     if (parts.length) {
       let crumbs = parts.map((c,i)=>{
         let arr = [];
         if (i + 1 === parts.length) {
           // Final one, replace with page title
-          arr.push(<Link to={url} className={styles.crumb} key='bc-final'>{head.title}</Link>);
+          arr.push(<Link to={url} className={styles.crumb} key='bc-final'>{title}</Link>);
         } else {
           // Generate the URL for this crumb
           // This would work for the above line, but we already had the url
@@ -58,7 +58,7 @@ const Header = (
   }
 
   return (
-      <div className={headClasses.join(' ')} style={headStyle}>{headList}</div>
+    <div className={headClasses.join(' ')} style={headStyle}>{headList}</div>
   );
 };
 

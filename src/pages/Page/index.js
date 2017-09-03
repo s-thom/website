@@ -14,7 +14,7 @@ import { pkg } from '../../metadata';
 
 import styles from './index.css';
 
-function PageMeta({ head, url }) {
+function PageMeta({ head }) {
   const metaTitle = head.metaTitle || head.title || 'NO TITLE';
 
   const meta = [
@@ -22,7 +22,7 @@ function PageMeta({ head, url }) {
     { property: 'og:title', content: metaTitle },
     {
       property: 'og:url',
-      content: joinUri(process.env.PHENOMIC_USER_URL, url),
+      content: joinUri(process.env.PHENOMIC_USER_URL, head.url),
     },
     { property: 'og:description', content: head.description },
     { name: 'twitter:card', content: head.img ? 'summary_large_image' : 'summary' },
@@ -67,14 +67,12 @@ function PageMeta({ head, url }) {
 //@ts-ignore
 PageMeta.propTypes = {
   head: PropTypes.object.isRequired,
-  url: PropTypes.string.isRequired,
-  pkg: PropTypes.object.isRequired
 };
 
-const Page = ({ children, footer, error, status, node, url }) => {
+const Page = ({ children, footer, error, status, node }) => {
   let headMeta;
   if (!error && status === 'idle') {
-    headMeta = <PageMeta head={node} url={url} pkg={pkg} />;
+    headMeta = <PageMeta head={node} pkg={pkg} />;
   }
 
   return (
@@ -96,7 +94,6 @@ Page.propTypes = {
   error: PropTypes.any,
   children: PropTypes.node,
   footer: PropTypes.node,
-  url: PropTypes.string.isRequired,
 };
 
 export default Page;

@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {layoutNames} from '../../metadata';
 // Poach styles from header, that way it only needs to be written once
 import headerStyles from '../Header/index.css';
 import styles from './index.css';
 
 const HeaderPreview = (
   {
-    __url,
     title,
     img,
     bgcolor,
@@ -25,19 +23,9 @@ const HeaderPreview = (
     headerStyles.header
   ];
 
-  if (showType) {
-    let t;
-    if (layoutNames[layout]) {
-      t = layoutNames[layout];
-    }
-    if (type) {
-      t = type;
-    }
-
-    if (t) {
-      headList.push(<p className={headerStyles.type} key="type">{t}</p>);
-      headClasses.push(headerStyles.showsType);
-    }
+  if (showType && type) {
+    headList.push(<p className={headerStyles.type} key="type">{type}</p>);
+    headClasses.push(headerStyles.showsType);
   }
 
   if (img) {
@@ -52,13 +40,12 @@ const HeaderPreview = (
   }
 
   return (
-      <div className={headClasses.join(' ')} style={headStyle} key={title}>{headList}</div>
+    <div className={headClasses.join(' ')} style={headStyle} key={title}>{headList}</div>
   );
 };
 
 // @ts-ignore
 HeaderPreview.propTypes = {
-  __url: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   img: PropTypes.string,
   bgcolor: PropTypes.string,
