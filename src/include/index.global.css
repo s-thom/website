@@ -44,32 +44,32 @@ body {
   color: #15181A;
 }
 
-:--headings {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   position: relative;
   line-height: 1em;
   font-weight: normal;
 }
 
-:root {
-  --phenomic-HeadingAnchor-width: 1.4rem;
-  --phenomic-HeadingAnchor-margin: 0.4rem;
-}
-
 .phenomic-HeadingAnchor {
   display: inline-block;
   text-align: center;
-  margin-left: calc(-1 * (var(--phenomic-HeadingAnchor-width) + var(--phenomic-HeadingAnchor-margin)));
-  margin-right: var(--phenomic-HeadingAnchor-margin);
-  width: var(--phenomic-HeadingAnchor-width);
-  line-height: var(--phenomic-HeadingAnchor-width);
+  margin-left: calc(-1 * (1.4rem + 0.4rem));
+  margin-right: 0.4rem;
+  width: 1.4rem;
+  line-height: 1.4rem;
   text-decoration: none;
   opacity: 0.1;
   transition: opacity 0.2s;
-
-  @nest :--headings:hover & {
-    opacity: 1;
-  }
 }
+.phenomic-HeadingAnchor:hover {
+  opacity: 0.8;
+}
+
 
 /* minimal styling, prefer removing this and use local styles */
 a {
