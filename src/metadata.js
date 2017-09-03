@@ -1,8 +1,6 @@
 // you can add any STATIC data you want here
 import pkg from '../package.json';
 
-const layoutNames = {};
-
 let win;
 if (typeof window !== 'undefined') {
   // eslint-disable-next-line no-undef
@@ -11,6 +9,5 @@ if (typeof window !== 'undefined') {
 
 export {
   pkg,
-  layoutNames, // gets filled out in routes.js
   win as window
 };

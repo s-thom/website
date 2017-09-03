@@ -1,11 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  BodyRenderer,
-  createContainer,
-  query
-} from '@phenomic/preset-react-app/lib/client';
-import Link from '@phenomic/plugin-renderer-react/lib/components/Link';
 
 import Page from '../Page';
 import ErrorPage from '../ErrorPage';
