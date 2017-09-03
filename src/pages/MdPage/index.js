@@ -45,7 +45,3 @@ MdPage.propTypes = {
   location: PropTypes.object.isRequired,
   header: PropTypes.node,
 };
-
-export const MdPageContainer = createContainer(MdPage, props => ({
-  page: query({ collection: 'posts', id: props.params.splat })
-}));
