@@ -10,15 +10,17 @@ import {
 } from '@phenomic/preset-react-app/lib/client';
 
 import { HomePageContainer } from './src/pages/HomePage';
-import { PostPageContainer } from './src/pages/PostPage';
-import { ProjectPageContainer } from './src/pages/ProjectPage';
+import { PostPageContainer, PostListPageContainer } from './src/pages/PostPage';
+import { ProjectPageContainer, ProjectListPageContainer } from './src/pages/ProjectPage';
 import ErrorPage from './src/pages/ErrorPage';
 import Html from './src/layout/Html';
 
 const routes = () =>
   <Router history={browserHistory}>
     <Route path="/" component={HomePageContainer} />
+    <Route path="/posts/" component={PostListPageContainer} />
     <Route path="/posts/*" component={PostPageContainer} />
+    <Route path="/projects/" component={ProjectListPageContainer} />
     <Route path="/projects/*" component={ProjectPageContainer} />
     <Route path="*" component={ErrorPage} />
   </Router>;
