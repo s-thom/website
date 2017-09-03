@@ -15,6 +15,49 @@ import emoji from 'remark-emoji';
 import deepmerge from 'deepmerge';
 import sanitizeGhSchema from 'hast-util-sanitize/lib/github.json';
 
+const descDefaults = {
+  pruneLength: 80,
+  pruneString: '…'
+};
+
+function prune(s, maxLength, end) {
+  if (s.length < maxLength) {
+    return s;
+  }
+
+  const trimmed = s.substr(0, maxLength);
+
+  return trimmed.substr(0, Math.min(trimmed.length, trimmed.lastIndexOf(" "))) + end;
+}
+
+/**
+ * Almost a direct clone of old phemonic description generator,
+ * but allows for sprcifying where description starts with <!-- desc -->
+ */
+function makeDesc(text, opts = {}) {
+  opts = { ...descDefaults, ...opts };
+
+  let str = text;
+  let match = text.match(/<!--\s?desc\s?-->\s+(.*)/);
+  if (match) {
+    str = match[1];
+  }
+
+
+  if (opts.pruneLength === 0) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      'You defined \'description.pruneLength\' of phenomic loader ' +
+      'with an zero value. This does not make sense, ' +
+      `so the default value ${descDefaults.pruneLength} has been used.`
+    );
+
+    opts.pruneLength = descDefaults.pruneLength;
+  }
+
+  return prune(str.trim(), opts.pruneLength, opts.pruneString);
+}
+
 function remarkPlugins(config, body) {
   const remarkInstance = remark()
     .use(toc)
@@ -81,6 +124,11 @@ function transformMarkdownFile({
       }
       : {})
   };
+
+  if (!partial.description) {
+    partial.description = makeDesc(front.content);
+  }
+
   return {
     data: {
       ...partial,
