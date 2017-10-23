@@ -1,5 +1,10 @@
 {
   "private": true,
+  "phenomic": {
+    "presets": [
+      "@phenomic/preset-react-app"
+    ]
+  },
   "scripts": {
     "start": "phenomic start",
     "build": "phenomic build"
@@ -10,9 +15,15 @@
     "@phenomic/preset-react-app": "^1.0.0-alpha.13",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-router": "^3.2.0"
+    "react-router": "^3.2.0",
+    "webpack": "^3.0.0"
   },
   "devDependencies": {
-    "eslint-config-airbnb": "^16.1.0"
+    "babel-runtime": "^6.26.0",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0"
   }
 }
