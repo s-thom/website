@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react'
-import { getRouteProps, Link } from 'react-static'
+import React from 'react';
+import { getRouteProps, Link } from 'react-static';
 //
 
 export default getRouteProps(({ posts }) => (
@@ -16,4 +16,4 @@ export default getRouteProps(({ posts }) => (
       ))}
     </ul>
   </div>
-))
+));

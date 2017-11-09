@@ -1,5 +1,5 @@
-import React from 'react'
-import { getRouteProps, Link } from 'react-static'
+import React from 'react';
+import { getRouteProps, Link } from 'react-static';
 //
 
 export default getRouteProps(({ data, contents }) => (
@@ -9,4 +9,4 @@ export default getRouteProps(({ data, contents }) => (
     <h3>{data.title}</h3>
     <p>{contents}</p>
   </div>
-))
+));
