@@ -72,3 +72,9 @@
   position: relative;
   color: inherit;
 }
+
+.PostHeader-time {
+  align-self: flex-end;
+  text-align: right;
+  font-size: 0.9em;
+}

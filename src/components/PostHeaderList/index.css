@@ -14,7 +14,7 @@
   text-decoration: none;
 }
 
-.PostHeaderList-item > a > div {
+.PostHeaderList-item > a > .PostHeader {
   min-height: 0;
   height: 100%;
 }

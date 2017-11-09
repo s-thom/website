@@ -10,6 +10,8 @@ export default function PostHeader({
   img,
   bgcolor,
   url,
+  date,
+  edited,
 }: MdPageData) {
   const headList = [];
   const headStyle: any = {};
@@ -24,6 +26,31 @@ export default function PostHeader({
   }
   if (title) {
     headList.push(<h1 className="PostHeader-heading" key="title">{ title }</h1>);
+  }
+  const pageDate = date ? new Date(date) : null;
+  const editDate = edited ? new Date(edited) : null;
+
+  // Add post/edit time to header
+  const dateNodes = [];
+  if (pageDate) {
+    dateNodes.push((
+      <em key={pageDate.toISOString()}><time dateTime={date}>
+        {pageDate.toLocaleString()}
+      </time></em>
+    ));
+  }
+  if (pageDate && editDate) {
+    dateNodes.push(<br key="edit-separator" />);
+  }
+  if (editDate) {
+    dateNodes.push((
+      <em key={editDate.toISOString()}>Edited: {editDate.toLocaleString()}</em>
+    ));
+  }
+  if (dateNodes.length) {
+    headList.push((
+      <div className="PostHeader-time" key="times">{dateNodes}</div>
+    ));
   }
 
   // Breadcrumbs
@@ -46,7 +73,8 @@ export default function PostHeader({
           arr.push(<span key={`spacer-${i}`}> &gt; </span>);
         }
         return arr;
-      });
+      })
+      .reduce((p, c) => p.concat(c), []); // Flatten array
 
       crumbs.unshift(<Link to='/' className="PostHeader-crumb" key="bc-home">Home</Link>, <span key="spacer-home"> &gt; </span>);
       headList.push(<nav className="PostHeader-breadcrumbs" key="breadcrumbs">{crumbs}</nav>);
