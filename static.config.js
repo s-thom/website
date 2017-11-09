@@ -19,7 +19,13 @@ export default {
     const contentArray = files.map((file) => {
       const { data, content } = matter(fs.readFileSync(path.resolve(dirPath, file), 'utf8'));
       const { contents } = remarkParser.processSync(content);
-      return { data, contents, file };
+      return {
+        data: {
+          ...data,
+          filename: file,
+        },
+        contents,
+      };
     });
 
     return [
@@ -37,8 +43,8 @@ export default {
         getProps: () => ({
           posts: contentArray.map(({ data }) => data),
         }),
-        children: contentArray.map(({ data, contents, file }) => ({
-          path: `/${file}`,
+        children: contentArray.map(({ data, contents }) => ({
+          path: `/${data.filename}`,
           component: 'src/containers/Post',
           getProps: () => ({
             data,
