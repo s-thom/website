@@ -1,10 +1,11 @@
 import React from 'react';
-import { getRouteProps, Link } from 'react-static';
+import { getRouteProps } from 'react-static';
 
 import { MdPageData } from '../../types';
 
 import PostHeader from '../../components/PostHeader';
 import PostHeaderList from '../../components/PostHeaderList';
+import Link from '../../components/Link';
 
 interface Props {
   lists: {

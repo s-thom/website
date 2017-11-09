@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-static';
 import Svg from 'react-svg-inline';
+
+import Link from '../Link';
 
 import svgEmail from '../../include/email.svg';
 import svgGithub from '../../include/github.svg';

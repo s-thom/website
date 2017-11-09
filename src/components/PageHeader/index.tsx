@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-static';
+
+import Link from '../Link';
 
 import './index.css';
 

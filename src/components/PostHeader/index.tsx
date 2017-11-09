@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-static';
 
 import { MdPageData } from '../../types';
+import Link from '../Link';
 
 import './index.css';
 

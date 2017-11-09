@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-static';
 
 import { MdPageData } from '../../types';
 
 import PostHeaderPreview from '../PostHeaderPreview';
+import Link from '../Link';
 
 import './index.css';
 

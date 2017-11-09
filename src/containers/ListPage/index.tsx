@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
-import { getRouteProps, Link } from 'react-static';
+import { getRouteProps } from 'react-static';
+import Link from '../../components/Link';
 //
 
 export default getRouteProps(({ posts, name }) => (
