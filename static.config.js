@@ -74,11 +74,18 @@ export default {
           getProps: () => props,
         })),
       }));
+    const folderMap = folders.reduce((p, c) => {
+      p[c.dir] = c.posts;
+      return p;
+    }, {});
 
     return [
       {
         path: '/',
         component: 'src/containers/Home',
+        getProps: () => ({
+          lists: folderMap,
+        }),
       },
       {
         path: '/about',
