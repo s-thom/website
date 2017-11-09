@@ -9,14 +9,16 @@
     "serve": "serve dist -p 3000"
   },
   "dependencies": {
-    "axios": "^0.16.2",
+    "gray-matter": "^3.1.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-router": "^4.2.0",
-    "react-static": "^4.0.1"
+    "react-static": "^4.0.1",
+    "remark": "^8.0.0",
+    "remark-html": "^6.0.1"
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0",
+    "@types/fs-extra": "^4.0.3",
     "@types/node": "^8.0.47",
     "@types/react": "^16.0.18",
     "@types/react-dom": "^16.0.2",
