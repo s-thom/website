@@ -40,6 +40,7 @@ export default {
             return {
               data: {
                 ...data,
+                url: path.join('/', dir, filename, '/'),
                 filename,
                 id,
               },

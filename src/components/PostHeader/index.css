@@ -1,0 +1,74 @@
+.PostHeader-heading {
+  margin: 0;
+  flex-grow: 1;
+  z-index: 1;
+}
+
+.PostHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  color: #15181A;
+  padding: calc(1em - 1px) calc(1.5em - 1px);
+  border: 1px #15181A solid;
+}
+
+.PostHeader-headerWColor,
+.PostHeader-headerWImg {
+  color: #fff;
+  padding: 1em 1.5em;
+  border: none;
+}
+
+.PostHeader-headerWImg {
+  background-size: cover;
+  background-position: center;
+  min-height: 10em;
+}
+
+.PostHeader-header div,
+.PostHeader-header nav {
+  position: relative;
+}
+
+.PostHeader-headerWColor .heading,
+.PostHeader-headerWImg .heading {
+  color: inherit;
+  z-index: 1;
+}
+
+.PostHeader-headerWImg::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  content: ' ';
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.PostHeader-showsType {
+  padding-bottom: 1.5em;
+}
+
+.PostHeader-breadcrumbs {
+  margin-bottom: -0.5em;
+  font-size: 0.9em;
+  z-index: 1;
+}
+
+.PostHeader-crumb,
+.PostHeader-crumb:hover,
+.PostHeader-crumb:active,
+.PostHeader-crumb:visited {
+  color: inherit;
+}
+
+.PostHeader-type {
+  margin: 0;
+  align-self: flex-end;
+  position: relative;
+  color: inherit;
+}
