@@ -1,14 +1,34 @@
-import axios from 'axios'
+import fs from 'fs-extra';
+import matter from 'gray-matter';
+import path from 'path';
+import remark from 'remark';
+import html from 'remark-html';
 
 // Paths Aliases defined through tsconfig.json
-const typescriptWebpackPaths = require('./webpack.config.js')
+const typescriptWebpackPaths = require('./webpack.config.js');
 
 export default {
   getSiteProps: () => ({
     title: 'React Static',
   }),
   getRoutes: async () => {
-    const { data: posts } = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    const remarkParser = remark().use(html);
+    const dirPath = path.resolve(__dirname, './content/posts');
+    const files = await fs.readdir(dirPath);
+
+    const contentArray = files.map((file) => {
+      const { data, content } = matter(fs.readFileSync(path.resolve(dirPath, file), 'utf8'));
+      const { contents } = remarkParser.processSync(content);
+      return {
+        data: {
+          ...data,
+          filename: file,
+        },
+        text: content,
+        contents,
+      };
+    });
+
     return [
       {
         path: '/',
@@ -19,16 +39,18 @@ export default {
         component: 'src/containers/About',
       },
       {
-        path: '/blog',
+        path: '/posts',
         component: 'src/containers/Blog',
         getProps: () => ({
-          posts,
+          posts: contentArray.map(({ data }) => data),
         }),
-        children: posts.map(post => ({
-          path: `/post/${post.id}`,
+        children: contentArray.map(({ data, contents, text }) => ({
+          path: `/${data.filename}`,
           component: 'src/containers/Post',
           getProps: () => ({
-            post,
+            data,
+            contents,
+            text,
           }),
         })),
       },
@@ -36,18 +58,20 @@ export default {
         is404: true,
         component: 'src/containers/404',
       },
-    ]
+    ];
   },
   webpack: (config, { defaultLoaders }) => {
     // Add .ts and .tsx extension to resolver
-    config.resolve.extensions.push('.ts', '.tsx')
+    config.resolve.extensions.push('.ts', '.tsx');
 
     // Add TypeScript Path Mappings (from tsconfig via webpack.config.js)
     // to react-statics alias resolution
-    config.resolve.alias = typescriptWebpackPaths.resolve.alias
+    // eslint-disable-next-line no-param-reassign
+    config.resolve.alias = typescriptWebpackPaths.resolve.alias;
 
     // We replace the existing JS rule with one, that allows us to use
     // both TypeScript and JavaScript interchangeably
+    // eslint-disable-next-line no-param-reassign
     config.module.rules = [
       {
         oneOf: [
@@ -70,7 +94,7 @@ export default {
           defaultLoaders.fileLoader,
         ],
       },
-    ]
-    return config
+    ];
+    return config;
   },
-}
+};
