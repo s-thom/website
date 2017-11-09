@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Link } from 'react-static';
+import { Router } from 'react-static';
 
 import Routes from 'react-static-routes';
 
@@ -12,9 +12,9 @@ import './include/highlight.global.css';
 
 export default () => (
   <Router>
-    <div>
+    <div className="App">
       <PageHeader />
-      <div className="content">
+      <div className="App-container">
         <Routes />
       </div>
       <PageFooter />
