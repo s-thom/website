@@ -37,6 +37,6 @@ export default function PostHeaderPreview({
   }
 
   return (
-    <div className={headClasses.join(' ')} style={headStyle} key={title}>{headList}</div>
+    <header className={headClasses.join(' ')} style={headStyle} key={title}>{headList}</header>
   );
 }

@@ -7,8 +7,8 @@ import PostHeader from '../../components/PostHeader';
 import { MdPageInfo } from '../../types';
 
 export default getRouteProps(({ data, text }: MdPageInfo) => (
-  <div>
+  <article>
     <PostHeader {...data} />
     <MdRenderer text={text} />
-  </div>
+  </article>
 ));

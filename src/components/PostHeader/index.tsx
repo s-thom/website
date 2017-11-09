@@ -54,6 +54,6 @@ export default function PostHeader({
   }
 
   return (
-    <div className={headClasses.join(' ')} style={headStyle}>{headList}</div>
+    <header className={headClasses.join(' ')} style={headStyle}>{headList}</header>
   );
 }
