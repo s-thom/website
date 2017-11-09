@@ -24,6 +24,7 @@ export default {
           ...data,
           filename: file,
         },
+        text: content,
         contents,
       };
     });
@@ -43,12 +44,13 @@ export default {
         getProps: () => ({
           posts: contentArray.map(({ data }) => data),
         }),
-        children: contentArray.map(({ data, contents }) => ({
+        children: contentArray.map(({ data, contents, text }) => ({
           path: `/${data.filename}`,
           component: 'src/containers/Post',
           getProps: () => ({
             data,
             contents,
+            text,
           }),
         })),
       },

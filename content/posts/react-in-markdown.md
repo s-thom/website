@@ -17,6 +17,8 @@ This is valid Markdown
 <button>Click Me!</button>
 ```
 
+<TestComponent></TestComponent>
+
 However, this doesn't quite work when you're using custom React components.
 Instead of it rendering your fancy React-based component, you'll end up with a `<mybutton>` HTML element (which isn't valid HTML).
 
