@@ -1,33 +1,78 @@
 import fs from 'fs-extra';
 import matter from 'gray-matter';
 import path from 'path';
-import remark from 'remark';
-import html from 'remark-html';
 
 // Paths Aliases defined through tsconfig.json
 const typescriptWebpackPaths = require('./webpack.config.js');
+
+function errLog(returnValue = null) {
+  return (err) => {
+    console.error(err);
+    return returnValue;
+  };
+}
 
 export default {
   getSiteProps: () => ({
     title: 'React Static',
   }),
   getRoutes: async () => {
-    const remarkParser = remark().use(html);
-    const dirPath = path.resolve(__dirname, './content/posts');
-    const files = await fs.readdir(dirPath);
+    const contentRoot = './content';
+    const directories = [
+      'posts',
+      'projects',
+    ];
 
-    const contentArray = files.map((file) => {
-      const { data, content } = matter(fs.readFileSync(path.resolve(dirPath, file), 'utf8'));
-      const { contents } = remarkParser.processSync(content);
-      return {
-        data: {
-          ...data,
-          filename: file,
-        },
-        text: content,
-        contents,
-      };
-    });
+    // TODO: meta.json in dir?
+
+    const promises = directories
+      .map(async (dir) => {
+        const dirPath = path.resolve(__dirname, contentRoot, dir);
+        const files = await fs.readdir(dirPath);
+
+        const promArray = files
+          .filter(f => f.match(/.+\.md$/))
+          .map(async (filename) => {
+            const id = filename.match(/(.+)\.md$/)[1];
+            const fileContents = await fs.readFileSync(path.resolve(dirPath, filename), 'utf8');
+            const { data, content } = matter(fileContents);
+
+            return {
+              data: {
+                ...data,
+                filename,
+                id,
+              },
+              text: content,
+            };
+          })
+          .map(p => p.catch(() => null))
+          .filter(f => f);
+
+        const posts = await Promise.all(promArray);
+        return {
+          posts,
+          dir,
+          dirPath,
+        };
+      })
+      .map(p => p.catch(() => []));
+
+    const folders = await Promise.all(promises);
+    const lists = folders
+      .map(({ posts, dir }) => ({
+        path: `/${dir}`,
+        component: 'src/containers/ListPage',
+        getProps: () => ({
+          name: dir,
+          posts: posts.map(({ data }) => data),
+        }),
+        children: posts.map(props => ({
+          path: props.data.id,
+          component: 'src/containers/Post',
+          getProps: () => props,
+        })),
+      }));
 
     return [
       {
@@ -38,28 +83,14 @@ export default {
         path: '/about',
         component: 'src/containers/About',
       },
-      {
-        path: '/posts',
-        component: 'src/containers/Blog',
-        getProps: () => ({
-          posts: contentArray.map(({ data }) => data),
-        }),
-        children: contentArray.map(({ data, contents, text }) => ({
-          path: `/${data.filename}`,
-          component: 'src/containers/Post',
-          getProps: () => ({
-            data,
-            contents,
-            text,
-          }),
-        })),
-      },
+      ...lists,
       {
         is404: true,
         component: 'src/containers/404',
       },
     ];
   },
+  siteRoot: 'https://sthom.kiwi',
   webpack: (config, { defaultLoaders }) => {
     // Add .ts and .tsx extension to resolver
     config.resolve.extensions.push('.ts', '.tsx');
