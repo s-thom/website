@@ -1,0 +1,30 @@
+.PageFooter {
+  color: #EEE;
+  background: #15181A;
+  text-align: center;
+}
+
+.PageFooter-text {
+  margin: 0;
+}
+
+.PageFooter-fade,
+.PageFooter-svg {
+  opacity: 0.5;
+}
+
+.PageFooter-svg {
+  padding: 0 0.2em;
+}
+
+.PageFooter-svg:hover {
+  opacity: 1;
+}
+
+.PageFooter-svg svg {
+  height: 1em;
+  width: 1em;
+  fill: #fff;
+  position: relative;
+  top: 0.2em;
+}

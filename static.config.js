@@ -122,6 +122,10 @@ export default {
               },
             ],
           },
+          {
+            test: /\.svg$/,
+            loader: 'raw-loader',
+          },
           defaultLoaders.cssLoader,
           defaultLoaders.fileLoader,
         ],

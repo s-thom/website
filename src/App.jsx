@@ -1,9 +1,11 @@
-import React from 'react'
-import { Router, Link } from 'react-static'
-//
-import Routes from 'react-static-routes'
+import React from 'react';
+import { Router, Link } from 'react-static';
 
-import './app.css'
+import Routes from 'react-static-routes';
+
+import PageFooter from './components/PageFooter';
+
+import './app.css';
 
 export default () => (
   <Router>
@@ -16,6 +18,7 @@ export default () => (
       <div className="content">
         <Routes />
       </div>
+      <PageFooter />
     </div>
   </Router>
-)
+);
