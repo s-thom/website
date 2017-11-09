@@ -12,7 +12,8 @@ import remarkRehype from 'remark-rehype';
 import rehypeReact from 'rehype-react';
 import rehypeRaw from 'rehype-raw';
 
-import HrefLink from './HrefLink';
+import HrefLink from '../HrefLink';
+import FigureImage from '../FigureImage';
 
 type ComponentType = string | React.ComponentType<any>;
 
@@ -38,6 +39,7 @@ type ItemType =
 
 const defaultComponents: ComponentMap = {
   a: HrefLink,
+  img: FigureImage,
 };
 
 const processor = unified()
