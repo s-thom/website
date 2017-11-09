@@ -14,4 +14,6 @@ export interface MdPageData {
   img?: string;
   bgcolor?: string;
   github?: string;
+  type?: string;
+  showType?: boolean;
 }
