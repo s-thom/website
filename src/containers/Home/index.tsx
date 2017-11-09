@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { getRouteProps, Link } from 'react-static';
 
 import { MdPageData } from '../../types';
@@ -26,8 +25,6 @@ export default getRouteProps(({
     date: null,
   };
 
-  console.log(lists);
-
   return (
     <div>
       <PostHeader {...page} />
@@ -35,9 +32,9 @@ export default getRouteProps(({
       <p>You'll find a bunch of different projects over at <Link to="https://github.com/s-thom">GitHub</Link>. If you've played games with me online, you'll know there's another GitHub account I use for that with even more.</p>
       <p>This website is still rather quiet, and I'd like to do more with it. I'm in the process of converting/creating it, so it will get some love.</p>
       <h1>Recent Posts</h1>
-      <PostHeaderList root="/posts/" pages={lists.posts} />
+      <PostHeaderList pages={lists.posts} />
       <h1>Recent Projects</h1>
-      <PostHeaderList root="/projects/" pages={lists.projects} />
+      <PostHeaderList pages={lists.projects} />
     </div>
   );
 });
