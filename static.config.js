@@ -88,10 +88,6 @@ export default {
           lists: folderMap,
         }),
       },
-      {
-        path: '/about',
-        component: 'src/containers/About',
-      },
       ...lists,
       {
         is404: true,
