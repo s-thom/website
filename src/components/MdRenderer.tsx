@@ -12,13 +12,12 @@ import remarkRehype from 'remark-rehype';
 import rehypeReact from 'rehype-react';
 import rehypeRaw from 'rehype-raw';
 
-import { Link } from 'react-static';
+import HrefLink from './HrefLink';
 
 type ComponentType = string | React.ComponentType<any>;
 
 interface OptionsType {
   components?: { [key: string]: ComponentType };
-  DefaultComponent?: ComponentType;
 }
 
 type ItemType =
@@ -32,12 +31,10 @@ type ItemType =
     c: ItemType | ItemType[],
   };
 
-const defaultProps = { DefaultComponent: 'div' };
-
 const defaultOptions: OptionsType = {
-  // components: {
-  //   a: Link,
-  // },
+  components: {
+    a: HrefLink,
+  },
 };
 
 function renderItems(item: ItemType, options: OptionsType, key?: any): string | JSX.Element | null {
@@ -53,8 +50,7 @@ function renderItems(item: ItemType, options: OptionsType, key?: any): string | 
   const Tag =
     (options.components && item.t && options.components[item.t]) ||
     item.t ||
-    options.DefaultComponent ||
-    defaultProps.DefaultComponent;
+    'div';
 
   return (
     <Tag {...props} key={key}>
@@ -97,13 +93,11 @@ export default function MdRenderer({
 
   const r = renderItems(processed, {
     ...defaultOptions,
-    ...defaultProps,
     // force to mix components, as default one (Link) is crucial
     components: {
       ...defaultOptions.components,
       ...(components || {}),
     },
   });
-  const DefaultComponent = defaultProps.DefaultComponent;
-  return typeof r === 'string' ? <DefaultComponent>{r}</DefaultComponent> : r;
+  return typeof r === 'string' ? <div>{r}</div> : r;
 }
