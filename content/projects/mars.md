@@ -22,7 +22,7 @@ The vast majority of Mars' UI is in a single activity. Mars is not an overly com
 
 However, UI isn't all that important in Mars. It's there to provide something more substantial than just the login screen. The vast majority of Mars works in the background. A background service is started that actually interacts with the Project Rome library, which updates the list of connected devices. Whenever that list is needed, such as when the list of devices is shown in the [Direct Share](/posts/android-direct-share/) menu, it is available statically in the `DeviceStorage` class. DeviceStorage is populated when the Service starts, and updated whenever a device is added/removed. DeviceStorage can also send a callback whenever the list of devices is updated, which is used by the DeviceListFragment displayed when the app is opened.
 
-<!-- RELATED {"url":"/posts/android-direct-share/"} -->
+<Post url="/posts/android-direct-share/"></Post>
 
 Then it's just a case of waiting for the user to share data to the app, which comes into the `LaunchUriActivity`. If the uer selected a device by using Direct Share, then it is sent straight away. Otherwise, a dialog is created so the user can pick a device to send to.
 

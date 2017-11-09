@@ -21,7 +21,7 @@ export default function PostHeader({
     headClasses.push('PostHeader-headerWImg');
     headStyle.backgroundImage = `url(${img})`;
   } else if (bgcolor) {
-    headClasses.push('PostHeader-&1');
+    headClasses.push('PostHeader-headerWColor');
     headStyle.backgroundColor = bgcolor;
   }
   if (title) {

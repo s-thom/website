@@ -13,7 +13,8 @@ import rehypeReact from 'rehype-react';
 import rehypeRaw from 'rehype-raw';
 
 import Link from '../Link';
-import FigureImage from '../FigureImage';
+import MdImage from '../MdImage';
+import MdPostHeader from '../MdPostHeader';
 
 type ComponentType = string | React.ComponentType<any>;
 
@@ -39,7 +40,8 @@ type ItemType =
 
 const defaultComponents: ComponentMap = {
   a: Link,
-  img: FigureImage,
+  img: MdImage,
+  post: MdPostHeader,
 };
 
 const processor = unified()
