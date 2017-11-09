@@ -1,8 +1,6 @@
 import fs from 'fs-extra';
 import matter from 'gray-matter';
 import path from 'path';
-import remark from 'remark';
-import html from 'remark-html';
 
 // Paths Aliases defined through tsconfig.json
 const typescriptWebpackPaths = require('./webpack.config.js');
@@ -12,22 +10,23 @@ export default {
     title: 'React Static',
   }),
   getRoutes: async () => {
-    const remarkParser = remark().use(html);
     const dirPath = path.resolve(__dirname, './content/posts');
     const files = await fs.readdir(dirPath);
 
-    const contentArray = files.map((file) => {
-      const { data, content } = matter(fs.readFileSync(path.resolve(dirPath, file), 'utf8'));
-      const { contents } = remarkParser.processSync(content);
-      return {
-        data: {
-          ...data,
-          filename: file,
-        },
-        text: content,
-        contents,
-      };
-    });
+    const contentArray = files
+      .filter(f => f.match(/.+\.md$/))
+      .map((filename) => {
+        const id = filename.match(/(.+)\.md$/)[1];
+        const { data, content } = matter(fs.readFileSync(path.resolve(dirPath, filename), 'utf8'));
+        return {
+          data: {
+            ...data,
+            filename,
+          },
+          text: content,
+          id,
+        };
+      });
 
     return [
       {
@@ -44,12 +43,11 @@ export default {
         getProps: () => ({
           posts: contentArray.map(({ data }) => data),
         }),
-        children: contentArray.map(({ data, contents, text }) => ({
-          path: `/${data.filename}`,
+        children: contentArray.map(({ data, text }) => ({
+          path: `/${data.id}`,
           component: 'src/containers/Post',
           getProps: () => ({
             data,
-            contents,
             text,
           }),
         })),
