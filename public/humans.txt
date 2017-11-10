@@ -6,4 +6,4 @@ Github: https://github.com/s-thom
 /* SITE */
 
 Components: React
-Software: Phenomic, ESLint, VS Code
+Software: react-static, Typescript, VS Code
