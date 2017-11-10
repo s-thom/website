@@ -88,7 +88,7 @@ As well as allowing you to just create your layout, you can specify your own plu
 
 In addition, I have added a way for me to use certain React elements in the Markdown. To avoid making this post too long, I've put it in its own post, since there's a few details to go over.
 
-<!-- RELATED {"url":"/posts/react-in-markdown/"} -->
+<Post url="/posts/react-in-markdown/"></Post>
 
 Yes, that box is an example of an element created by React being defined in Markdown.
 

@@ -1,6 +1,7 @@
 import fs from 'fs-extra';
 import matter from 'gray-matter';
 import path from 'path';
+import url from 'url';
 
 // Paths Aliases defined through tsconfig.json
 const typescriptWebpackPaths = require('./webpack.config.js');
@@ -40,6 +41,7 @@ export default {
             return {
               data: {
                 ...data,
+                url: url.parse(path.join('/', dir, id, '/')).href,
                 filename,
                 id,
               },
@@ -73,15 +75,18 @@ export default {
           getProps: () => props,
         })),
       }));
+    const folderMap = folders.reduce((p, c) => {
+      p[c.dir] = c.posts.map(({ data }) => data);
+      return p;
+    }, {});
 
     return [
       {
         path: '/',
         component: 'src/containers/Home',
-      },
-      {
-        path: '/about',
-        component: 'src/containers/About',
+        getProps: () => ({
+          lists: folderMap,
+        }),
       },
       ...lists,
       {
@@ -120,6 +125,10 @@ export default {
                 },
               },
             ],
+          },
+          {
+            test: /\.svg$/,
+            loader: 'raw-loader',
           },
           defaultLoaders.cssLoader,
           defaultLoaders.fileLoader,

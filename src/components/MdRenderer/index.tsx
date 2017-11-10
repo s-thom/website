@@ -11,8 +11,14 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeReact from 'rehype-react';
 import rehypeRaw from 'rehype-raw';
+import remarkToc from 'remark-toc';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeHighlight from 'rehype-highlight';
 
-import HrefLink from './HrefLink';
+import Link from '../Link';
+import MdImage from '../MdImage';
+import MdPostHeader from '../MdPostHeader';
 
 type ComponentType = string | React.ComponentType<any>;
 
@@ -25,24 +31,25 @@ interface Props {
   components?: ComponentMap;
 }
 
-type ItemType =
-  | string
-  | {
-    // tag
-    t?: string,
-    // props
-    p?: Object,
-    // children
-    c: ItemType | ItemType[],
-  };
+type ItemType = string | {
+  t?: string,
+  p?: Object,
+  c: ItemType | ItemType[],
+};
 
 const defaultComponents: ComponentMap = {
-  a: HrefLink,
+  a: Link,
+  img: MdImage,
+  post: MdPostHeader,
 };
 
 const processor = unified()
   .use(remarkParse)
+  .use(remarkToc)
   .use(remarkRehype, { allowDangerousHTML: true })
+  .use(rehypeSlug)
+  .use(rehypeAutolinkHeadings)
+  .use(rehypeHighlight)
   .use(rehypeRaw)
   .use(rehypeReact, { createElement });
 

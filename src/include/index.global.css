@@ -1,0 +1,135 @@
+/* Using global sytles is not recommended, prefer local styles via CSS Modules */
+
+/*
+ * box model like it should be
+ *
+ * http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+ */
+html { box-sizing: border-box; }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/*
+ * kill document defaults margin & padding. We all do that all the time, right ?
+ */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * page styles
+ */
+html {
+  min-height: 100%;
+  color: --textColor;
+  background: --bgColor;
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.5em;
+
+  /* The "system" font stack. No extra downloaded fonts */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  background-color: #FEFEFE;
+  color: #15181A;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  position: relative;
+  line-height: 1em;
+  font-weight: normal;
+}
+
+/* minimal styling, prefer removing this and use local styles */
+a {
+  color: #0e63e3;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* handy for content */
+img {
+  max-width: 100%;
+}
+
+pre,
+code {
+  font-family: 'Fira Code', 'Roboto Mono', monospace;
+  overflow-x: auto;
+  color: #abb2bf;
+  background: #282c34;
+  padding: 0.2em 0.3em;
+  border-radius: 0.1em;
+}
+
+pre > code {
+  margin-top: 0;
+}
+
+blockquote {
+  background-color: rgba(21, 136, 0, 0.1);
+  padding: 8px;
+  padding-left: calc(8px + 1.2em);
+  position: relative;
+  margin: 1ch;
+}
+
+blockquote::before {
+  color: --textColor;
+  position: absolute;
+  left: 4px;
+  display: inline-block;
+  content: '';
+  background-image: url('/assets/quote.svg');
+  background-size: 1em;
+  font-size: 1.2em;
+  width: 1em;
+  height: 1em;
+}
+
+blockquote > p {
+  margin: 0;
+}
+
+blockquote cite {
+  display: block;
+  text-align: right;
+}
+
+blockquote cite::before {
+  content: '-';
+  padding-right: 0.5em;
+}
+
+th {
+  font-size: 1.2em;
+}
+
+td {
+  vertical-align: top;
+}
+
+figure > p {
+  text-align: center;
+}
+
+figcaption {
+  text-align: center;
+  font-style: italic;
+}

@@ -15,11 +15,7 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@myPathAlias/*": [
-        "src/path-alias-example/*"
-      ]
-    },
+    "paths": {},
     "typeRoots": [
       "./node_modules/@types"
     ],

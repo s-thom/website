@@ -1,0 +1,26 @@
+.PostHeaderList {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.PostHeaderList-item {
+  list-style: none;
+  width: 100%;
+}
+
+.PostHeaderList-item a:hover {
+  text-decoration: none;
+}
+
+.PostHeaderList-item > a > .PostHeader {
+  min-height: 0;
+  height: 100%;
+}
+
+@media all and (min-width: 900px) {
+  .PostHeaderList-item {
+    width: calc(50%);
+  }
+}
