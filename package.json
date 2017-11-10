@@ -1,6 +1,6 @@
 {
   "name": "react-static-typescript-enabled",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -12,6 +12,7 @@
     "gray-matter": "^3.1.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-ga": "^2.3.5",
     "react-router": "^4.2.0",
     "react-static": "^4.0.1",
     "react-svg-inline": "^2.0.1",
