@@ -2,19 +2,12 @@
 import React from 'react';
 import { getRouteProps } from 'react-static';
 import Link from '../../components/Link';
+import PostHeaderList from '../../components/PostHeaderList';
 //
 
 export default getRouteProps(({ posts, name }) => (
   <div>
-    <h1>It's blog time.</h1>
-    <br />
-    All Posts:
-    <ul>
-      {posts.map(post => (
-        <li key={post.filename}>
-          <Link to={`/${name}/${post.id}/`}>{post.title}</Link>
-        </li>
-      ))}
-    </ul>
+    <h1>All {`${name[0].toUpperCase()}${[...name].slice(1).join('')}`}</h1>
+    <PostHeaderList pages={posts} />
   </div>
 ));

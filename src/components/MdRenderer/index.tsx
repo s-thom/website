@@ -31,16 +31,11 @@ interface Props {
   components?: ComponentMap;
 }
 
-type ItemType =
-  | string
-  | {
-    // tag
-    t?: string,
-    // props
-    p?: Object,
-    // children
-    c: ItemType | ItemType[],
-  };
+type ItemType = string | {
+  t?: string,
+  p?: Object,
+  c: ItemType | ItemType[],
+};
 
 const defaultComponents: ComponentMap = {
   a: Link,
@@ -52,10 +47,10 @@ const processor = unified()
   .use(remarkParse)
   .use(remarkToc)
   .use(remarkRehype, { allowDangerousHTML: true })
-  .use(rehypeRaw)
   .use(rehypeSlug)
   .use(rehypeAutolinkHeadings)
   .use(rehypeHighlight)
+  .use(rehypeRaw)
   .use(rehypeReact, { createElement });
 
 function renderItems(

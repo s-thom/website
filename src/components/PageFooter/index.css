@@ -5,6 +5,13 @@
   width: 100%;
 }
 
+.PageFooter a,
+.PageFooter a:hover,
+.PageFooter a:active,
+.PageFooter a:visited {
+  color: #EEE;
+}
+
 .PageFooter-text {
   margin: 0;
 }
