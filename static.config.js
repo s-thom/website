@@ -34,9 +34,11 @@ export default {
         const promArray = files
           .filter(f => f.match(/.+\.md$/))
           .map(async (filename) => {
-            const id = filename.match(/(.+)\.md$/)[1];
+            const fileNoExt = filename.match(/(.+)\.md$/)[1];
             const fileContents = await fs.readFileSync(path.resolve(dirPath, filename), 'utf8');
             const { data, content } = matter(fileContents);
+
+            const id = data.id || fileNoExt;
 
             return {
               data: {
