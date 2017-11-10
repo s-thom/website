@@ -1,5 +1,6 @@
 import React from 'react';
-//
+
+import HeadPage from '../../components/HeadPage';
 
 export default () => (
   <div>
