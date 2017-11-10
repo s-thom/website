@@ -11,6 +11,10 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeReact from 'rehype-react';
 import rehypeRaw from 'rehype-raw';
+import remarkToc from 'remark-toc';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeHighlight from 'rehype-highlight';
 
 import Link from '../Link';
 import MdImage from '../MdImage';
@@ -46,8 +50,12 @@ const defaultComponents: ComponentMap = {
 
 const processor = unified()
   .use(remarkParse)
+  .use(remarkToc)
   .use(remarkRehype, { allowDangerousHTML: true })
   .use(rehypeRaw)
+  .use(rehypeSlug)
+  .use(rehypeAutolinkHeadings)
+  .use(rehypeHighlight)
   .use(rehypeReact, { createElement });
 
 function renderItems(
