@@ -9,6 +9,7 @@ export interface MdPageData {
   id: string;
   url: string;
   layout: string;
+  description: string;
   date: string;
   edited?: string;
   img?: string;
@@ -16,4 +17,14 @@ export interface MdPageData {
   github?: string;
   type?: string;
   showType?: boolean;
+}
+
+export interface HeadData {
+  title: string;
+  url: string;
+  description: string;
+  img?: string;
+  date?: string;
+  edited?: string;
+  tags?: string[];
 }
