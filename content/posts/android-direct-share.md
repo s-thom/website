@@ -4,10 +4,6 @@ layout: Post
 date: 2017-06-18T12:10
 ---
 
-# Table of Contents
-
-# How to:
-
 Android Nougat's Direct Share feature allows app developers to give a list of share targets that show at the top of the share dialog. These options reduce the number of taps required to share the information the user wants to send. Instead of `Share > Select App > Select target`, the user can go `Share > Select target`.
 
 In my weekend experiment ([Mars](/projects/mars/)), I wanted to send URLs to devices without having to bring up a dialog to select the device. Direct Share is the way to do it.

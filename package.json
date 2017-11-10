@@ -25,6 +25,7 @@
     "remark-parse": "^4.0.0",
     "remark-rehype": "^2.0.1",
     "remark-toc": "^4.0.1",
+    "strip-markdown": "^3.0.1",
     "unified": "^6.1.5"
   },
   "devDependencies": {

@@ -2,21 +2,45 @@ import fs from 'fs-extra';
 import matter from 'gray-matter';
 import path from 'path';
 import url from 'url';
+import remark from 'remark';
+import remarkParse from 'remark-parse';
+import stripMarkdown from 'strip-markdown';
 
 // Paths Aliases defined through tsconfig.json
 const typescriptWebpackPaths = require('./webpack.config.js');
 
-function errLog(returnValue = null) {
-  return (err) => {
-    console.error(err);
-    return returnValue;
-  };
+function prune(s) {
+  const trimmed = s.substr(0, 80);
+
+  if (trimmed === s) {
+    return s;
+  }
+
+  const lastIndex = Math.min(trimmed.length, trimmed.lastIndexOf(''));
+  const sub = trimmed.substr(0, lastIndex);
+
+  return `${sub}…`;
+}
+
+function makeDescription(text) {
+  let str = text;
+  const match = text.match(/<!--\s?desc\s?-->\s+(.*)/);
+  if (match) {
+    str = match[1];
+  }
+
+  const result = remark()
+    .use(stripMarkdown)
+    .processSync(str)
+    .toString()
+    .replace(/\n+/g, ' ') // Avoid useless new lines
+    .trim();
+
+  return prune(result);
 }
 
 export default {
-  getSiteProps: () => ({
-    title: 'React Static',
-  }),
+  getSiteProps: () => ({}),
   getRoutes: async () => {
     const contentRoot = './content';
     const directories = [
@@ -44,6 +68,7 @@ export default {
               data: {
                 ...data,
                 url: url.parse(path.join('/', dir, id, '/')).href,
+                description: makeDescription(content),
                 filename,
                 id,
               },
