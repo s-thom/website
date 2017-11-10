@@ -1,0 +1,9 @@
+/* Made By */
+Stuart Thomson
+Email: stu.thom.96@gmail.com
+Github: https://github.com/s-thom
+
+/* SITE */
+
+Components: React
+Software: react-static, Typescript, VS Code
