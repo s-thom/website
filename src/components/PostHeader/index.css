@@ -36,7 +36,6 @@
 .PostHeader-headerWColor .heading,
 .PostHeader-headerWImg .heading {
   color: inherit;
-  z-index: 1;
 }
 
 .PostHeader-headerWImg::before {
@@ -48,6 +47,10 @@
   left: 0;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 0;
+}
+
+.PostHeader-items {
+  z-index: 1;
 }
 
 .PostHeader-showsType {
