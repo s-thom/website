@@ -96,8 +96,9 @@ export default function MdRenderer({
   text,
   components,
 }: Props) {
+  const processed = processor.processSync(text).contents;
   const r = renderItems(
-    processor.processSync(text).contents, 
+    processed, 
     {
       // force to mix components, as default one (Link) is crucial
       ...defaultComponents,

@@ -36,31 +36,39 @@ export default class MdPostHeader extends Component<Props, State> {
       if (this.state.data.data) {
         return (
           <Link to={this.props.url}>
-            <PostHeaderPreview {...this.state.data.data} />
+            <PostHeaderPreview {...this.state.data.data} showUrl={true} />
           </Link>
         );
       } else {
         return (
-          <PostHeaderPreview
-            title="Couldn't load Info"
-            filename="loading"
-            id="loading"
-            url="."
-            layout="none"
-            date=""
-          />
+          <Link to={this.props.url}>
+            <PostHeaderPreview
+              title="Couldn't load Info"
+              filename="loading"
+              id="loading"
+              url={this.props.url}
+              layout="none"
+              date=""
+              description=""
+              showUrl={true}
+            />
+          </Link>
         );
       }
     } else {
       return (
-        <PostHeaderPreview 
-          title="Loading..."
-          filename="loading"
-          id="loading"
-          url="."
-          layout="none"
-          date=""
-        />
+          <Link to={this.props.url}>
+            <PostHeaderPreview 
+              title="Loading..."
+              filename="loading"
+              id="loading"
+              url={this.props.url}
+              layout="none"
+              date=""
+              description=""
+              showUrl={true}
+            />
+          </Link>
       );
     }
   }
