@@ -19,6 +19,8 @@ import rehypeHighlight from 'rehype-highlight';
 import Link from '../Link';
 import MdImage from '../MdImage';
 import MdPostHeader from '../MdPostHeader';
+import MdBigLink from '../MdBigLink';
+import MdSpoiler from '../MdSpoiler';
 
 type ComponentType = string | React.ComponentType<any>;
 
@@ -41,6 +43,8 @@ const defaultComponents: ComponentMap = {
   a: Link,
   img: MdImage,
   post: MdPostHeader,
+  link: MdBigLink,
+  spoiler: MdSpoiler,
 };
 
 const processor = unified()

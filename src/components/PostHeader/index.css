@@ -33,8 +33,8 @@
   position: relative;
 }
 
-.PostHeader-headerWColor .heading,
-.PostHeader-headerWImg .heading {
+.PostHeader-headerWColor .PostHeader-heading,
+.PostHeader-headerWImg .PostHeader-heading {
   color: inherit;
 }
 
