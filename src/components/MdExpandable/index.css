@@ -1,0 +1,32 @@
+.MdExpandable {
+  border: 1px solid #15181A;
+}
+
+.MdExpandable-container {
+  border-top: 1px solid #15181A;
+}
+
+.MdExpandable-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.MdExpandable-title {
+  flex-grow: 1;
+  font-size: 1.5em;
+  margin-left: 0.5em;
+}
+
+.MdExpandable-button {
+  font-size: 3em;
+  display: block;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0.25ch 0.7ex;
+}
+
+.MdExpandable-container {
+  padding: 0.5em;
+}

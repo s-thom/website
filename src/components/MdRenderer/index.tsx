@@ -21,6 +21,7 @@ import MdImage from '../MdImage';
 import MdPostHeader from '../MdPostHeader';
 import MdBigLink from '../MdBigLink';
 import MdSpoiler from '../MdSpoiler';
+import MdExpandable from '../MdExpandable';
 
 type ComponentType = string | React.ComponentType<any>;
 
@@ -45,6 +46,7 @@ const defaultComponents: ComponentMap = {
   post: MdPostHeader,
   link: MdBigLink,
   spoiler: MdSpoiler,
+  expandable: MdExpandable,
 };
 
 const processor = unified()
