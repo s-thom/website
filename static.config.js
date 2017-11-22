@@ -10,6 +10,11 @@ import stripMarkdown from 'strip-markdown';
 const typescriptWebpackPaths = require('./webpack.config.js');
 
 const contentRoot = 'content';
+const layoutMap = {
+  Post: 'src/containers/Post',
+  ListPage: 'src/containers/ListPage',
+  Home: 'src/containers/Home',
+};
 
 function prune(s) {
   const trimmed = s.substr(0, 80);
@@ -40,6 +45,7 @@ function makeDescription(text) {
 
   return prune(result);
 }
+
 /**
  * Recursively makes page info for React Static
  * 
@@ -84,6 +90,8 @@ async function makePage(root, filename) {
       text = indexProps.text;
     }
 
+    const layout = (data.layout && layoutMap[data.layout]) || layoutMap.ListPage;
+
     // Get children
     const propArr = await Promise.all(values.map(v => v.getProps()));
     const children = propArr.map(p => p.data);
@@ -91,7 +99,7 @@ async function makePage(root, filename) {
     return {
       type: 'dir',
       path: filename,
-      component: 'src/containers/ListPage',
+      component: layout,
       getProps: async () => ({
         name: filename,
         children,
@@ -122,11 +130,13 @@ async function makePage(root, filename) {
       text: content,
     };
 
+    const layout = (data.layout && layoutMap[data.layout]) || layoutMap.Post;
+
     // Return child info
     return {
       type: 'page',
       path: props.data.id,
-      component: 'src/containers/Post',
+      component: layout,
       getProps: () => props,
     };
   }
