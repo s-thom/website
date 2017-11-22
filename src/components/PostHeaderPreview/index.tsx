@@ -6,13 +6,19 @@ import { MdPageData } from '../../types';
 import '../PostHeader/index.css';
 import './index.css';
 
+interface Props extends MdPageData {
+  showUrl?: boolean;
+}
+
 export default function PostHeaderPreview({
   title,
   img,
   bgcolor,
   showType,
   type,
-}: MdPageData) {
+  url,
+  showUrl = false,
+}: Props) {
   const headList = [];
   const headStyle: any = {};
   const headClasses = [
@@ -34,6 +40,9 @@ export default function PostHeaderPreview({
   }
   if (title) {
     headList.push(<h1 className="PostHeader-heading" key="title">{ title }</h1>);
+  }
+  if (showUrl && url) {
+    headList.push(<p className="PostHeader-url" key="url">{url}</p>);
   }
 
   return (

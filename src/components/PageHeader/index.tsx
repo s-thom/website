@@ -9,7 +9,11 @@ const Header = () => (
     <nav className="PageHeader-nav">
       <Link className="PageHeader-link" to="/">
         <div className="PageHeader-me">
-          <img className="PageHeader-meImg" src="/assets/img/me.jpg" />
+          <img 
+            className="PageHeader-meImg" 
+            src="/assets/img/me.jpg" 
+            alt="Portrait of Stuart Thomson" 
+          />
         </div>
         <div className="PageHeader-navPart1">
           <h1 className="PageHeader-title">Stuart Thomson</h1>

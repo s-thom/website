@@ -4,6 +4,7 @@ import { Link } from 'react-static';
 interface Props {
   href?: string;
   to?: string;
+  [x: string]: any;
 }
 
 export default function (props: Props) {

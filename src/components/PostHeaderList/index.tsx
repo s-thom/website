@@ -16,9 +16,22 @@ export default function PostHeaderList({
   pages, 
   showTypes,
 }: Props) {
+  const sorted = [...pages].sort((a, b) => {
+    if (!a.date) {
+      return -1;
+    }
+    if (!b.date) {
+      return 1;
+    }
+    const [aDate, bDate] = [a, b].map(d => new Date(d.date).getTime());
+    return bDate - aDate;
+  });
+
+  console.log(sorted);
+
   return (
     <ul className="PostHeaderList">{
-      pages.map((page) => {
+      sorted.map((page) => {
         const info = { ...page };
         if (showTypes) {
           info.showType = true;

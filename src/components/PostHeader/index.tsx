@@ -16,6 +16,7 @@ export default function PostHeader({
   const headList = [];
   const headStyle: any = {};
   const headClasses = ['PostHeader'];
+  let titleElement = null;
 
   if (img) {
     headClasses.push('PostHeader-headerWImg');
@@ -25,7 +26,7 @@ export default function PostHeader({
     headStyle.backgroundColor = bgcolor;
   }
   if (title) {
-    headList.push(<h1 className="PostHeader-heading" key="title">{ title }</h1>);
+    titleElement = <h1 className="PostHeader-heading" key="title">{ title }</h1>;
   }
   const pageDate = date ? new Date(date) : null;
   const editDate = edited ? new Date(edited) : null;
@@ -82,6 +83,9 @@ export default function PostHeader({
   }
 
   return (
-    <header className={headClasses.join(' ')} style={headStyle}>{headList}</header>
+    <header className={headClasses.join(' ')} style={headStyle}>
+      {titleElement}
+      <div className="PostHeader-items">{headList}</div>
+    </header>
   );
 }

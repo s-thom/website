@@ -1,6 +1,6 @@
 {
-  "name": "react-static-typescript-enabled",
-  "version": "1.1.0",
+  "name": "SThom's Website",
+  "version": "1.2.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -22,6 +22,7 @@
     "rehype-react": "^3.0.1",
     "rehype-slug": "^2.0.1",
     "remark": "^8.0.0",
+    "remark-emoji": "github:s-thom/remark-emoji",
     "remark-html": "^6.0.1",
     "remark-parse": "^4.0.0",
     "remark-rehype": "^2.0.1",

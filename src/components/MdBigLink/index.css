@@ -1,0 +1,59 @@
+.BigLink {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  background-color: #fff;
+  color: #15181A;
+  padding: calc(1em - 1px) calc(1.5em - 1px);
+  border: 1px #15181A solid;
+  font-size: 0.8em;
+}
+
+.BigLink-headerWColor,
+.BigLink-headerWImg {
+  padding: 1em 1.5em;
+  border: none;
+  a: #ffe9c8
+}
+
+.BigLink-headerWColor:not(.BigLink-darkText),
+.BigLink-headerWImg {
+  color: #fff;
+}
+
+.BigLink-headerWImg {
+  background-size: cover;
+  background-position: center;
+  min-height: 10em;
+}
+
+.BigLink-header div {
+  position: relative;
+}
+
+.BigLink-headerWImg::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  content: ' ';
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.BigLink-heading {
+  margin: 0.3em 0;
+  flex-grow: 1;
+  z-index: 1;
+}
+
+.BigLink-headerWColor .BigLink-heading,
+.BigLink-headerWImg .BigLink-heading {
+  color: inherit;
+}
+
+.BigLink-link:hover {
+  text-decoration: none;
+}
