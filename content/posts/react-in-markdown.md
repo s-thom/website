@@ -1,8 +1,14 @@
 ---
-title: Using React components in Markdown
+title: Using React components in Markdown (Outdated)
 layout: Post
 date: 2017-06-26T16:50
 edited: 2017-06-27T10:32
+---
+
+*An updated version of this post can be found here:*
+
+<Post url="/posts/react-in-markdown-updated"></Post>
+
 ---
 
 The Markdown specification allows you to write HTML inside the Markdown file, and that HTML will be rendered in the final page. It's a useful feature, and one I [have used for this website](https://github.com/s-thom/website/tree/master/webpack/img-wrapper.js).
@@ -12,8 +18,6 @@ This is valid Markdown
 
 <button>Click Me!</button>
 ```
-
-<TestComponent></TestComponent>
 
 However, this doesn't quite work when you're using custom React components.
 Instead of it rendering your fancy React-based component, you'll end up with a `<mybutton>` HTML element (which isn't valid HTML).

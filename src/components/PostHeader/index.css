@@ -1,5 +1,5 @@
 .PostHeader-heading {
-  margin: 0;
+  margin: 0.3em 0;
   flex-grow: 1;
   z-index: 1;
 }
@@ -9,6 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  background-color: #fff;
   color: #15181A;
   padding: calc(1em - 1px) calc(1.5em - 1px);
   border: 1px #15181A solid;
@@ -32,10 +33,9 @@
   position: relative;
 }
 
-.PostHeader-headerWColor .heading,
-.PostHeader-headerWImg .heading {
+.PostHeader-headerWColor .PostHeader-heading,
+.PostHeader-headerWImg .PostHeader-heading {
   color: inherit;
-  z-index: 1;
 }
 
 .PostHeader-headerWImg::before {
@@ -47,6 +47,10 @@
   left: 0;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 0;
+}
+
+.PostHeader-items {
+  z-index: 1;
 }
 
 .PostHeader-showsType {
