@@ -2,267 +2,177 @@
 title: Using React components in Markdown
 layout: Post
 date: 2017-11-12T09:20
+edited: 2017-11-22T15:45
+---
+
+*Edit (22 Nov 2017): Major post restructure. Simplified things a lot by removing a redundant step. Also changed the example slightly*
+
 ---
 
 Since a fair bit has changed in my apporach since [the last post](/posts/react-in-markdown), I thought I'd go through and rewrite the entire thing.
 
-The Markdown specification allows you to write HTML inside the Markdown file, and that HTML will be rendered in the final page.
+The Markdown specification allows you to write HTML inside the Markdown file, and that HTML will be rendered in the final page. However, this is static HTML, with no interactivity. This post shows a way to include React elements in Markdown, and will most likely work for other systems too.
 
-```md
-This is valid Markdown
+# Table of Contents
 
-<button>Click Me!</button>
+# Code First, Explain Later
 
-However, this doesn't quite work when you're using custom React components.
-Instead of it rendering your fancy React-based component, you'll end up with a `<mybutton>` HTML element (which isn't valid HTML).
-
-```md
-This is not valid Markdown
-
-<MyButton>Click Me Instead!</MyButton>
-```
-
-I wanted to be able to use React components in Markdown, which set me on a journey of discovery. This post is here to help you if you happen to embark on it as well.
-
-# Representing React components in Markdown
-
-Previously I had a decent sized section on different ways of representing React Components in Markdown and then matching them to get the component name and props, but that has changed. It's really easy now.
-
-```md
-All you need to do is write out your element.
-
-<Post url="/posts/react-in-markdown-updated/"></Post>
-
-Just like you would in JSX
-```
-
-Which, by the way, gives this output on my site:
-
-> All you need to do is write out your element.
->
-> <Post url="/posts/react-in-markdown-updated/"></Post>
->
-> Just like you would in JSX
-
-There are two restrictions with this, though: 
-
-1. You need to include the closing tag (`</Post>` in this case). Void tags (e.g. `<Post url="..." />`) are not recognised properly, and will cause DOM nesting errors.
-2. All props must be strings. 
-
-# Rendering MD + React
-
-There is always a level of inherent complexity whenever you try to do anything. 
-
-## Markdown Processor
-
-For this website, I use [unified](https://unifiedjs.github.io), and its plugins, to parse and process the Markdown. Unified has two relevant syntaxes, namely [remark](https://github.com/wooorm/remark) and [rehype](https://github.com/wooorm/rehype). These handle the parsing and stringifying of Markdown and HTML respectively.
+## The Code
 
 ```js
-import unified from 'unified';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
-import rehypeReact from 'rehype-react';
+// MdRenderer.jsx
 
-// ...
-
-const processor = unified()
-  .use(remarkParse) // Converts text to a mdast tree
-  // Add any remark plugins here
-  .use(remarkRehype, { allowDangerousHTML: true }) // Converts mdast tree to nclst
-  // Add any rehype plugins here
-  .use(rehypeReact); // Converts to React
-```
-
-`processor` will take the Markdown text for the page, and then output something as defined by the createElement function we give it.
-
-## Rendering to a Page
-
-Now, make a React component and render the output.
-
-```js
-import React from 'react';
-// ...
-
-// ...
-// (Above snippet goes here)
-// ...
-
-export default function MdRenderer({
-  text,
-}) {
-  const processed = processor.processSync(text).contents;
-  return <div className="">{processed}</div>;
-}
-```
-
-And you're good to go! Almost.
-
-Now you have plain Markdown being converted to React, but *no custom elements* just yet. They will appear as (invalid) HTML elements on your page, which is not the desired effect.
-
-## Inspiration
-
-While trying to get custom elements to work, I kept hitting the same brick wall. The components just did not want to render. I took a step back, and decided to search around and see how this problem had been appreached by other people.
-
-I ended up looking at [Phenomic](https://github.com/phenomic/phenomic), a static website generator that had just added the ability to use React elements in Markdown. 
-
-Phenomic splits the rendering stage into two parts: the [build stage](https://github.com/phenomic/phenomic/blob/master/packages/plugin-transform-markdown/src/transformer.js), and the [render stage](https://github.com/phenomic/phenomic/blob/master/packages/plugin-renderer-react/src/components/BodyRenderer.js).
-
-### The Build Stage
-
-Since Phenomic is moving to a platform/library/format-agnostic model (where you will be able to use any markup format with any client library), it needs to use its own internal representation of the information. Since this is the build stage, this information needs to be included in the page when it is statically rendered. This ensures that the initial state of the client renderer is in sync with what is displayed statically without Javascript.
-
-The `rehype-react` plugin allows you to specify the `createElement` function it uses to render. In Phenomic, this is hijacked to create a JSON representation of the page, which is then included in the HTML file.
-
-```js
-// Creates structure like this:
-// {
-//   t: 'Tag name',
-//   p: 'Props object (optional)',
-//   c: 'Children (optional),'
-// }
-function createElement(component, props, children) {
-  return {
-    t: component, // String name of the component
-    ...(props && Object.keys(props).length ? { p: props } : {}), // Adds in props if defined
-    ...(children ? { c: children } : {}) // Add in children if defined
-  };
-};
-
-const processor = unified()
-  // ...
-  .use(rehypeReact, { createElement }); // Converts to object now, instead of React
-```
-
-The short names (`t`, `p`, `c`) are used instead of the full names to reduce the size of the JSON output (and therefore the download size/time of the final page).
-
-### The Render Stage
-
-The object created in the build stage is passed on to a React component to render. However, React doesn't understand this minimal JSON representation, so it must be turned back.
-
-At this stage, the custom components can be added. A simple object mapping of strings to Components is added. However, since the Markdown went through an HTML parser (rehype), all tags have been converted to lowercase, so the keys in the mapping should also be in lowercase.
-
-```js
-import MyComponent from '...';
-
-// ...
-
-const componentMap = {
-  tagname: MyComponent,
-};
-```
-
-Finally, the small representation of the elements is converted into full React elements.
-
-```js
-// ...
-
-function render(
-  item, 
-  components,
-  key,
-) {
-  if (!item) {
-    return null;
-  }
-
-  // Strings on their own are still valid, and must be handled
-  if (typeof item === 'string') {
-    return item;
-  }
-
-  const { p: props = {}, c: children } = item;
-  const Tag =
-    (components && item.t && components[item.t]) || // Check component map first
-    item.t ||
-    'div'; // Default to <div>
-
-  return (
-    <Tag {...props} key={key}>
-      {Array.isArray(children)
-        ? children.map((child, key) => renderItems(child, components, key))
-        : renderItems(children, components)}
-    </Tag>
-  );
-}
-```
-
-And then display the result of the `render` function.
-
-This solution ended up solving the problem I had where custom elements refused to render, so I've used it on this website.
-
-## Putting it All Together
-
-For this website, I took the parts above, and put them together to render markdown content. The following is close to [what I actually use](https://github.com/s-thom/website/blob/develop/src/components/MdRenderer/index.tsx) (because this website uses Typescript), and should hopefully make sense.
-
-Only one major change happens: The `MdRender` component has a `components` prop that allows for more components to be added.
-
-```js
 import React from 'react';
 import unified from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeReact from 'rehype-react';
 
-import MyComponent from '...';
-
-const defaultComponents: ComponentMap = {
-  tagname: MyComponent,
+const components = {
+  // A mapping of tag names (lower case) to Components
+  // e.g.
+  mycomponent: MyComponent
 };
 
 const processor = unified()
   .use(remarkParse)
+  // Place any remark plugins here
   .use(remarkRehype, { allowDangerousHTML: true })
+  // Place any rehype plugins here
   .use(rehypeReact, { createElement });
 
-function renderItems(
-  item, 
-  components,
-  key
-) {
-  if (!item) {
-    return null;
-  }
-
-  if (typeof item === 'string') {
-    return item;
-  }
-
-  const { p: props = {}, c: children } = item;
+function createElement(component, props, children) {
   const Tag =
-    (components && item.t && components[item.t]) ||
-    item.t ||
+    (components && component && components[component]) ||
+    component ||
     'div';
 
   return (
-    <Tag {...props} key={key}>
-      {Array.isArray(children)
-        ? children.map((child: ItemType, key) => renderItems(child, components, key))
-        : renderItems(children, components)}
+    <Tag {...props}>
+      {children}
     </Tag>
   );
 }
 
-function createElement(component: string, props: any, children: any) {
-  return {
-    t: component,
-    ...(props && Object.keys(props).length ? { p: props } : {}),
-    ...(children ? { c: children } : {}),
-  };
-}
-
-export default function MdRenderer({
-  text,
-  components,
-}) {
-  const processed = processor.processSync(text).contents;
-  const r = renderItems(
-    processed, 
-    {
-      // Mixes the default components and the ones passed in through props
-      ...defaultComponents,
-      ...(components || {}),
-    },
+export default function MdRenderer({ text }) {
+  return (
+    <div className="MdRenderer">
+      {processor.processSync(text).contents}
+    </div>
   );
-  return typeof r === 'string' ? <div>{r}</div> : r;
 }
 ```
+
+## Explanation
+
+### Use in Markdown
+
+It's extremely simple to use in Markdown:
+
+```md
+This is a **Markdown** file
+
+<MyComponent propName="prop value"></MyComponent>
+```
+
+There are three things to keep in mind:
+
+1. You need to include the closing tag (`</MyComponent>` in this case).  
+  Custom void tags (e.g. `<MyComponent propName="..." />`) are not recognised properly by rehype, and will cause DOM nesting errors.  
+  Valid HTML void tags (like `<input>` and `<img>`) still work.
+2. All props must be strings.
+3. Element/Component names are case-insensitive.  
+  rehype, used by the processor to manage HTML, puts all tag names in lowercase.  
+  In this post, I type React components in UpperCamelCase to distinguish them from HTML elements.
+
+### Markdown Processor
+
+I use [unified](https://unifiedjs.github.io/) and its syntaxes [remark](https://github.com/wooorm/remark) and [rehype](https://github.com/wooorm/rehype) to parse the Markdown. There is a large number of plugins available for this ecosystem, allowing you to add more features in (like [emoji :+1:](https://github.com/rhysd/remark-emoji)).
+
+```js
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeReact from 'rehype-react';
+
+// ...
+
+const processor = unified()
+  .use(remarkParse)
+  // Place any remark plugins here
+  .use(remarkRehype, { allowDangerousHTML: true })
+  // Place any rehype plugins here
+  .use(rehypeReact, { createElement });
+```
+
+Using unified is simple enough, just `use()` any plugins you need. These three are neccesary, so make sure they're included.
+
+* remark-parse  
+  Transform Markdown into mdast tree (for remark plugins)
+* remark-rehype  
+  Transform mdast tree into nlcst tree (for rehype plugins)
+* rehype-react  
+  Transform nlcst tree into React tree
+
+### createElement()
+
+The rehype-react plugin converts the output from the rehype plugins into fully rendered React elements. It does this using React's [createElement](https://github.com/facebook/react/blob/master/packages/react/src/ReactElement.js#L175) function. However, it does not know about your custom components. In order to actually be able to use custom components, we need to override the createElement function to allow the components.
+
+```js
+import React from 'react';
+
+// ...
+
+function createElement(component, props, children) {
+  const Tag =
+    (components && component && components[component]) || // Get component from map if present
+    component || // Otherwise just the string
+    'div'; // Default to div
+
+  // And return the formed component
+  return (
+    <Tag {...props}>
+      {children}
+    </Tag>
+  );
+}
+```
+
+### MdRenderer Component 
+
+This is just a small pure functional component that takes a `text` property and returns the fully rendered page.
+
+```js
+export default function MdRenderer({ text }) {
+  return (
+    <div className="MdRenderer">
+      {processor.processSync(text).contents}
+    </div>
+  );
+}
+```
+
+And that's it; React in Markdown. This method works with server-side rendering/pre-rendering too, making it useful for nearly all purposes.
+
+# Example
+
+This post you're reading is [using the very code](https://github.com/s-thom/website/blob/develop/src/components/MdRenderer/index.tsx) shown here. This post doesn't use any of the custom Components I use on this website, so I thought I'd include an example at the bottom.
+
+```md
+All you need to do is write out your element.
+
+<Expandable>
+  <Link url="/posts/react-in-markdown-updated/" title="This Post"></Link>
+</Expandable>
+
+Just like you would in JSX
+```
+
+Becomes:
+
+All you need to do is write out your element.
+
+<Expandable>
+  <Link url="/posts/react-in-markdown-updated/" title="This Post"></Link>
+</Expandable>
+
+Just like you would in JSX
