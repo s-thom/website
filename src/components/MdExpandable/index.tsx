@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import { isBrowser } from '../../browser';
-
 import './index.css';
 
 interface Props {
@@ -31,7 +29,7 @@ export default class MdExpandable extends Component<Props, State> {
 
   render() {
     return (
-      <div className={`MdExpandable${isBrowser ? '' : ' MdExpandable-static'}`}>
+      <div className="MdExpandable">
         <div className="MdExpandable-header">
           <p className="MdExpandable-title">
             {this.props.title || 'Expandable Section'}
@@ -46,7 +44,7 @@ export default class MdExpandable extends Component<Props, State> {
           </button>
         </div>
         {
-          ((!isBrowser) || this.state.expanded) && (
+          this.state.expanded && (
             <section className="MdExpandable-container">
               {this.props.children}
             </section>
