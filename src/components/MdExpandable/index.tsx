@@ -46,7 +46,7 @@ export default class MdExpandable extends Component<Props, State> {
           </button>
         </div>
         {
-          (isBrowser || this.state.expanded) && (
+          ((!isBrowser) || this.state.expanded) && (
             <section className="MdExpandable-container">
               {this.props.children}
             </section>
