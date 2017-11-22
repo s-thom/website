@@ -2,7 +2,6 @@
 title: Stuart Thomson
 description: Hi, I\'m Stuart Thomson
 layout: Home
-date: 2017-11-23T09:33
 img: '/assets/img/banner.jpg'
 ---
 
