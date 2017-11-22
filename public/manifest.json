@@ -1,0 +1,36 @@
+{
+  "short_name": "SThom",
+  "name": "Stuart Thomson",
+  "description": "Website for Stuart Thomson",
+  "theme_color": "#15181A",
+  "background_color": "#FEFEFE",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/assets/icon/48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/assets/icon/96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/assets/icon/192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/assets/icon/48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/assets/icon/apple-152.png",
+      "type": "image/png",
+      "sizes": "152x152"
+    }
+  ],
+  "start_url": "/?launcher=true"
+}
