@@ -96,6 +96,8 @@ async function makePage(root, filename) {
     const propArr = await Promise.all(values.map(v => v.getProps()));
     const children = propArr.map(p => p.data);
 
+    data.children = children;
+
     return {
       type: 'dir',
       path: filename,
