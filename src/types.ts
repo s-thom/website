@@ -28,3 +28,8 @@ export interface HeadData {
   edited?: string;
   tags?: string[];
 }
+
+export interface MdPageChild extends MdPageInfo {
+  type: string;
+  children?: MdPageChild[];
+}

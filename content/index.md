@@ -1,7 +1,9 @@
 ---
 title: Stuart Thomson
+description: Hi, I\'m Stuart Thomson
 layout: Home
 date: 2017-11-23T09:33
+img: '/assets/img/banner.jpg'
 ---
 
 I'm a random person on the internet! I've been to the [University of Waikato](https://waikato.ac.nz) to do a Bachelor's of Computing and Mathematical Sciences. I enjoy writing code, playing music, and walking (over mountains, through forests, around gardens. Anything really).
