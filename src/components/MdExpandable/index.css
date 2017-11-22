@@ -30,11 +30,3 @@
 .MdExpandable-container {
   padding: 0.5em;
 }
-
-.MdExpandable-static .MdExpandable-container {
-  display: none;
-}
-
-.MdExpandable-static:active .MdExpandable-container {
-  display: block;
-}
