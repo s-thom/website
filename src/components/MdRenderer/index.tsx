@@ -5,6 +5,7 @@ import remarkRehype from 'remark-rehype';
 import rehypeReact from 'rehype-react';
 import rehypeRaw from 'rehype-raw';
 import remarkToc from 'remark-toc';
+import remarkEmoji from 'remark-emoji';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeHighlight from 'rehype-highlight';
@@ -38,6 +39,7 @@ const components: ComponentMap = {
 const processor = unified()
   .use(remarkParse)
   .use(remarkToc)
+  .use(remarkEmoji)
   .use(remarkRehype, { allowDangerousHTML: true })
   .use(rehypeSlug)
   .use(rehypeAutolinkHeadings)
