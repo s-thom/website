@@ -1,5 +1,6 @@
 {
-  "name": "SThom's Website",
+  "name": "sthom-website",
+  "private": true,
   "version": "1.2.0",
   "main": "index.js",
   "license": "MIT",
