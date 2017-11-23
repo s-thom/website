@@ -22,6 +22,7 @@ export default function DefaultHead() {
       link={[
         // General Properties
         { rel: 'author', href: '/humans.txt' },
+        { rel: 'manifest', href: '/manifest.json' },
         // Icons
         { rel: 'icon', sizes: '196x196', href: '/assets/icon/196.png' },
         { rel: 'icon', sizes: '144x144', href: '/assets/icon/144.png' },
