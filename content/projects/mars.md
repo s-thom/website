@@ -1,9 +1,10 @@
 ---
 title: Mars
 layout: Project
-bgcolor: '#CF5637'
+bgcolor: '#BD4A2E'
 github: MarsAndroid
 date: 2017-06-18T12:00
+edited: 2017-11-23T09:41
 ---
 
 Sometimes I feel like dropping what I'm working on, and taking up another project for a weekend. That's exactly what sparked the creation of Mars.
@@ -14,7 +15,7 @@ I use an app on my phone to send links to my laptop if I want to check it out on
 
 # Why the name Mars?
 
-In Ancient Roman mythology, Mars is the father of Romulus and Remus. Also, I suck at names.
+In Ancient Roman mythology, Mars is the father of Romulus and Remus. Since this is based on Project Rome, I wanted to name it something in Roman mythology. Also, I suck at names.
 
 # How does it work?
 

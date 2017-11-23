@@ -4,19 +4,15 @@ import { Head, getRouteProps } from 'react-static';
 import Link from '../../components/Link';
 import PostHeaderList from '../../components/PostHeaderList';
 import HeadPage from '../../components/HeadPage';
+import MdRenderer from '../../components/MdRenderer';
 
-export default getRouteProps(({ posts, name }) => {
-  const title = `All ${name[0].toUpperCase()}${[...name].slice(1).join('')}`;
-
+export default getRouteProps(({ children, data, text }) => {
   return (
     <div>
-      <HeadPage
-        title={title}
-        url={`/${name}/`}
-        description={title}
-      />
-      <h1>{title}</h1>
-      <PostHeaderList pages={posts} />
+      <HeadPage {...data} />
+      <h1>{data.title}</h1>
+      <MdRenderer text={text} />
+      <PostHeaderList pages={children} />
     </div>
   );
 });

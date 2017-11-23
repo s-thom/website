@@ -31,8 +31,6 @@ export default class MdPostHeader extends Component<Props, State> {
 
   render() {
     if (this.state.data) {
-      console.log(this.state.data);
-
       if (this.state.data.data) {
         return (
           <Link to={this.props.url}>
