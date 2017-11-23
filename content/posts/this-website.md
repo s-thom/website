@@ -22,7 +22,7 @@ Perhaps in the future I will investigate moving to a different (more light-weigh
 
 [Markdown](https://en.wikipedia.org/wiki/Markdown) is a markup format that is used in many popular places on the internet, such as [Reddit](https://reddit.com) and [GitHub](https://github.com). Markdown aims to be a human-readable markup format that is easily translated into XML/HTML. The text of this website has all been written in Markdown. For more information on how I use Markdown with React, then have a read of this post:
 
-<Link href="/posts/react-in-markdown/" title="React in Markdown"></Link>
+<Link url="/posts/react-in-markdown/" title="React in Markdown"></Link>
 
 # Typescript
 
@@ -38,7 +38,7 @@ At a higher level, the two frameworks are quite similar. They both use React, st
 
 I've written more about how I generate the pages using React Static in another post:
 
-<Link href="/posts/react-static-markdown/" title="Using Markdown with React Static"></Link>
+<Link url="/posts/react-static-markdown/" title="Using Markdown with React Static"></Link>
 
 # Why this website is open source
 
