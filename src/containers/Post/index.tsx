@@ -9,7 +9,7 @@ import { MdPageInfo } from '../../types';
 
 export default getRouteProps(({ data, text }: MdPageInfo) => (
   <article>
-    <HeadPage {...data} />
+    <HeadPage {...data} /> 
     <PostHeader {...data} />
     <MdRenderer text={text} />
   </article>

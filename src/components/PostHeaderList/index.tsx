@@ -27,8 +27,6 @@ export default function PostHeaderList({
     return bDate - aDate;
   });
 
-  console.log(sorted);
-
   return (
     <ul className="PostHeaderList">{
       sorted.map((page) => {

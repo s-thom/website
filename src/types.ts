@@ -17,6 +17,7 @@ export interface MdPageData {
   github?: string;
   type?: string;
   showType?: boolean;
+  children?: MdPageData[];
 }
 
 export interface HeadData {
@@ -27,4 +28,9 @@ export interface HeadData {
   date?: string;
   edited?: string;
   tags?: string[];
+}
+
+export interface MdPageChild extends MdPageInfo {
+  type: string;
+  children?: MdPageData[];
 }

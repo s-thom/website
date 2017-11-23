@@ -9,6 +9,13 @@ import stripMarkdown from 'strip-markdown';
 // Paths Aliases defined through tsconfig.json
 const typescriptWebpackPaths = require('./webpack.config.js');
 
+const contentRoot = 'content';
+const layoutMap = {
+  Post: 'src/containers/Post',
+  ListPage: 'src/containers/ListPage',
+  Home: 'src/containers/Home',
+};
+
 function prune(s) {
   const trimmed = s.substr(0, 80);
 
@@ -39,83 +46,111 @@ function makeDescription(text) {
   return prune(result);
 }
 
+/**
+ * Recursively makes page info for React Static
+ * 
+ * @param {string} root Current directory
+ * @param {string} filename Name of the file
+ * @returns 
+ */
+async function makePage(root, filename) {
+  const fullPath = path.resolve(__dirname, contentRoot, root, filename);
+  const isDir = await fs.stat(fullPath).then(s => s.isDirectory());
+
+  if (isDir) {
+    // reccur
+    const files = await fs.readdir(fullPath);
+    const newRoot = path.join(root, filename);
+
+    const promises = files.map(f => makePage(newRoot, f));
+
+    let values = await Promise.all(promises);
+
+    let data = {
+      title: filename,
+      url: url.parse(path.join('/', root, filename, '/')).href,
+      description: '',
+      filename,
+      id: filename,
+    };
+    let text = '';
+
+    const index = values.find(v => v.path === 'index');
+    if (index) {
+      values = values.filter(v => v !== index);
+
+      const indexProps = await index.getProps();
+
+      // Populate data prop with index's data
+      data = {
+        ...data,
+        ...indexProps.data,
+      };
+      // eslint-disable-next-line prefer-destructuring
+      text = indexProps.text;
+    }
+
+    const layout = (data.layout && layoutMap[data.layout]) || layoutMap.ListPage;
+
+    // Get children
+    const propArr = await Promise.all(values.map(v => v.getProps()));
+    const children = propArr.map(p => p.data);
+
+    data.children = children;
+
+    return {
+      type: 'dir',
+      path: filename,
+      component: layout,
+      getProps: async () => ({
+        name: filename,
+        children,
+        data,
+        text,
+      }),
+      children: values,
+    };
+    // eslint-disable-next-line no-else-return
+  } else {
+    const fileNoExt = filename.match(/(.+)\.md$/)[1];
+    const fileContents = await fs.readFile(fullPath, 'utf8');
+    // Extract front matter
+    const { data, content } = matter(fileContents);
+
+    const id = data.id || fileNoExt;
+    const idNoIndex = id === 'index' ? '' : id;
+
+    // Props for page
+    const props = {
+      data: {
+        ...data,
+        url: url.parse(path.join('/', root, idNoIndex, '/')).href,
+        description: makeDescription(content),
+        filename,
+        id,
+      },
+      text: content,
+    };
+
+    const layout = (data.layout && layoutMap[data.layout]) || layoutMap.Post;
+
+    // Return child info
+    return {
+      type: 'page',
+      path: props.data.id,
+      component: layout,
+      getProps: () => props,
+    };
+  }
+}
+
 export default {
   getSiteProps: () => ({}),
   getRoutes: async () => {
-    const contentRoot = './content';
-    const directories = [
-      'posts',
-      'projects',
-    ];
-
-    // TODO: meta.json in dir?
-
-    const promises = directories
-      .map(async (dir) => {
-        const dirPath = path.resolve(__dirname, contentRoot, dir);
-        const files = await fs.readdir(dirPath);
-
-        const promArray = files
-          .filter(f => f.match(/.+\.md$/))
-          .map(async (filename) => {
-            const fileNoExt = filename.match(/(.+)\.md$/)[1];
-            const fileContents = await fs.readFileSync(path.resolve(dirPath, filename), 'utf8');
-            const { data, content } = matter(fileContents);
-
-            const id = data.id || fileNoExt;
-
-            return {
-              data: {
-                ...data,
-                url: url.parse(path.join('/', dir, id, '/')).href,
-                description: makeDescription(content),
-                filename,
-                id,
-              },
-              text: content,
-            };
-          })
-          .map(p => p.catch(() => null))
-          .filter(f => f);
-
-        const posts = await Promise.all(promArray);
-        return {
-          posts,
-          dir,
-          dirPath,
-        };
-      })
-      .map(p => p.catch(() => []));
-
-    const folders = await Promise.all(promises);
-    const lists = folders
-      .map(({ posts, dir }) => ({
-        path: `/${dir}`,
-        component: 'src/containers/ListPage',
-        getProps: () => ({
-          name: dir,
-          posts: posts.map(({ data }) => data),
-        }),
-        children: posts.map(props => ({
-          path: props.data.id,
-          component: 'src/containers/Post',
-          getProps: () => props,
-        })),
-      }));
-    const folderMap = folders.reduce((p, c) => {
-      p[c.dir] = c.posts.map(({ data }) => data);
-      return p;
-    }, {});
+    const topRoute = await makePage('', '');
 
     return [
-      {
-        path: '/',
-        component: 'src/containers/Home',
-        getProps: () => ({
-          lists: folderMap,
-        }),
-      },
-      ...lists,
+      topRoute,
       {
         is404: true,
         component: 'src/containers/404',

@@ -16,6 +16,6 @@
 
 @media all and (min-width: 900px) {
   .App-container {
-    max-width: 80em;
+    max-width: 70em;
   }
 }
