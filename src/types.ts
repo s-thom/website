@@ -1,33 +1,31 @@
-export interface MdPageInfo {
-  data: MdPageData;
-  text: string;
-}
-
-export interface MdPageData {
-  title: string;
-  filename: string;
-  id: string;
+export interface HeadBase {
   url: string;
-  layout: string;
-  description: string;
-  date: string;
-  edited?: string;
+  title: string;
   img?: string;
   bgcolor?: string;
+  icon?: string;
+}
+
+export interface HeadData extends HeadBase {
+  description: string;
+  date?: string;
+  edited?: string;
+  tags?: string[];
+}
+
+export interface MdPageData extends HeadData {
+  filename: string;
+  id: string;
+  layout: string;
   github?: string;
   type?: string;
   showType?: boolean;
   children?: MdPageData[];
 }
 
-export interface HeadData {
-  title: string;
-  url: string;
-  description: string;
-  img?: string;
-  date?: string;
-  edited?: string;
-  tags?: string[];
+export interface MdPageInfo {
+  data: MdPageData;
+  text: string;
 }
 
 export interface MdPageChild extends MdPageInfo {
