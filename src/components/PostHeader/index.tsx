@@ -13,6 +13,8 @@ export default function PostHeader({
   url,
   date,
   edited,
+  type,
+  showType,
 }: MdPageData) {
   const headList = [];
   const headStyle: any = {};
@@ -49,6 +51,11 @@ export default function PostHeader({
         <em key={editDate.toISOString()}>Edited: {dateStr(editDate)}</em>
       </p>
     ));
+  }
+  
+  // Add type
+  if (showType && type) {
+    headList.push(<p className="PostHeader-type">{type}</p>);
   }
 
   // Breadcrumbs

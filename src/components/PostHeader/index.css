@@ -64,32 +64,16 @@
   text-align: end;
 }
 
-.PostHeader-showsType {
-  padding-bottom: 1.5em;
-}
-
 .PostHeader-breadcrumbs {
   margin-bottom: -0.5em;
   font-size: 0.9em;
   z-index: 1;
 }
 
-.PostHeader-crumb,
-.PostHeader-crumb:hover,
-.PostHeader-crumb:active,
-.PostHeader-crumb:visited {
-  color: inherit;
+.PostHeader-crumb {
+  color: inherit !important;
 }
 
 .PostHeader-type {
   margin: 0;
-  align-self: flex-end;
-  position: relative;
-  color: inherit;
-}
-
-.PostHeader-time {
-  align-self: flex-end;
-  text-align: right;
-  font-size: 0.9em;
 }
