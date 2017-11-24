@@ -36,22 +36,18 @@ export default function PostHeader({
   const dateNodes = [];
   if (pageDate) {
     dateNodes.push((
-      <em key={pageDate.toISOString()}><time dateTime={date}>
-        {dateStr(pageDate)}
-      </time></em>
+      <p className="PostHeader-date" key="PostHeader-dateOriginal">
+        <em><time dateTime={date}>
+          {dateStr(pageDate)}
+        </time></em>
+      </p>
     ));
-  }
-  if (pageDate && editDate) {
-    dateNodes.push(<br key="edit-separator" />);
   }
   if (editDate) {
     dateNodes.push((
-      <em key={editDate.toISOString()}>Edited: {dateStr(editDate)}</em>
-    ));
-  }
-  if (dateNodes.length) {
-    headList.push((
-      <div className="PostHeader-time" key="times">{dateNodes}</div>
+      <p className="PostHeader-date" key="PostHeader-dateEdited">
+        <em key={editDate.toISOString()}>Edited: {dateStr(editDate)}</em>
+      </p>
     ));
   }
 
@@ -86,7 +82,14 @@ export default function PostHeader({
   return (
     <header className={headClasses.join(' ')} style={headStyle}>
       {titleElement}
-      <div className="PostHeader-items">{headList}</div>
+      <div className="PostHeader-detail">
+        <div className="PostHeader-items">
+          {headList}
+        </div>
+        <div className="PostHeader-date">
+          {dateNodes}
+        </div>
+      </div>
     </header>
   );
 }

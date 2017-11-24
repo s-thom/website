@@ -49,8 +49,19 @@
   z-index: 0;
 }
 
-.PostHeader-items {
+.PostHeader-detail {
   z-index: 1;
+  display: flex;
+  align-items: flex-end;
+}
+
+.PostHeader-items {
+  flex-grow: 1;
+}
+
+.PostHeader-date {
+  margin: 0;
+  text-align: end;
 }
 
 .PostHeader-showsType {
