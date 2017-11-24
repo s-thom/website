@@ -2,6 +2,7 @@ import React from 'react';
 
 import { MdPageData } from '../../types';
 import Link from '../Link';
+import { dateStr } from '../../util';
 
 import './index.css';
 
@@ -36,7 +37,7 @@ export default function PostHeader({
   if (pageDate) {
     dateNodes.push((
       <em key={pageDate.toISOString()}><time dateTime={date}>
-        {pageDate.toLocaleString()}
+        {dateStr(pageDate)}
       </time></em>
     ));
   }
@@ -45,7 +46,7 @@ export default function PostHeader({
   }
   if (editDate) {
     dateNodes.push((
-      <em key={editDate.toISOString()}>Edited: {editDate.toLocaleString()}</em>
+      <em key={editDate.toISOString()}>Edited: {dateStr(editDate)}</em>
     ));
   }
   if (dateNodes.length) {
