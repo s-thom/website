@@ -2,7 +2,7 @@
 title: website
 layout: Project
 img: /assets/img/banner.jpg
-github: website
+github: s-thom/website
 date: 2017-06-03T13:40
 edited: 2017-11-26T12:43
 ---

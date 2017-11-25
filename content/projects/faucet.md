@@ -1,7 +1,7 @@
 ---
 title: faucet
 layout: Project
-github: faucet
+github: s-thom/faucet
 date: 2017-06-02T15:23
 ---
 
