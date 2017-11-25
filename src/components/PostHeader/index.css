@@ -70,8 +70,25 @@
   z-index: 1;
 }
 
-.PostHeader-crumb {
+.PostHeader-crumb,
+.PostHeader-github a {
   color: inherit !important;
+}
+
+.PostHeader-svg svg {
+  height: 1em;
+  width: 1em;
+  fill: #fff;
+  position: relative;
+  top: 0.2em;
+}
+
+.PostHeader-github .PageFooter-svg {
+  opacity: 0.5;
+}
+
+.PostHeader-github:hover .PageFooter-svg {
+  opacity: 1;
 }
 
 .PostHeader-type {
