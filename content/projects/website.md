@@ -4,20 +4,18 @@ layout: Project
 img: /assets/img/banner.jpg
 github: website
 date: 2017-06-03T13:40
-edited: 2017-06-26T16:30
+edited: 2017-11-26T12:43
 ---
 
 It's the website you're looking at! Yes, this one.
 
 I've talked a bit more on the creation of it [in another post](/posts/this-website/). I also go over a couple of the features I added over the top of the framework I used. You'll probably want to read that post before continuing.
 
-This website was an oppportunity for me to play around with something I hadn't used before. It will likely end up as one of thos projects I piece away at over time, adding little bits here and there.
+This website was an oppportunity for me to play around with something I hadn't used before. It will likely end up as one of those projects I piece away at over time, adding little bits here and there.
 
 # Collections
 
-Phenomic provides a way of getting a list of all pages in the website. This list is actually served with the page, and attached to `window.__COLLECTION__`. With many pages, this can very quickly increase the size of the page, but that's an issue for another day. The list contains all the properties set in the front matter of each page, so can be used to do filtering.
-
-The [Phenomic docs](https://phenomic.io/docs/usage/collections/) demonstrate a way of doing collections using different page layouts. I wanted to go a bit further than that. I created a [ListPage](https://github.com/s-thom/website/blob/develop/src/pages/ListPage/index.js) that allows more fine-grained page filtering. You can filter by tags, page layout, or even the URL (e.g. all pages in the `/posts/` directory). Pages can also specify a `hidden` attribute which will exclude them from lists, unless the ListPage shows hidden pages too. The number of pages and how they're sorted is also customisable.
+React Static provides a way of getting a list of all pages in the website. This list is actually served with the page, and attached to `window.__routesList`. Unlike the framework I was using previously ([Phenomic](https://phenomic.io/)), only the URL of these routes are added instead of the full props. Only the props for the current page are embedded in the HTML response, reducing the size of every page by a fair margin.
 
 # Navigation
 
