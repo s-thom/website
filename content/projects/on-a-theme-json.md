@@ -1,7 +1,7 @@
 ---
 title: OnAThemeJSONGen
 layout: Project
-github: OnAThemeJSONGen
+github: s-thom/OnAThemeJSONGen
 img: /assets/projects/on-a-theme-json/lilypads.jpg
 date: 2017-06-02T15:40
 ---

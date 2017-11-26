@@ -4,16 +4,9 @@ import { prefetch } from 'react-static'
 import PostHeaderPreview from '../PostHeaderPreview';
 import Link from '../Link';
 import { colorBrightness } from '../../util';
+import { HeadBase } from '../../types';
 
 import './index.css';
-
-interface Props {
-  url: string;
-  title: string;
-  img?: string;
-  bgcolor?: string;
-  icon?: string;
-}
 
 export default function MdBigLink({
   title,
@@ -21,7 +14,7 @@ export default function MdBigLink({
   bgcolor,
   url,
   icon,
-}: Props) {
+}: HeadBase) {
   const headStyle: any = {};
   const headClasses = [
     'BigLink',

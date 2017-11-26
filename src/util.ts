@@ -19,3 +19,26 @@ export function colorBrightness(color: string) {
   
   return total / 1000;
 }
+
+const monthStrings = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
+
+export function dateStr(date: Date) {
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+
+  return `${day} ${monthStrings[month]} '${year % 100}`;
+}

@@ -2,7 +2,7 @@
 title: Mars
 layout: Project
 bgcolor: '#BD4A2E'
-github: MarsAndroid
+github: s-thom/MarsAndroid
 date: 2017-06-18T12:00
 edited: 2017-11-23T09:41
 ---
