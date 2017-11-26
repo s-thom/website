@@ -1,8 +1,11 @@
 import React from 'react';
+import Svg from 'react-svg-inline';
 
 import { MdPageData } from '../../types';
 import Link from '../Link';
 import { dateStr } from '../../util';
+
+import svgGithub from '../../include/github.svg';
 
 import './index.css';
 
@@ -15,6 +18,7 @@ export default function PostHeader({
   edited,
   type,
   showType,
+  github,
 }: MdPageData) {
   const headList = [];
   const headStyle: any = {};
@@ -56,6 +60,19 @@ export default function PostHeader({
   // Add type
   if (showType && type) {
     headList.push(<p className="PostHeader-type">{type}</p>);
+  }
+
+  // Add GitHub URL
+  if (github) {
+    headList.push((
+      <p className="PostHeader-github">
+        <Link href={`https://github.com/${github}`}>
+          <Svg svg={svgGithub} className="PostHeader-svg" cleanup />
+          {' '}
+          {github}
+        </Link>
+      </p>
+    ));
   }
 
   // Breadcrumbs
