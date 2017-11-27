@@ -6,9 +6,6 @@ import remark from 'remark';
 import remarkParse from 'remark-parse';
 import stripMarkdown from 'strip-markdown';
 
-// Paths Aliases defined through tsconfig.json
-const typescriptWebpackPaths = require('./webpack.config.js');
-
 const contentRoot = 'content';
 const layoutMap = {
   Post: 'src/containers/Post',
@@ -161,11 +158,6 @@ export default {
   webpack: (config, { defaultLoaders }) => {
     // Add .ts and .tsx extension to resolver
     config.resolve.extensions.push('.ts', '.tsx');
-
-    // Add TypeScript Path Mappings (from tsconfig via webpack.config.js)
-    // to react-statics alias resolution
-    // eslint-disable-next-line no-param-reassign
-    config.resolve.alias = typescriptWebpackPaths.resolve.alias;
 
     // We replace the existing JS rule with one, that allows us to use
     // both TypeScript and JavaScript interchangeably
