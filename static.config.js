@@ -3,7 +3,6 @@ import matter from 'gray-matter';
 import path from 'path';
 import url from 'url';
 import remark from 'remark';
-import remarkParse from 'remark-parse';
 import stripMarkdown from 'strip-markdown';
 
 const contentRoot = 'content';
