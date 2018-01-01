@@ -154,6 +154,7 @@ export default {
     ];
   },
   siteRoot: 'https://sthom.kiwi',
+  entry: path.join(__dirname, 'src', 'index.tsx'),
   webpack: (config, { defaultLoaders }) => {
     // Add .ts and .tsx extension to resolver
     config.resolve.extensions.push('.ts', '.tsx');
