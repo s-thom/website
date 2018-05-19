@@ -2,6 +2,11 @@
 title: Using Markdown with React Static
 layout: Post
 date: 2017-11-23T15:45
+edited: 2018-05-20T11:48
+---
+
+*Edit (20 May 2018): Updated to support React Static 5.0.0+*
+
 ---
 
 My website uses the React Static framework to generate static HTML versions of its pages, as well as a dynamic JS version that runs in the browser. Configuration is done using a `static.config.js` in the root directory. This file tells React Static which routes exist on the website, as well as a few other details.
@@ -56,7 +61,7 @@ async function makePage(root, filename) {
     if (index) {
       values = values.filter(v => v !== index);
 
-      const indexProps = await index.getProps();
+      const indexProps = await index.getData();
 
       data = {
         ...data,
@@ -67,16 +72,16 @@ async function makePage(root, filename) {
 
     const layout = (data.layout && layoutMap[data.layout]) || layoutMap.ListPage;
 
-    const propArr = await Promise.all(values.map(v => v.getProps()));
+    const propArr = await Promise.all(values.map(v => v.getData()));
     const children = propArr.map(p => p.data);
 
     data.children = children;
 
     return {
       type: 'dir',
-      path: filename,
+      path: filename || '/',
       component: layout,
-      getProps: async () => ({
+      getData: async () => ({
         name: filename,
         children,
         data,
@@ -110,7 +115,7 @@ async function makePage(root, filename) {
       type: 'page',
       path: props.data.id,
       component: layout,
-      getProps: () => props,
+      getData: () => props,
     };
   }
 }
@@ -136,7 +141,7 @@ export default {
 
 ## Explanation
 
-Before going any further, I'll give a quick explaination of what this file does.
+Before going any further, I'll give a quick explanation of what this file does.
 
 Each time the website is built (i.e. pushing to your server) the exports from this file are used by React Static to actually do the build. This file can be used to extend the webpack config, allowing for near full control of the process. The main thing of note is the `getRoutes` function, which tells React Static which routes exist in the website and should be rendered.
 
@@ -152,7 +157,7 @@ The `getRoutes` function returns (a Promise of) an array of route info. Each rou
   // Optional
 
   children: [], // List of pages underneath this one in the heirarchy
-  getProps: () => ({}), // Props for this page. Can be async (or return a Promise)
+  getData: () => ({}), // Props for this page. Can be async (or return a Promise)
 }
 ```
 
@@ -243,7 +248,7 @@ return {
   type: 'page',
   path: props.data.id,
   component: layout,
-  getProps: () => props,
+  getData: () => props,
 };
 ```
 
@@ -282,7 +287,7 @@ const index = values.find(v => v.path === 'index');
 if (index) {
   values = values.filter(v => v !== index);
 
-  const indexProps = await index.getProps();
+  const indexProps = await index.getData();
 
   data = {
     ...data, // Use defaults as a base
@@ -295,16 +300,16 @@ if (index) {
 const layout = (data.layout && layoutMap[data.layout]) || layoutMap.ListPage;
 ```
 
-The children need to be included in the component props, so I resolve the getProps() for each of the child pages, and add that to the props for this page.
+The children need to be included in the component props, so I resolve the getData() for each of the child pages, and add that to the props for this page.
 
 ```js
-const propArr = await Promise.all(values.map(v => v.getProps()));
+const propArr = await Promise.all(values.map(v => v.getData()));
 
 return {
   type: 'dir',
-  path: filename,
+  path: filename || '/',
   component: layout,
-  getProps: async () => ({
+  getData: async () => ({
     name: filename,
     children: propArr,
     data,
