@@ -75,7 +75,7 @@ async function makePage(root, filename) {
     if (index) {
       values = values.filter(v => v !== index);
 
-      const indexProps = await index.getProps();
+      const indexProps = await index.getData();
 
       // Populate data prop with index's data
       data = {
@@ -89,16 +89,16 @@ async function makePage(root, filename) {
     const layout = (data.layout && layoutMap[data.layout]) || layoutMap.ListPage;
 
     // Get children
-    const propArr = await Promise.all(values.map(v => v.getProps()));
+    const propArr = await Promise.all(values.map(v => v.getData()));
     const children = propArr.map(p => p.data);
 
     data.children = children;
 
     return {
       type: 'dir',
-      path: filename,
+      path: filename || '/',
       component: layout,
-      getProps: async () => ({
+      getData: async () => ({
         name: filename,
         children,
         data,
@@ -135,13 +135,13 @@ async function makePage(root, filename) {
       type: 'page',
       path: props.data.id,
       component: layout,
-      getProps: () => props,
+      getData: () => props,
     };
   }
 }
 
 export default {
-  getSiteProps: () => ({}),
+  getSiteData: () => ({}),
   getRoutes: async () => {
     const topRoute = await makePage('', '');
 
