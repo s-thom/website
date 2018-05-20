@@ -15,7 +15,7 @@
     "react-dom": "^16.2.0",
     "react-ga": "^2.4.0",
     "react-router": "^4.2.0",
-    "react-static": "^5.9.3",
+    "react-static": "^5.8.1",
     "react-svg-inline": "^2.0.1",
     "rehype-autolink-headings": "^2.0.2",
     "rehype-highlight": "^2.0.1",
