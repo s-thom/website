@@ -1,5 +1,5 @@
 import React from 'react';
-import { getRouteProps } from 'react-static';
+import { withRouteData } from 'react-static';
 
 import MdRenderer from '../../components/MdRenderer';
 import PostHeader from '../../components/PostHeader';
@@ -7,7 +7,7 @@ import HeadPage from '../../components/HeadPage';
 
 import { MdPageInfo } from '../../types';
 
-export default getRouteProps(({ data, text }: MdPageInfo) => (
+export default withRouteData(({ data, text }: MdPageInfo) => (
   <article>
     <HeadPage {...data} /> 
     <PostHeader {...data} />

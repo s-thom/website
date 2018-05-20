@@ -1,5 +1,5 @@
 import React from 'react';
-import { getRouteProps } from 'react-static';
+import { withRouteData } from 'react-static';
 
 import { MdPageChild } from '../../types';
 
@@ -11,14 +11,13 @@ import Link from '../../components/Link';
 
 import './index.css';
 
-export default getRouteProps(({
+export default withRouteData(({
   data,
   text,
-  children,
 }: MdPageChild) => {
-  const lists = children
+  const lists = data.children
     .filter(c => c.children);
-  const pages = children
+  const pages = data.children
     .filter(c => !c.children);
 
   return (
