@@ -14,7 +14,7 @@ export default function PageFooter() {
       <p className="PageFooter-text">
         <span className="PageFooter-fade">Copyright &copy; Stuart Thomson</span>
         <span className="PageFooter-fade"> | </span>
-        <Link to="mailto:stu.thom.96@gmail.com" aria-label="Email">
+        <Link to="mailto:me@sthom.kiwi" aria-label="Email">
           <Svg svg={svgEmail} className="PageFooter-svg" cleanup />
         </Link>
         <Link to="https://github.com/s-thom" aria-label="GitHub">
